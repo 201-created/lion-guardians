@@ -12,11 +12,10 @@
     "ember-load-initializers": "ember-cli/ember-load-initializers#0.0.2",
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
-    "qunit": "~1.15.0"
-  },
-  "resolutions": {
-    "handlebars": "2.0.0",
-    "ember": "1.10.0-beta.2",
-    "ember-data": "1.0.0-beta.14.1"
+    "qunit": "~1.15.0",
+    "jquery-file-upload": "~9.9.2",
+    "blueimp-load-image": "~1.13.0",
+    "jquery.iframe-transport": "~1.0.0",
+    "jquery-ui": "~1.11.2"
   }
 }

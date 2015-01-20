@@ -4,6 +4,10 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
 
+app.import('vendor/jquery-ui/jquery.ui.widget.js');
+app.import('bower_components/jquery.iframe-transport/jquery.iframe-transport.js');
+app.import('bower_components/jquery-file-upload/js/jquery.fileupload.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
