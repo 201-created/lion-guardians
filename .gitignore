@@ -15,3 +15,7 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+# temp files for sublime and emacs
+*~
+*#*#

@@ -1,0 +1,48 @@
+application: lion-guardians
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /(.*-[0-9a-z]{32}\.(js|png|jpg|gif|css|woff|ttf|svg))
+  static_files: dist/\1
+  upload: dist/.*
+  expiration: "30d"
+
+- url: /(.*\.(js|png|jpg|gif|css|woff|ttf|svg))
+  static_files: dist/\1
+  upload: dist/.*
+  expiration: "1m"
+
+- url: /(.*)
+  static_files: dist/index.html
+  upload: dist/index.html
+  expiration: "1m"
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?tests$
+- ^(.*/)?test$
+- ^tests/(.*/)?
+- ^app/(.*/)?
+- ^config/(.*/)?
+- ^public/(.*/)?
+- ^tmp/(.*/)?
+- ^vendor/(.*/)?
+- ^COPYING.LESSER
+- ^README\..*
+- \.gitignore
+- ^\.git/.*
+- \.*\.lint$
+- ^fabfile\.py
+- ^testrunner\.py
+- ^grunt\.js
+- ^node_modules/(.*/)?
