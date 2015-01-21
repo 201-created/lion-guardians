@@ -5,7 +5,7 @@ Percent complete: {{percentComplete}}%.
 <ul>
   {{#each uploads as |upload|}}
     <li>
-      {{lg-file-preview file=upload.file}}
+      {{lg-file-preview file=upload.file status=upload.status}}
       ({{upload.status}}):
       {{upload.name}}
       {{upload.uploadedBytes}}/{{upload.totalBytes}}

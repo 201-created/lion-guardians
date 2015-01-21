@@ -2,27 +2,29 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['lg-file-preview'],
+
   file: null,
+  status: null,
+
   isLoaded: false,
   src: null,
 
   loadImageFromFile: function(){
+    var status = this.get('status');
+    if (status !== 'uploaded') { return; }
     var file = this.get('file');
     if (!file) { return; }
 
-    var component = this;
+    var imageURL = window.URL.createObjectURL(file);
 
-    var reader = new FileReader();
+    var canvas = this.$('canvas')[0];
+    var context = canvas.getContext('2d');
+    var img = new Image();
 
-    reader.onload = function(e){
-      var result = e.target.result;
-      Ember.run(function(){
-        component.set('isLoaded', true);
-        component.set('src', result);
-      });
+    img.onload = function(){
+      context.drawImage(img, 0, 0, 50, 50);
     };
 
-    reader.readAsDataURL(file);
-
-  }.on('didInsertElement')
+    img.src = imageURL;
+  }.observes('status')
 });
