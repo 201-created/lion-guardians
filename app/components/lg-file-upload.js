@@ -53,12 +53,14 @@ export default Ember.Component.extend({
 
       add: function(e, data){
         var upload = store.createRecord('upload');
+
         upload.save().then(function(){
           data.formData = upload.get('fields');
           data.url = upload.get('url');
 
           data.uploadObj = upload;
           upload.setProperties({
+            file: data.files[0],
             name: data.files[0].name,
             status: 'queued'
           });
@@ -83,9 +85,12 @@ export default Ember.Component.extend({
         Ember.run(upload, 'set', 'status', 'sent');
       },
 
+      /*
+       * called once whena ll uploads start
       start: function(e, data){
         debugger;
       },
+      */
 
       fail: function(e, data){
         console.log('fail',e,data,data.files[0].name);
