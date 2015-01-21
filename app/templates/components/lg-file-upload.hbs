@@ -1,4 +1,16 @@
 <input type="file" multiple>
-{{#if fileSelected}}
-<button {{action 'upload'}}>Upload</button>
-{{/if}}
+
+Percent complete: {{percentComplete}}%.
+
+<ul>
+  {{#each uploads as |upload|}}
+    <li>
+      ({{upload.status}}):
+      {{upload.name}}
+      {{upload.uploadedBytes}}/{{upload.totalBytes}}
+      ({{upload.percentComplete}}%)
+
+      Bit rate: {{upload.bitRate}}
+    </li>
+  {{/each}}
+</ul>
