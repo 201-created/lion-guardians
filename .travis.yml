@@ -2,16 +2,16 @@ language: node_js
 sudo: false
 cache:
   directories:
-  - node_modules
+    - node_modules
 notifications:
   slack:
     secure: TtbGT8CAE0WcDiF6lfZgi/SfaO1EDJY5SbL84cvIVx9LKDNZI4fZPg2kyzBTDn6GCDNsGOAVgi/BMJdcaSb+YKmUQeoNuoOttJr7kMcaQFA7ZKbHi+9x73Wkwy+9vIlm4hVCAQIGCVv1eGghxlW3bi2Acu/kKnBIgl8l67mM3fw=
 before_install:
-- npm config set spin false
-- npm install -g npm@^2
+  - npm config set spin false
+  - npm install -g npm@^2
 install:
-- npm install -g bower
-- npm install
-- bower install
+  - npm install -g bower
+  - npm install
+  - bower install
 script:
-- npm test
+  - npm test
