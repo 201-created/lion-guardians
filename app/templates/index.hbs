@@ -1,2 +1,35 @@
+{{#lg-file-upload store=store as |uploads|}}
 
-{{lg-file-upload store=store}}
+  <div class="uploads">
+
+    {{#each uploads as |upload|}}
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Uploading</h4>
+        <h3>{{upload.name}}</h3>
+      </div>
+      <div class="col-md-2">
+        <h4>Preview</h4>
+        {{lg-file-preview file=upload.file previewQueue=imagePreviewQueue}}
+      </div>
+      <div class="col-md-6">
+        <h4>Upload Progress</h4>
+
+        <p>
+          Uploaded {{bytes-to-human upload.uploadedBytes}} of
+          {{bytes-to-human upload.totalBytes}}.
+          Rate: {{bytes-to-human upload.bitRate}}/second.
+        </p>
+
+        {{#lg-progress-bar percent=upload.percentComplete as |humanPercent|}}
+          {{round-number humanPercent}}%
+        {{/lg-progress-bar}}
+      </div>
+    </div>
+    {{/each}}
+
+  </div>
+
+
+
+{{/lg-file-upload}}

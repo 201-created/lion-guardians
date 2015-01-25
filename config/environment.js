@@ -19,7 +19,8 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'style-src': "'self' 'unsafe-inline'"
+      'style-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com"
     }
   };
 

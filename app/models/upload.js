@@ -4,10 +4,10 @@ export default DS.Model.extend({
   url: DS.attr('string'),
   fields: DS.attr('raw'),
 
-
   uploadedBytes: 0,
   totalBytes: 0,
 
+  // 0-1
   percentComplete: function(){
     var uploadedBytes = this.get('uploadedBytes'),
         totalBytes    = this.get('totalBytes');
@@ -15,6 +15,6 @@ export default DS.Model.extend({
 
     if (totalBytes === 0) { return 0; }
 
-    return parseInt( 100 * (uploadedBytes / totalBytes) );
+    return uploadedBytes / totalBytes;
   }.property('uploadedBytes', 'totalBytes')
 });

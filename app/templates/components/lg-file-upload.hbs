@@ -1,17 +1,13 @@
 <input type="file" multiple>
 
-Percent complete: {{percentComplete}}%.
+{{#lg-progress-bar percent=percentComplete as |humanPercent|}}
+  {{round-number humanPercent}}%
+{{/lg-progress-bar}}
 
-<ul>
-  {{#each uploads as |upload|}}
-    <li>
-      {{lg-file-preview file=upload.file status=upload.status}}
-      ({{upload.status}}):
-      {{upload.name}}
-      {{upload.uploadedBytes}}/{{upload.totalBytes}}
-      ({{upload.percentComplete}}%)
+{{#if error}}
+<div class="alert alert-danger">
+  There was an error. {{errorMessage}}
+</div>
+{{/if}}
 
-      Bit rate: {{upload.bitRate}}
-    </li>
-  {{/each}}
-</ul>
+{{yield uploads}}

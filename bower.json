@@ -16,7 +16,8 @@
     "jquery-file-upload": "~9.9.2",
     "blueimp-load-image": "~1.13.0",
     "jquery.iframe-transport": "~1.0.0",
-    "jquery-ui": "~1.11.2"
+    "jquery-ui": "~1.11.2",
+    "spinkit": "~1.0.1"
   },
   "resolutions": {
     "handlebars": ">= 2.0.0 < 3.0.0"
