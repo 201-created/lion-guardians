@@ -8,14 +8,14 @@ export default Ember.Component.extend({
   uploadedBytes: 0,
   totalBytes: 0,
 
+  // 0-1
   percentComplete: function(){
     var uploadedBytes = this.get('uploadedBytes'),
         totalBytes    = this.get('totalBytes');
 
-
     if (totalBytes === 0) { return 0; }
 
-    return parseInt( 100 * (uploadedBytes / totalBytes) );
+    return uploadedBytes / totalBytes;
   }.property('uploadedBytes', 'totalBytes'),
 
   setupFileUpload: function() {
@@ -31,9 +31,10 @@ export default Ember.Component.extend({
       dataType: 'XML',
       replaceFileInput: false,
 
+      // Individual upload progress, called multiple times
       progress: function(e,data){
-        console.log('progress',e,data,data.files[0].name);
         var upload = data.uploadObj;
+
         Ember.run(function(){
           upload.set('uploadedBytes', data.loaded);
           upload.set('totalBytes', data.total);
@@ -41,8 +42,8 @@ export default Ember.Component.extend({
         });
       },
 
+      // Overall progress, called multiple times
       progressall: function(e,data){
-        console.log('progressall',e,data);
         Ember.run(function(){
           component.setProperties({
             uploadedBytes: data.loaded,
@@ -51,6 +52,10 @@ export default Ember.Component.extend({
         });
       },
 
+      // Called once for every file added.
+      // The submit of the upload is done asynchronously to allow
+      // us to fetch S3 upload information.
+      // The `data.submit` call is the one that actually starts the upload.
       add: function(e, data){
         var upload = store.createRecord('upload');
 
@@ -70,39 +75,34 @@ export default Ember.Component.extend({
           });
 
           data.submit();
+        }).catch(function(e){
+          component.set('error', true);
+          if (e.message) {
+            component.set('errorMessage', e.message);
+          }
         });
       },
 
-      submit: function(e, data){
-        console.log('submit',e,data,data.files[0].name);
-        var upload = data.uploadObj;
-        Ember.run(upload, 'set', 'status', 'submitted');
-      },
+      // This is called after add, on submit
+      submit: Ember.K,
 
-      send: function(e, data){
-        console.log('send',e,data,data.files[0].name);
-        var upload = data.uploadObj;
-        Ember.run(upload, 'set', 'status', 'sent');
-      },
+      // Called after submit
+      send: Ember.K,
 
-      /*
-       * called once whena ll uploads start
-      start: function(e, data){
-        debugger;
-      },
-      */
+      // called once when all uploads start
+      start: Ember.K,
 
-      fail: function(e, data){
-        console.log('fail',e,data,data.files[0].name);
+      fail: function(e) {
+        Ember.run(function(){
+          component.set('error', true);
+          component.set('errorMessage', e.message);
+        });
       },
 
       done: function(e, data){
-        console.log('done',e,data,data.files[0].name);
         var upload = data.uploadObj;
 
-        Ember.run(function(){
-          upload.set('status', 'uploaded');
-        });
+        Ember.run(upload, 'set', 'status', 'uploaded');
       }
     });
 

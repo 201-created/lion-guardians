@@ -1,1 +1,7 @@
-<canvas></canvas>
+<canvas {{bind-attr style=computedStyle}}
+        {{bind-attr width=width}}
+        {{bind-attr height=height}}>
+</canvas>
+{{#unless isLoaded}}
+  {{lg-spinner-rotating-plane}}
+{{/unless}}

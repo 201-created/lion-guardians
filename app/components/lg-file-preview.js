@@ -3,28 +3,48 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['lg-file-preview'],
 
-  file: null,
-  status: null,
+  width: 50,
+  height: 50,
 
+  previewQueue: null,
+
+  file: null,
   isLoaded: false,
-  src: null,
+
+  computedStyle: function(){
+    if (this.get('isLoaded')) {
+      return 'display: block';
+    } else {
+      return 'display: none';
+    }
+  }.property('isLoaded'),
 
   loadImageFromFile: function(){
-    var status = this.get('status');
-    if (status !== 'uploaded') { return; }
     var file = this.get('file');
     if (!file) { return; }
 
-    var imageURL = window.URL.createObjectURL(file);
+    var width  = this.get('width'),
+        height = this.get('height');
+    var component = this;
 
     var canvas = this.$('canvas')[0];
     var context = canvas.getContext('2d');
-    var img = new Image();
 
-    img.onload = function(){
-      context.drawImage(img, 0, 0, 50, 50);
-    };
+    this.get('previewQueue').addTask(function(){
+      return new Ember.RSVP.Promise(function(resolve){
+        var img = new Image();
+        var imageURL = window.URL.createObjectURL(file);
 
-    img.src = imageURL;
-  }.observes('status')
+        img.onload = function(){
+          context.drawImage(img, 0, 0, width, height);
+          Ember.run(component, 'set', 'isLoaded', true);
+          window.URL.revokeObjectURL(imageURL);
+          resolve();
+        };
+
+        img.src = imageURL;
+      });
+    });
+
+  }.on('didInsertElement')
 });

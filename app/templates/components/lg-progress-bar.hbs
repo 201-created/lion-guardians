@@ -1,0 +1,12 @@
+<div class="progress-bar progress-bar-success progress-bar-striped"
+  role="progressbar"
+
+  {{bind-attr style=computedStyle}}
+  {{bind-attr aria-valuenow=humanPercent}}
+
+  aria-valuemin="0"
+  aria-valuemax="100">
+    <span class="sr-only">{{humanPercent}}%</span>
+
+    {{yield humanPercent}}
+</div>
