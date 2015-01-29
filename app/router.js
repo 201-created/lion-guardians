@@ -6,6 +6,11 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource("image-sets", function() {
+    this.route("new");
+  }),
+
+  this.resource("image-set", { path: '/image-set/:image_set_id' }, function() {});
 });
 
 export default Router;

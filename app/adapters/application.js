@@ -1,5 +1,4 @@
-import DS from 'ember-data';
-
-export default DS.RESTAdapter.extend({
+import HalAdapter from "ember-data-hal-9000/adapter";
+export default HalAdapter.extend({
   host: 'http://localhost:5000'
 });

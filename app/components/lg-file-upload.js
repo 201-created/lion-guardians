@@ -102,7 +102,15 @@ export default Ember.Component.extend({
       done: function(e, data){
         var upload = data.uploadObj;
 
-        Ember.run(upload, 'set', 'status', 'uploaded');
+        // S3 returns some XML after an upload with the full URL in a Location tag.
+        var url = data.result.getElementsByTagName('Location')[0].textContent;
+        Ember.run(this, function(){
+          upload.setProperties({
+            status: 'uploaded',
+            url: url
+          });
+          component.sendAction('action', upload);
+        });
       }
     });
 
