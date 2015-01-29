@@ -3,7 +3,7 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
-[![Build Status](https://travis-ci.org/201-created/LG.svg?branch=master)](https://travis-ci.org/201-created/LG)
+[![Build Status](https://travis-ci.org/201-created/LG.svg?branch=master)](https://travis-ci.org/201-created/LG) [![Code Climate](https://codeclimate.com/github/201-created/LG/badges/gpa.svg)](https://codeclimate.com/github/201-created/LG)
 
 [Trello board](https://trello.com/b/Yeyso57t/lion-guardians)
 
