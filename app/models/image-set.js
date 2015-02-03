@@ -18,9 +18,5 @@ export default DS.Model.extend({
     });
 
     this.get('images').pushObject(image);
-
-    if (!this.get('mainImage')) {
-      this.set('mainImage', image);
-    }
   }
 });

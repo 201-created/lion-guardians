@@ -7,10 +7,7 @@ export default Ember.Controller.extend({
   uploadImageType: imageTypes[0],
   uploadIsPublic: false,
   isEditing: false,
-
-  organizations: function() {
-    return this.store.findAll('organization');
-  }.property(),
+  organizations: null,
 
   actions: {
     addImage: function(upload){
@@ -21,10 +18,8 @@ export default Ember.Controller.extend({
 
       model.addImage(url, isPublic, imageType);
 
-      Ember.run.later(this, function(){
-        // delete upload so it disappears from upload window
-        upload.deleteRecord();
-      }, 3000);
+      // delete upload so it disappears from upload window
+      upload.deleteRecord();
     },
 
     makeMainImage: function(image) {
@@ -44,21 +39,13 @@ export default Ember.Controller.extend({
       var imageSet = this.get('model'),
           controller = this;
       imageSet.save().then(function(imageSet) {
+        // Remove original images that don't have IDs.
+        // The server will come back with new objects
+        var images = imageSet.get('images');
+        var nullImages = images.rejectBy('id');
+        images.removeObjects(nullImages);
 
-        // Can transition as soon as imageSet is saved and
-        // save the rest of the images async.
         controller.transitionToRoute('image-set', imageSet);
-
-        imageSet.get('mainImage').save().then(function(mainImage) {
-          imageSet.save(); // save again with id for Main Image.
-
-          // Save the rest of the images
-          imageSet.get('images').forEach(function(image) {
-            if (image !== mainImage && image.get('isDirty')) {
-              image.save();
-            }
-          });
-        });
       });
     },
 

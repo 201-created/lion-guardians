@@ -19,10 +19,6 @@ test('addImage adds an image', function(){
   Ember.run(model, function() {
     model.addImage('url1', true, 'whiskers');
     equal(model.get('images.length'), 1);
-    equal(model.get('images.firstObject'), model.get('mainImage'), 'sets main image if null');
-
-    model.addImage('url2', true, 'cv');
-    equal(model.get('images.length'), 2);
-    equal(model.get('images.firstObject'), model.get('mainImage'), 'does override main image');
+    equal(model.get('mainImage'), null, "doesn't change mainImage");
   });
 });

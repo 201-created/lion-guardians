@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import ImageSetRoute from '../image-set';
 
-export default Ember.Route.extend({
+export default ImageSetRoute.extend({
   controllerName: 'image-set',
 
   model: function() {
