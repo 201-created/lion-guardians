@@ -15,8 +15,8 @@
       <li>{{input type='text' placeholder='Age' value=imageSet.age}}</li>
       <li>{{input type='text' placeholder='Latitude' value=imageSet.latitude}}</li>
       <li>{{input type='text' placeholder='Longitude' value=imageSet.longitude}}</li>
-      <li>{{view 'select' content=genders value=imageSet.gender}}</li>
-      <li><a href='#' {{action 'finishEditing'}}>Done</a></li>
+      <li>{{view 'select' classNames='lg-image-set-editor-gender' content=genders value=imageSet.gender}}</li>
+      <li><a href='#' class='lg-image-set-editor-done' {{action 'finishEditing'}}>Done</a></li>
     </ul>
 
   {{else}}
@@ -25,9 +25,9 @@
       <li>Organization: {{imageSet.uploadingOrganization.name}}</li>
       <li>Age: {{imageSet.age}}</li>
       <li>Location: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
-      <li>Gender: {{imageSet.gender}}</li>
+      <li class='lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
       {{#if editingEnabled}}
-        <li><a href='#' {{action 'startEditing'}}>Edit</a></li>
+        <li><a href='#' class='lg-image-set-editor-edit' {{action 'startEditing'}}>Edit</a></li>
       {{/if}}
     </ul>
   {{/if}}
