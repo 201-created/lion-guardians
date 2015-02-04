@@ -5,7 +5,7 @@ import {
 
 moduleForModel('lion', 'Lion', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:image-set', 'model:organization', 'model:image']
 });
 
 test('it exists', function() {
