@@ -1,12 +1,10 @@
 import Ember from 'ember';
-import {imageTypes, genders} from 'lion-guardians/utils/units';
+import {imageTypes} from 'lion-guardians/utils/units';
 
 export default Ember.Controller.extend({
   imageTypes: imageTypes,
-  genders: genders,
   uploadImageType: imageTypes[0],
   uploadIsPublic: false,
-  isEditing: false,
   organizations: null,
 
   actions: {
@@ -22,19 +20,6 @@ export default Ember.Controller.extend({
       upload.deleteRecord();
     },
 
-    makeMainImage: function(image) {
-      this.set('model.mainImage', image);
-    },
-
-    deleteImage: function(image) {
-      var imageSet = this.get('model');
-      imageSet.get('images').removeObject(image);
-      if (imageSet.get('mainImage') === image) {
-        imageSet.set('mainImage', null);
-      }
-      image.destroy();
-    },
-
     saveImageSet: function() {
       var imageSet = this.get('model'),
           controller = this;
@@ -47,14 +32,6 @@ export default Ember.Controller.extend({
 
         controller.transitionToRoute('image-set', imageSet);
       });
-    },
-
-    startEditing: function() {
-      this.set('isEditing', true);
-    },
-
-    finishEditing: function() {
-      this.set('isEditing', false);
     }
   }
 });
