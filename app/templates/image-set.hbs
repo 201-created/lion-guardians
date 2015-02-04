@@ -1,0 +1,98 @@
+<h2>Image Set</h2>
+
+<div class='row'>
+  <div class='col-sm-2'>
+    {{#if model.mainImage}}
+      <img {{bind-attr src=model.mainImage.url}} width='200' height='200'>
+    {{/if}}
+  </div>
+  <div class='col-sm-2'>
+    {{#if isEditing}}
+      <ul>
+        <li>{{view 'select'
+          content=organizations
+          optionValuePath='content'
+          optionLabelPath='content.name'
+          value=model.uploadingOrganization}}</li>
+        <li>{{input type='text' placeholder='Age' value=model.age}}</li>
+        <li>{{input type='text' placeholder='Latitude' value=model.latitude}}</li>
+        <li>{{input type='text' placeholder='Longitude' value=model.longitude}}</li>
+        <li>{{view 'select' content=genders value=model.gender}}</li>
+        <li><a href='#' {{action 'finishEditing'}}>Done</a></li>
+      </ul>
+
+      {{else}}
+      <ul>
+        <li>Organization: {{model.uploadingOrganization.name}}</li>
+        <li>Age: {{model.age}}</li>
+        <li>Location: {{model.latitude}} x {{model.longitude}}</li>
+        <li>Gender: {{model.gender}}</li>
+        <li><a href='#' {{action 'startEditing'}}>Edit</a></li>
+      </ul>
+    {{/if}}
+  </div>
+</div>
+
+<hr>
+
+<div class='row'>
+  <h3> Image Gallery</h3>
+  {{#each model.images as |image|}}
+    <span style='float: left'>
+      <img {{bind-attr src=image.url}} width='100' height='100'>
+      <ul>
+        <li>{{view 'select' content=imageTypes value=image.imageType}}</li>
+        <li>{{input type='checkbox' checked=image.isPublic}} Public</li>
+        <li><a href='#' {{action 'deleteImage' image}}>Delete Image</a></li>
+        {{#if image.id}}
+          <li><a href='#' {{action 'makeMainImage' image}}>Make Main</a></li>
+        {{/if}}
+      </ul>
+    </span>
+  {{/each}}
+</div>
+
+<hr>
+<a href='#' {{action 'saveImageSet'}}>Save</a>
+<div class='row'>
+  <h3>Upload</h3>
+  <ul>
+    <li>{{view 'select' content=imageTypes value=uploadImageType}}</li>
+    <li>{{input type='checkbox' checked=uploadIsPublic}} Public</li>
+  </ul>
+
+  {{#lg-file-upload store=store action="addImage" as |uploads|}}
+
+  <div class="uploads">
+
+    {{#each uploads as |upload|}}
+      {{#unless upload.isDeleted}}
+        <div class="row">
+          <div class="col-md-4">
+            <h4>Uploading</h4>
+            <h3>{{upload.name}}</h3>
+          </div>
+          <div class="col-md-2">
+            <h4>Preview</h4>
+            {{lg-file-preview file=upload.file previewQueue=imagePreviewQueue}}
+          </div>
+          <div class="col-md-6">
+            <h4>Upload Progress</h4>
+
+            <p>
+              Uploaded {{bytes-to-human upload.uploadedBytes}} of
+              {{bytes-to-human upload.totalBytes}}.
+              Rate: {{bytes-to-human upload.bitRate}}/second.
+            </p>
+
+            {{#lg-progress-bar percent=upload.percentComplete as |humanPercent|}}
+              {{round-number humanPercent}}%
+            {{/lg-progress-bar}}
+          </div>
+        </div>
+      {{/unless}}
+    {{/each}}
+
+  </div>
+  {{/lg-file-upload}}
+</div>
