@@ -17,9 +17,7 @@
     "blueimp-load-image": "~1.13.0",
     "jquery.iframe-transport": "~1.0.0",
     "jquery-ui": "~1.11.2",
-    "spinkit": "~1.0.1"
-  },
-  "resolutions": {
-    "handlebars": ">= 2.0.0 < 3.0.0"
+    "spinkit": "~1.0.1",
+    "pretender": "0.1.0"
   }
 }

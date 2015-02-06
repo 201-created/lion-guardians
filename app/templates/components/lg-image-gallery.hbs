@@ -1,0 +1,25 @@
+{{#each imageSet.images as |image|}}
+  <span style='float: left'>
+    <img {{bind-attr src=image.url}} width='100' height='100'>
+    <ul>
+      {{#if editingEnabled}}
+        <li>{{view 'select' content=imageTypes value=image.imageType}}</li>
+        <li>{{input type='checkbox' checked=image.isPublic}} Public</li>
+        <li><a href='#' {{action 'deleteImage' image}}>Delete Image</a></li>
+        {{#if image.id}}
+          <li><a href='#' {{action 'makeMainImage' image}}>Make Main</a></li>
+        {{/if}}
+
+      {{else}}
+        <li>{{image.imageType}}</li>
+        <li>
+          {{#if image.isPublic}}
+            public
+          {{else}}
+            private
+          {{/if}}
+        </li>
+      {{/if}}
+    </ul>
+  </span>
+{{/each}}

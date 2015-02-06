@@ -1,1 +1,18 @@
-{{outlet}}
+<h2>Lion {{model.name}}</h2>
+
+<div class='row'>
+  {{lg-image-set-editor
+    imageSet=model.primaryImageSet
+    editingEnabled=false
+  }}
+</div>
+
+<hr>
+
+<h3>Image Sets</h3>
+{{#each model.imageSets as |imageSet|}}
+  <div class='row'>
+    <h4>Image Set {{imageSet.id}}</h4>
+    {{lg-image-gallery imageSet=imageSet editingEnabled=false}}
+  </div>
+{{/each}}

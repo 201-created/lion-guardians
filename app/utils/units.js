@@ -11,4 +11,6 @@ var genders = [
   'female'
 ];
 
-export {imageTypes, genders};
+var searchGenders = ['all'].concat(genders);
+
+export {imageTypes, genders, searchGenders};
