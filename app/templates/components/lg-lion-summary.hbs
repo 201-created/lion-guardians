@@ -1,4 +1,7 @@
-{{#link-to 'lion' lion classNames='lg-lion-summary-link'}}
-  {{lion.name}}
-{{/link-to}}
+<div>
+  {{#link-to 'lion' lion classNames='lg-lion-summary-link'}}
+    {{lion.name}}
+  {{/link-to}}
+  {{lion.gender}}, {{lion.organization.name}}, age {{lion.age}}
+</div>
 <img {{bind-attr src=lion.primaryImageSet.mainImage.url}} width='100' height='100'>

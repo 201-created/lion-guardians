@@ -6,6 +6,8 @@ export default DS.Model.extend({
   latitude: DS.attr('number'),
   longitude: DS.attr('number'),
   gender: DS.attr('string'),
+  isVerified: DS.attr('boolean'),
+  hasCvResults: DS.attr('boolean'),
   images: DS.hasMany('images'),
   userId: DS.attr('string'), // DS.belongsTo('user')
   uploadingOrganization: DS.belongsTo('organization'),

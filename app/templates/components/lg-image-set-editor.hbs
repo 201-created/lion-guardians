@@ -26,6 +26,7 @@
       <li>Age: {{imageSet.age}}</li>
       <li>Location: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
       <li class='lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
+      <li>Is Verified: {{imageSet.isVerified}}</li>
       {{#if editingEnabled}}
         <li><a href='#' class='lg-image-set-editor-edit' {{action 'startEditing'}}>Edit</a></li>
       {{/if}}
