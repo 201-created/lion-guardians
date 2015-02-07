@@ -4,6 +4,9 @@ import Router from '../../router';
 import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';
 import config from '../../config/environment';
 
+// register sign in helpers
+import './sign-in';
+
 export default function startApp(attrs) {
   var application;
 

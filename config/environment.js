@@ -19,17 +19,20 @@ module.exports = function(environment) {
     },
 
     apiHost: 'http://localhost:5000',
+
+    // The path to POST to to create a new token
     tokenPath: '/users/sign_in',
+
+    // The key used to store the auth token
+    authTokenKey: 'authToken',
 
     torii: {
       sessionServiceName: 'toriiSession',
       providers: {
-        'lion-guardians': {
-        }
+        // The custom provider we use for token auth
+        'lion-guardians': {}
       }
     },
-
-    authTokenKey: 'authToken',
 
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'",
@@ -51,6 +54,8 @@ module.exports = function(environment) {
     ENV.apiHost = '';
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+
+    ENV.authTokenKey = 'test-authToken';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;

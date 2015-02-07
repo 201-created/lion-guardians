@@ -2,7 +2,8 @@ import resolver from './helpers/resolver';
 import {
   setResolver
 } from 'ember-qunit';
-import FakeServer from "./helpers/fake-server";
+import FakeServer from './helpers/fake-server';
+import { clearSession } from '../torii-adapters/lion-guardians';
 
 setResolver(resolver);
 
@@ -13,6 +14,7 @@ var containerVisibility = QUnit.urlParams.nocontainer ? 'hidden' : 'visible';
 document.getElementById('ember-testing-container').style.visibility = containerVisibility;
 
 QUnit.testStart(function(){
+  clearSession();
   FakeServer.start();
 });
 

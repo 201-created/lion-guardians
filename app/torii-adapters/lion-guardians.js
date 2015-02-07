@@ -2,7 +2,7 @@ import Ember from "ember";
 import storage from '../utils/storage';
 import config from "../config/environment";
 
-function clearSession(){
+export function clearSession(){
   storage.remove(config.authTokenKey);
 }
 

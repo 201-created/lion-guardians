@@ -5,8 +5,8 @@
     </div>
   {{/if}}
 
-  Email: {{input value=email}}<br>
-  Password: {{input value=password type='password'}}
+  Email: {{input name='email' value=email}}<br>
+  Password: {{input name='password' value=password type='password'}}
 
   <button {{action 'login'}} type='submit' {{bind-attr disabled=toriiSession.isWorking}}>
     {{#if toriiSession.isWorking}}
