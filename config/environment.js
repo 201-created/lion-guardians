@@ -18,6 +18,22 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    apiHost: 'http://localhost:5000',
+
+    // The path to POST to to create a new token
+    tokenPath: '/users/sign_in',
+
+    // The key used to store the auth token
+    authTokenKey: 'authToken',
+
+    torii: {
+      sessionServiceName: 'toriiSession',
+      providers: {
+        // The custom provider we use for token auth
+        'lion-guardians': {}
+      }
+    },
+
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'",
       'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com",
@@ -26,7 +42,6 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.apiURL = 'http://localhost:5000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -36,9 +51,11 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.apiURL = '';
+    ENV.apiHost = '';
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+
+    ENV.authTokenKey = 'test-authToken';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -48,7 +65,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiURL = 'http://lion-guardians-api.herokuapp.com';
+    ENV.apiHost = 'http://lion-guardians-api.herokuapp.com';
   }
 
   return ENV;
