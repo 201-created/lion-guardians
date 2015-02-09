@@ -1,0 +1,6 @@
+<h2>Image Sets for {{currentOrganization.name}}</h2>
+{{#if model}}
+  {{#each model as |imageSet|}}
+    {{lg-image-set-summary imageSet=imageSet}}
+  {{/each}}
+{{/if}}

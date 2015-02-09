@@ -9,8 +9,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
-          <li>{{#link-to 'image-sets.new'}}New Image Set{{/link-to}}</li>
+          <li>{{#link-to 'image-sets.index'}}Image Sets{{/link-to}}</li>
           <li>{{#link-to 'lions.search'}}Lion Search{{/link-to}}</li>
+          <li>{{#link-to 'image-sets.new'}}New Image Set{{/link-to}}</li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {{#if toriiSession.isAuthenticated}}

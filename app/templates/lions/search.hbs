@@ -1,14 +1,9 @@
-<h1>Lion Search</h1>
+<h2>Lion Search</h2>
 {{lg-lion-search action='search' organizations=organizations}}
 
-
 {{#if model}}
-  <h2>Results</h2>
-  <ul>
-    {{#each model as |lion|}}
-      <li>
-        {{lg-lion-summary lion=lion}}
-      </li>
-    {{/each}}
-  </ul>
+  <h3>Results</h3>
+  {{#each model as |lion|}}
+    {{lg-lion-summary lion=lion}}
+  {{/each}}
 {{/if}}

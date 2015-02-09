@@ -1,7 +1,11 @@
-<ul>
-  <li>{{input type='text' placeholder='Name' value=selectedName}}</li>
-  <li>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
-  <li>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
-</ul>
+<div class='search-panel panel panel-default'>
+  <ul class='list-group'>
+    <li class='list-group-item'>{{input type='text' placeholder='Name' value=selectedName}}</li>
+    <li class='list-group-item'>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
+    <li class='list-group-item'>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
+  </ul>
 
-<a href='#' class='lion-search' {{action 'search'}}>Search</a>
+  <button class='btn btn-xs btn-success lion-search' {{action 'search'}} >
+    Search
+  </button>
+</div>

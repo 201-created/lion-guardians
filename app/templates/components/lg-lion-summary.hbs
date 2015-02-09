@@ -1,7 +1,20 @@
-<div>
-  {{#link-to 'lion' lion classNames='lg-lion-summary-link'}}
-    {{lion.name}}
-  {{/link-to}}
-  {{lion.gender}}, {{lion.organization.name}}, age {{lion.age}}
+<div class='row'>
+  <div class='col-sm-4'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        {{#link-to 'lion' lion classNames='lg-lion-summary-link'}}
+          {{lion.name}}
+        {{/link-to}}
+      </div>
+      <ul class='list-group'>
+        <li class='list-group-item'>Gender: {{lion.gender}}</li>
+        <li class='list-group-item'>Organization: {{lion.organization.name}}</li>
+        <li class='list-group-item'>Age: {{lion.age}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='col-sm-4'>
+    <img {{bind-attr src=lion.primaryImageSet.mainImage.url}} width='100' height='100'>
+  </div>
 </div>
-<img {{bind-attr src=lion.primaryImageSet.mainImage.url}} width='100' height='100'>

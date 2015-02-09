@@ -1,0 +1,26 @@
+<div class='row'>
+  <div class='col-sm-4'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        Image Set
+      </div>
+      <ul class='list-group'>
+        <li class='list-group-item'>
+          ID:
+          {{#link-to 'image-set' imageSet classNames='lg-image-set-summary-link'}}
+            {{imageSet.id}}
+          {{/link-to}}
+        </li>
+        <li class='list-group-item'>
+          Status: {{status}}
+        </li>
+        <li class='list-group-item'>
+          Has CV Results: {{imageSet.hasCvResults}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class='col-sm-4'>
+    <img {{bind-attr src=imageSet.mainImage.url}} width='100' height='100'>
+  </div>
+</div>
