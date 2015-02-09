@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import {imageTypes, genders} from 'lion-guardians/utils/units';
+import {genders} from 'lion-guardians/utils/units';
 
 export default Ember.Component.extend({
   genders: genders,

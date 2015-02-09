@@ -2,6 +2,7 @@ import {
   moduleForModel,
   test
 } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleForModel('image-set', 'ImageSet', {
   needs: ['model:image', 'model:organization']

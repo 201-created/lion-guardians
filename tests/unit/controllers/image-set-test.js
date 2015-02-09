@@ -2,6 +2,7 @@ import {
   moduleFor,
   test
 } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleFor('controller:image-set', 'ImageSetController', {
   // needs: []

@@ -5,7 +5,7 @@ import {
 
 moduleForComponent('lg-file-upload', 'LgFileUploadComponent', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['component:lg-progress-bar', 'helper:round-number']
 });
 
 test('it renders', function() {
