@@ -9,7 +9,7 @@ export default DS.Model.extend({
   isVerified: DS.attr('boolean'),
   hasCvResults: DS.attr('boolean'),
   images: DS.hasMany('images'),
-  userId: DS.attr('string'), // DS.belongsTo('user')
+  user: DS.belongsTo('user'),
   uploadingOrganization: DS.belongsTo('organization'),
 
   addImage: function(url, isPublic, imageType) {

@@ -5,7 +5,7 @@ import {
 import Ember from 'ember';
 
 moduleForModel('image-set', 'ImageSet', {
-  needs: ['model:image', 'model:organization']
+  needs: ['model:image', 'model:organization', 'model:user']
 });
 
 test('it exists', function() {
