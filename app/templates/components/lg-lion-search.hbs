@@ -5,7 +5,9 @@
     <li class='list-group-item'>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
   </ul>
 
-  <button class='btn btn-xs btn-success lion-search' {{action 'search'}} >
-    Search
-  </button>
+  <div class='panel-heading'>
+    <button class='btn btn-xs btn-success lion-search' {{action 'search'}} >
+      Search
+    </button>
+  </div>
 </div>

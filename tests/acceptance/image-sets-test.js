@@ -16,6 +16,7 @@ module('Acceptance: ImageSets', {
 });
 
 test('visiting /image-sets', function() {
+  signIn();
   visit('/image-sets');
 
   andThen(function() {
