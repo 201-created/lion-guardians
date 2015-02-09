@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   store: null,
 
   uploads: function(){ return Ember.A(); }.property(),
+  showProgress: Ember.computed.gt('uploads.length', 0),
 
   uploadedBytes: 0,
   totalBytes: 0,

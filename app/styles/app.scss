@@ -1,2 +1,113 @@
 @import "bootstrap";
 @import "components";
+
+@import "components/lg-image-gallery";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body > .ember-view {
+  position: relative;
+  min-height: 100%;
+}
+
+.content {
+  padding-bottom: 70px;
+}
+
+.footer {
+  border-top: 1px solid #E7E7E7;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #F8F8F8;
+}
+
+.navbar {
+  .navbar-brand {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #DB5300;
+  }
+
+  li.no-link-nav-el {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+.image-set-header {
+  position: relative;
+
+  .image-set-title {
+    width: 50%;
+  }
+
+  .image-set-save {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.main-image {
+  margin-top: 20px;
+
+  img, .no-main-image {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 300px;
+  }
+
+  .no-main-image {
+    width: 300px;
+    text-align: center;
+    line-height: 300px;
+    color: #CCC;
+  }
+}
+
+.metadata-panel {
+  position: relative;
+  margin-top: 20px;
+  height: 300px;
+
+  .edit-save-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 35px;
+    padding-right: 10px;
+  }
+}
+
+.upload-options {
+  display: inline-block;
+  margin-top: 20px;
+  width: 250px;
+
+  .public-option {
+    display: inline-block;
+  }
+
+  .public-private {
+    display: inline-block;
+    margin-left: 30px;
+  }
+
+  select {
+    display: inline-block;
+    width: 150px;
+    margin-left: 15px;
+  }
+}
+
+.file-input {
+  padding-bottom: 5px;
+  line-height: 20px;
+}

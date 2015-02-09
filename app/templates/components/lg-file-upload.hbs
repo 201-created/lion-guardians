@@ -1,8 +1,10 @@
-<input type="file" multiple>
+<input class='file-input' type="file" multiple>
 
-{{#lg-progress-bar percent=percentComplete as |humanPercent|}}
-  {{round-number humanPercent}}%
-{{/lg-progress-bar}}
+{{#if showProgress}}
+  {{#lg-progress-bar percent=percentComplete as |humanPercent|}}
+    {{round-number humanPercent}}%
+  {{/lg-progress-bar}}
+{{/if}}
 
 {{#if error}}
 <div class="alert alert-danger">
