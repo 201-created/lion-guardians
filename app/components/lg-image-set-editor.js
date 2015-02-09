@@ -15,6 +15,11 @@ export default Ember.Component.extend({
 
     finishEditing: function() {
       this.set('isEditing', false);
+
+      var imageSet = this.get('imageSet');
+      if (imageSet.get('id')) {
+        imageSet.save();
+      }
     }
   }
 });

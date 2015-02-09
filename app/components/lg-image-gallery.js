@@ -10,7 +10,11 @@ export default Ember.Component.extend({
 
   actions: {
     makeMainImage: function(image) {
-      this.set('imageSet.mainImage', image);
+      var imageSet = this.get('imageSet');
+      imageSet.set('mainImage', image);
+      if (imageSet.get('id')) {
+        imageSet.save();
+      }
     },
 
     deleteImage: function(image) {
