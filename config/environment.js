@@ -18,7 +18,7 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    apiHost: 'http://localhost:5000',
+    apiHost: 'http://lion-guardians-api.herokuapp.com',
 
     // The path to POST to to create a new token
     tokenPath: '/users/sign_in',
@@ -37,11 +37,13 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'",
       'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com",
-      'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com"
+      'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com lion-guardians-api.herokuapp.com"
     }
   };
 
   if (environment === 'development') {
+    ENV.apiHost = 'http://localhost:5000';
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
