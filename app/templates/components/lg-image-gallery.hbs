@@ -1,25 +1,43 @@
-{{#each imageSet.images as |image|}}
-  <span style='float: left'>
-    <img {{bind-attr src=image.url}} width='100' height='100'>
-    <ul>
-      {{#if editingEnabled}}
-        <li>{{view 'select' content=imageTypes value=image.imageType}}</li>
-        <li>{{input type='checkbox' checked=image.isPublic}} Public</li>
-        <li><a href='#' {{action 'deleteImage' image}}>Delete Image</a></li>
-        {{#if image.id}}
-          <li><a href='#' {{action 'makeMainImage' image}}>Make Main</a></li>
-        {{/if}}
+<div class='image-gallery col-sm-12'>
+  <div class='gallery-header'>
+    <h3> Image Gallery</h3>
+  </div>
 
-      {{else}}
-        <li>{{image.imageType}}</li>
-        <li>
-          {{#if image.isPublic}}
-            public
+  <div class='scrollable-gallery'>
+    {{#each imageSet.images as |image|}}
+      <div class='image-gallery-image'>
+        <img {{bind-attr src=image.url}}>
+
+        <div class='image-properties'>
+          {{#if editingEnabled}}
+            {{view 'select' class='form-control' content=imageTypes value=image.imageType}}
+            <div class='public-private checkbox'>
+              {{input type='checkbox' checked=image.isPublic}} Public
+            </div>
+            {{#if image.id}}
+              <button class='btn btn-xs btn-warning' {{action 'makeMainImage' image}}>
+                Make Main Image
+              </button>
+            {{/if}}
+            <button class='btn btn-xs btn-danger' {{action 'deleteImage' image}}>
+              Delete Image
+            </button>
+
           {{else}}
-            private
+            <li>{{image.imageType}}</li>
+            <li>
+              {{#if image.isPublic}}
+                Public
+              {{else}}
+                Private
+              {{/if}}
+            </li>
           {{/if}}
-        </li>
-      {{/if}}
-    </ul>
-  </span>
-{{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class='scroll-arrows'>
+    <span class='glyphicon glyphicon-chevron-right'></span>
+  </div>
+</div>

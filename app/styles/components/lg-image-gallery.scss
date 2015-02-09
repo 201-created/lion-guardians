@@ -1,0 +1,60 @@
+$gallery-height: 300px;
+
+.image-gallery {
+  border-radius: 5px;
+  background-color: #CDCDCD;
+  padding-right: 0;
+
+  .gallery-header {
+    display: inline-block;
+  }
+  .scrollable-gallery {
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-top: 20px;
+    height: $gallery-height;
+    white-space: nowrap;
+    padding-right: 40px;
+  }
+
+  .scroll-arrows {
+    position: absolute;
+    border-radius: 0 5px 5px 0;
+    height: 100%;
+    line-height: 100%;
+    background-color: rgba(122, 122, 122, 0.5);
+    color: #000;
+    width: 50px;
+    right: 0;
+    top: 0;
+
+    .glyphicon {
+      font-size: 40px;
+      margin: 0 3px;
+      margin-top: $gallery-height / 2 + 15px;
+    }
+  }
+
+  .image-gallery-image {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    vertical-align: top;
+
+    img {
+      border: 1px solid black;
+      height: 150px;
+    }
+
+    .image-properties {
+      padding-top: 20px;
+      width: 150px;
+    }
+
+    .public-private {
+      padding-left: 30px;
+    }
+
+  }
+}

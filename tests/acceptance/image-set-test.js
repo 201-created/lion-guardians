@@ -53,7 +53,9 @@ test('visiting /image-set', function() {
     expectComponent('lg-image-set-editor');
     expectComponent('lg-image-gallery');
 
-    click('.lg-image-set-editor-edit');
+    expect('.edit-save-button button:contains(Edit)', 1);
+    expect('.edit-save-button button:contains(Save)', 0);
+    click('.edit-save-button button');
   });
 
   andThen(function() {
@@ -61,7 +63,9 @@ test('visiting /image-set', function() {
   });
 
   andThen(function() {
-    click('.lg-image-set-editor-done');
+    expect('.edit-save-button button:contains(Edit)', 0);
+    expect('.edit-save-button button:contains(Save)', 1);
+    click('.edit-save-button button');
   });
 
   andThen(function() {
