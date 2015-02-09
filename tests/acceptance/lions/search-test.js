@@ -26,12 +26,12 @@ test('visiting /lions/search', function() {
   });
 
   andThen(function() {
-    expectElement('.lion-search', 1, 'Search button is present');
+    expectElement('.lion-search', 1);
     click('.lion-search');
   });
 
   andThen(function() {
-    expectComponent('lg-lion-summary', 1, 'Lion Summary Component is present');
+    expectComponent('lg-lion-summary', 1);
     click('.lg-lion-summary-link');
   });
 
