@@ -4,8 +4,7 @@ import {
 } from 'ember-qunit';
 
 moduleForModel('image', 'Image', {
-  // Specify the other units that are required for this test.
-  needs: ['model:image-set', 'model:organization']
+  needs: ['model:image-set', 'model:organization', 'model:user']
 });
 
 test('it exists', function() {

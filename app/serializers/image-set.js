@@ -2,6 +2,6 @@ import ApplicationSerializer from './application';
 
 export default ApplicationSerializer.extend({
   attrs: {
-    images:    {serialize: 'records'}
+    images: {serialize: 'records'}
   }
 });

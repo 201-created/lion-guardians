@@ -4,8 +4,9 @@ export default ImageSetRoute.extend({
   controllerName: 'image-set',
 
   model: function() {
+    var currentUser = this.get('toriiSession.currentUser');
     return this.store.createRecord('image-set', {
-      userId: '1' // TODO Remove once we have user auth. requires a user on the backend
+      user: currentUser
     });
   },
 
