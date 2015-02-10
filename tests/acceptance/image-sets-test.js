@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import { stubGetOrganizations, stubGetImageSets, stubDeleteImageSets } from '../helpers/fake-requests';
+import { stubGetOrganizations, stubGetImageSets } from '../helpers/fake-requests';
+import { stubRequest } from '../helpers/fake-server';
 
 var application;
 
@@ -9,7 +10,6 @@ module('Acceptance: ImageSets', {
     application = startApp();
     stubGetImageSets();
     stubGetOrganizations();
-    stubDeleteImageSets();
   },
   teardown: function() {
     Ember.run(application, 'destroy');
@@ -35,6 +35,13 @@ test('visiting /image-sets', function() {
 });
 
 test('delete /image-set/:id', function() {
+  expect(5);
+
+  stubRequest('delete', '/imageSets/24', function(request){
+    ok(true, 'delete api was called');
+    return this.noContent(204);
+  });
+
   signIn();
   visit('/image-sets');
 
