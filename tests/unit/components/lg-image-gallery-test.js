@@ -34,9 +34,13 @@ test('makeMainImage sets main image on model', function(){
 });
 
 test('deleteImage removes image from image set', function() {
-  expect(3);
+  expect(4);
 
-  var img1 = Ember.Object.create(),
+  var img1 = Ember.Object.create({
+    destroyRecord: function() {
+      ok(true, 'image object destroyed');
+    }
+  }),
       img2 = Ember.Object.create(),
       imageSet = Ember.Object.create({
         images: [img1, img2],
