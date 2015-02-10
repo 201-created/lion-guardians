@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       if (imageSet.get('mainImage') === image) {
         imageSet.set('mainImage', null);
       }
-      image.destroy();
+      image.destroyRecord();
     }
   }
 });
