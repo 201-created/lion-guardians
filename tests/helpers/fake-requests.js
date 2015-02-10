@@ -104,8 +104,17 @@ function stubGetImageSets() {
   });
 }
 
+function stubDeleteImageSets() {
+  stubRequest('delete', '/imageSets', function(request){
+    return this.success({
+      _embedded: {}
+    });
+  });
+}
+
 export {
   stubGetLions,
   stubGetOrganizations,
-  stubGetImageSets
+  stubGetImageSets,
+  stubDeleteImageSets
 };

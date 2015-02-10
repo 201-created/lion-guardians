@@ -49,10 +49,26 @@ body > .ember-view {
     width: 50%;
   }
 
-  .image-set-save {
+  .image-set-save-or-delete {
     position: absolute;
     right: 0;
     top: 0;
+  }
+}
+
+.image-thumbnail {
+
+  img, .no-main-image {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 160px;
+  }
+
+  .no-main-image {
+    width: 160px;
+    text-align: center;
+    line-height: 160px;
+    color: #CCC;
   }
 }
 
