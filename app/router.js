@@ -15,7 +15,9 @@ Router.map(function() {
   // This is where a user is sent after they log in
   this.route('dashboard');
 
-  this.resource('image-set', { path: '/image-set/:image_set_id' }, function() {});
+  this.resource('image-set', { path: '/image-set/:image_set_id' }, function() {
+    this.route("cv-results");
+  });
 
   this.resource("lions", function() {
     this.route("search");

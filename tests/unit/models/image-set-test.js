@@ -5,7 +5,8 @@ import {
 import Ember from 'ember';
 
 moduleForModel('image-set', 'ImageSet', {
-  needs: ['model:image', 'model:organization', 'model:user']
+  needs: ['model:image', 'model:organization', 'model:user',
+          'model:cv-result', 'model:lion', 'model:cv-request']
 });
 
 test('it exists', function() {

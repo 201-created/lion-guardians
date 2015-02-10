@@ -40,6 +40,18 @@ export default Ember.Controller.extend({
       imageSet.destroyRecord().then(function() {
         controller.transitionToRoute('image-sets');
       });
+    },
+
+    requestCv: function() {
+      var imageSet = this.get('model'),
+          currentUser = this.get('toriiSession.currentUser');
+
+      var cvRequest = this.store.createRecord('cvRequest', {
+        imageSet: imageSet,
+        uploadingOrganization: currentUser.get('organization')
+      });
+
+      cvRequest.save();
     }
   }
 });
