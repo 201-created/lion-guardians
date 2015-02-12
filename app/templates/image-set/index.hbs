@@ -1,0 +1,70 @@
+<div class='row'>
+  {{#if model.hasCvResults}}
+    {{#link-to 'image-set.cv-results' model}}
+      <button class='btn btn-primary btn-large' type='button'>
+        View CV Results
+      </button>
+    {{/link-to}}
+  {{else}}
+    {{#if model.cvRequest}}
+      <div class='cv-request-pending'>CV Request Pending</div>
+    {{else}}
+      <button class='btn btn-primary btn-large request-cv' {{action 'requestCv'}}
+              type='button'>
+        Request CV
+      </button>
+    {{/if}}
+  {{/if}}
+  <hr>
+</div>
+
+<div class='row'>
+  {{lg-image-gallery imageSet=model editingEnabled=true}}
+</div>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <h3>Add Images To Set</h3>
+    <div class='upload-options'>
+      Image Type: {{view 'select' class='form-control' content=imageTypes value=uploadImageType}}
+      <div class='public-option'>
+        Public Image?
+        <div class='public-private checkbox'>
+          {{input type='checkbox' checked=uploadIsPublic}} Public
+        </div>
+      </div>
+    </div>
+
+    {{#lg-file-upload store=store action="addImage" as |uploads|}}
+      <div class="uploads">
+        {{#each uploads as |upload|}}
+          {{#unless upload.isDeleted}}
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Uploading</h4>
+                <h3>{{upload.name}}</h3>
+              </div>
+              <div class="col-md-2">
+                <h4>Preview</h4>
+                {{lg-file-preview file=upload.file previewQueue=imagePreviewQueue}}
+              </div>
+              <div class="col-md-6">
+                <h4>Upload Progress</h4>
+
+                <p>
+                  Uploaded {{bytes-to-human upload.uploadedBytes}} of
+                  {{bytes-to-human upload.totalBytes}}.
+                  Rate: {{bytes-to-human upload.bitRate}}/second.
+                </p>
+
+                {{#lg-progress-bar percent=upload.percentComplete as |humanPercent|}}
+                  {{round-number humanPercent}}%
+                {{/lg-progress-bar}}
+              </div>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+    {{/lg-file-upload}}
+  </div>
+</div>

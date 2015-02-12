@@ -3,9 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('image', 'Image', {
-  needs: ['model:image-set', 'model:organization', 'model:user',
-          'model:cv-result', 'model:lion', 'model:cv-request']
+moduleForModel('cv-request', 'CvRequest', {
+  needs: ['model:image-set', 'model:image', 'model:lion',
+          'model:user', 'model:organization', 'model:cv-result']
 });
 
 test('it exists', function() {

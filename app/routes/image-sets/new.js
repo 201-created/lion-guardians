@@ -12,6 +12,7 @@ export default ImageSetRoute.extend({
 
   renderTemplate: function() {
     this.render('image-set');
+    this.render('image-set/index', {into: 'image-set'});
   }
 
 });

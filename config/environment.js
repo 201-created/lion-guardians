@@ -36,7 +36,7 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'",
-      'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com",
+      'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com data:",
       'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com lion-guardians-api.herokuapp.com"
     }
   };
