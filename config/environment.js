@@ -6,6 +6,11 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    googleMap: {
+      lazyLoad: true,
+      apiKey: 'AIzaSyCoc_T6TNxu5Mnw28aJleIm63fR7WzViUU'
+    },
+    showMaps: true,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -35,8 +40,10 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'style-src': "'self' 'unsafe-inline'",
-      'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com data:",
+      'style-src': "'self' 'unsafe-inline' *.googleapis.com",
+      'font-src': "'self' *.gstatic.com",
+      'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com data: *.gstatic.com *.googleapis.com",
+      'script-src': "'self' 'unsafe-eval' *.gstatic.com *.googleapis.com",
       'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com lion-guardians-api.herokuapp.com"
     }
   };
@@ -64,6 +71,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.showMaps = false;
   }
 
   if (environment === 'production') {

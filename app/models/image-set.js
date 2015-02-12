@@ -1,10 +1,11 @@
 import DS from 'ember-data';
+import {defaultLocation} from 'lion-guardians/utils/units';
 
 export default DS.Model.extend({
   mainImage: DS.belongsTo('image'),
   age: DS.attr('string'),
-  latitude: DS.attr('number'),
-  longitude: DS.attr('number'),
+  latitude: DS.attr('number', {defaultValue: defaultLocation.latitude}),
+  longitude: DS.attr('number', {defaultValue: defaultLocation.longitude}),
   gender: DS.attr('string'),
   isVerified: DS.attr('boolean'),
   hasCvResults: DS.attr('boolean'),

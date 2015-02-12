@@ -1,4 +1,5 @@
 import { stubRequest } from '../helpers/fake-server';
+import { defaultLocation } from 'lion-guardians/utils/units';
 
 function stubLionJSON() {
   return {
@@ -21,8 +22,8 @@ function stubImageSetJSON() {
   return {
     id: 24,
     is_verified: false,
-    latitude: null,
-    longitude: null,
+    latitude: defaultLocation.latitude,
+    longitude: defaultLocation.longitude,
     gender: "male",
     age: "24",
     main_image_id: 49,

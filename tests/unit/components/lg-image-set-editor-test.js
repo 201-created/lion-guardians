@@ -4,8 +4,7 @@ import {
 } from 'ember-qunit';
 
 moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
-  // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['component:lg-google-map']
 });
 
 test('it renders', function() {
