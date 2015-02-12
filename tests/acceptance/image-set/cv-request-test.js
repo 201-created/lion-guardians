@@ -47,6 +47,7 @@ test('visiting /image-set/24 and requesting CV', function() {
 });
 
 test('visiting /image-set/24 and seeing request pending', function() {
+  signIn();
   expect(1);
 
   imageSetJSON.cv_request_id = '1';

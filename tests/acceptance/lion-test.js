@@ -56,7 +56,12 @@ module('Acceptance: Lion', {
   }
 });
 
+test('visiting /lion/2 with no current user', function() {
+  redirectsToLogin('/lion/2');
+});
+
 test('visiting /lion/2', function() {
+  signIn();
   visit('/lion/2');
 
   andThen(function() {
