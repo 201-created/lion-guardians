@@ -17,8 +17,12 @@ module('Acceptance: LionsSearch', {
   }
 });
 
-test('visiting /lions/search', function() {
+test('visiting /lions/search with no current user', function() {
+  redirectsToLogin('/lions/search');
+});
 
+test('visiting /lions/search', function() {
+  signIn();
   visit('/lions/search');
 
   andThen(function() {
@@ -42,6 +46,8 @@ test('visiting /lions/search', function() {
 
 test('searching', function() {
   expect(1);
+
+  signIn();
   visit('/lions/search');
 
   stubRequest('get', '/lions', function(request){

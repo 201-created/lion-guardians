@@ -20,3 +20,10 @@ Ember.Test.registerAsyncHelper('signIn', function(app){
     session.set('content.currentUser', user);
   });
 });
+
+Ember.Test.registerAsyncHelper('redirectsToLogin', function(app, path){
+  visit(path);
+  andThen(function() {
+    equal(currentPath(), 'login');
+  });
+});

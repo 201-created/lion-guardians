@@ -28,7 +28,12 @@ module('Acceptance: ImageSetCvResults', {
   }
 });
 
+test('visiting /image-set/cv-results with no currentuser', function() {
+  redirectsToLogin('/image-set/25/cv-results');
+});
+
 test('visiting /image-set/cv-results', function() {
+  signIn();
   visit('/image-set/25/cv-results');
 
   andThen(function() {
@@ -112,6 +117,8 @@ test('visiting /image-set/cv-results and associating with lion', function() {
 });
 
 test('visiting /image-set/cv-results, cvResult associated with lion doesnt give option to change', function() {
+  signIn();
+
   // imageSet 24 is already associated with a lion
   stubGetCvResults('24');
   stubRequest('get', 'imageSets/:image_set_id', function(request){

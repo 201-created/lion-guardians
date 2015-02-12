@@ -22,7 +22,12 @@ module('Acceptance: ImageSet', {
   }
 });
 
+test('visiting /image-set with no current user', function() {
+  redirectsToLogin('/image-set/24');
+});
+
 test('visiting /image-set', function() {
+  signIn();
   visit('/image-set/24');
 
   andThen(function() {
