@@ -34,7 +34,15 @@
         <li class='list-group-item'>Age: {{input type='text' placeholder='Age' value=selectedAge}}</li>
         <li class='list-group-item'>Lat/Long: {{selectedLatitude}} x {{selectedLongitude}}</li>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
-        <li class='list-group-item'>Verified: {{input type='checkbox' checked=selectedIsVerified}}</li>
+
+        {{#if imageSet.lion}}
+          <li class='list-group-item'>Lion:
+            {{#link-to 'lion' imageSet.lion classNames='lg-lion-summary-link'}}
+              {{imageSet.lion.name}}
+            {{/link-to}}
+          </li>
+          <li class='list-group-item'>Verified: {{input type='checkbox' checked=selectedIsVerified}}</li>
+        {{/if}}
       </ul>
 
     {{else}}
@@ -44,7 +52,14 @@
         <li class='list-group-item'>Age: {{imageSet.age}}</li>
         <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
         <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
-        <li class='list-group-item'>Is Verified: {{imageSet.isVerified}}</li>
+        {{#if imageSet.lion}}
+          <li class='list-group-item'>Lion:
+            {{#link-to 'lion' imageSet.lion classNames='lg-lion-summary-link'}}
+              {{imageSet.lion.name}}
+            {{/link-to}}
+          </li>
+          <li class='list-group-item'>Is Verified: {{imageSet.isVerified}}</li>
+        {{/if}}
       </ul>
     {{/if}}
   </div>
