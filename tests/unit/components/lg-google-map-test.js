@@ -21,24 +21,3 @@ test('it renders', function() {
   this.append();
   equal(component._state, 'inDOM');
 });
-
-test('creates and updates marker', function(){
-  expect(5);
-  var imageSet = Ember.Object.create({
-    latitude: 10,
-    longitude: 10
-  });
-
-  var component = this.subject({
-    imageSet: imageSet
-  });
-
-  var marker = component.get('marker');
-  ok(marker);
-  equal(marker.get('lat'), imageSet.get('latitude'));
-  equal(marker.get('lng'), imageSet.get('longitude'));
-
-  equal(marker.get('isDraggable'), false);
-  component.set('isMarkerDraggable', true);
-  equal(marker.get('isDraggable'), true);
-});

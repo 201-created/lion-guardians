@@ -5,11 +5,18 @@
       <div class='edit-save-button'>
         {{#if editingEnabled}}
           {{#if isEditing}}
-            <button class='btn btn-xs btn-success' {{action 'finishEditing'}} >
-              Save
-            </button>
+            {{#if isSavingImageSet}}
+              Saving In Progress..
+            {{else}}
+              <button class='btn btn-xs btn-success' {{action 'finishEditing'}} >
+                Save
+              </button>
+              <button class='btn btn-xs btn-warning' {{action 'cancelEditing'}} >
+                Cancel
+              </button>
+            {{/if}}
           {{else}}
-            <button class='btn btn-xs btn-success' {{action 'startEditing'}} >
+            <button class='btn btn-xs btn-info' {{action 'startEditing'}} >
               Edit
             </button>
           {{/if}}
@@ -23,11 +30,11 @@
                                                     content=organizations
                                                     optionValuePath='content'
                                                     optionLabelPath='content.name'
-                                                    value=imageSet.uploadingOrganization}}</li>
-        <li class='list-group-item'>Age: {{input type='text' placeholder='Age' value=imageSet.age}}</li>
-        <li class='list-group-item'>Latitude: {{input type='text' placeholder='Latitude' value=imageSet.latitude}}</li>
-        <li class='list-group-item'>Longitude: {{input type='text' placeholder='Longitude' value=imageSet.longitude}}</li>
-        <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=imageSet.gender}}</li>
+                                                    value=selectedOrganization}}</li>
+        <li class='list-group-item'>Age: {{input type='text' placeholder='Age' value=selectedAge}}</li>
+        <li class='list-group-item'>Lat/Long: {{selectedLatitude}} x {{selectedLongitude}}</li>
+        <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
+        <li class='list-group-item'>Verified: {{input type='checkbox' checked=selectedIsVerified}}</li>
       </ul>
 
     {{else}}
@@ -35,7 +42,7 @@
         <li class='list-group-item'>Image Set ID: {{imageSet.id}}</li>
         <li class='list-group-item'>Organization: {{imageSet.uploadingOrganization.name}}</li>
         <li class='list-group-item'>Age: {{imageSet.age}}</li>
-        <li class='list-group-item'>Location: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
+        <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
         <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
         <li class='list-group-item'>Is Verified: {{imageSet.isVerified}}</li>
       </ul>
@@ -55,5 +62,5 @@
   </div>
 </div>
 <div class='col-sm-4'>
-  {{lg-google-map imageSet=imageSet isMarkerDraggable=isEditing}}
+  {{lg-google-map marker=mapMarker}}
 </div>
