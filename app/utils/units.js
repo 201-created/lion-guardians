@@ -13,4 +13,12 @@ var genders = [
 
 var searchGenders = ['all'].concat(genders);
 
-export {imageTypes, genders, searchGenders};
+// Amboseli National Park, Kajiado, Kenya
+var defaultLocation = {
+  latitude: -2.6527,
+  longitude: 37.26058,
+  zoom: 10,
+  mapType: 'road'
+};
+
+export {imageTypes, genders, searchGenders, defaultLocation};

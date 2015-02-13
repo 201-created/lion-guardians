@@ -36,6 +36,7 @@ test('visiting /image-set', function() {
 
     expectComponent('lg-image-set-editor');
     expectComponent('lg-image-gallery');
+    expectComponent('lg-google-map');
 
     expect('.edit-save-button button:contains(Edit)', 1);
     expect('.edit-save-button button:contains(Save)', 0);
