@@ -7,7 +7,7 @@ Ember.Test.registerAsyncHelper('signIn', function(app){
   Ember.run(function(){
     var store = app.__container__.lookup('store:main');
     var organization = store.push('organization', {
-      id: 'org1',
+      id: '1',
       name: 'Organization 1'
     });
 
@@ -26,4 +26,10 @@ Ember.Test.registerAsyncHelper('redirectsToLogin', function(app, path){
   andThen(function() {
     equal(currentPath(), 'login');
   });
+});
+
+
+Ember.Test.registerAsyncHelper('signInAndVisit', function(app, path){
+  signIn();
+  visit(path);
 });

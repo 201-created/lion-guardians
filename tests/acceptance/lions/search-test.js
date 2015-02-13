@@ -22,8 +22,7 @@ test('visiting /lions/search with no current user', function() {
 });
 
 test('visiting /lions/search', function() {
-  signIn();
-  visit('/lions/search');
+  signInAndVisit('/lions/search');
 
   andThen(function() {
     equal(currentPath(), 'lions.search');
@@ -47,8 +46,7 @@ test('visiting /lions/search', function() {
 test('searching', function() {
   expect(1);
 
-  signIn();
-  visit('/lions/search');
+  signInAndVisit('/lions/search');
 
   stubRequest('get', '/lions', function(request){
 

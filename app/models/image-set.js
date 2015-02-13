@@ -16,6 +16,24 @@ export default DS.Model.extend({
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
 
+  status: function() {
+    var hasCvResults = this.get('hasCvResults'),
+        lion = this.get('lion'),
+        isVerified = this.get('isVerified'),
+        status = "";
+
+    if (hasCvResults && lion) {
+      status += 'Has CV Results, ';
+      status += isVerified ? 'Verified' : 'Unverified';
+    } else if (hasCvResults) {
+      status = 'Has CV Results';
+    } else if (lion) {
+      status = isVerified ? 'Verified' : 'Unverified';
+    }
+
+    return status;
+  }.property('hasCvResults', 'lion', 'isVerified'),
+
   addImage: function(url, isPublic, imageType) {
     var image = this.store.createRecord('image', {
       url: url,

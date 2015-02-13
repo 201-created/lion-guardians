@@ -13,6 +13,16 @@ export default Ember.Route.extend({
       this.get('toriiSession').close('lion-guardians').then(function(){
         route.transitionTo('login');
       });
+    },
+    requestCv: function(imageSet) {
+      var currentUser = this.get('toriiSession.currentUser');
+
+      var cvRequest = this.store.createRecord('cvRequest', {
+        imageSet: imageSet,
+        uploadingOrganization: currentUser.get('organization')
+      });
+
+      cvRequest.save();
     }
   }
 });

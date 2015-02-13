@@ -90,6 +90,20 @@ function stubGetImageSets() {
   });
 }
 
+function stubGetImageSetsWithCvResults() {
+  stubRequest('get', '/imageSets', function(request){
+    var json = stubImageSetJSON();
+    json.hasCvResults = true;
+    return this.success({
+      _embedded: {
+        image_sets: [
+          json
+        ]
+      }
+    });
+  });
+}
+
  function stubGetImageSet() {
   stubRequest('get', '/imageSets/24', function(request){
     return this.success(stubImageSetJSON());
@@ -137,7 +151,9 @@ export {
   stubGetOrganizations,
   stubGetImageSets,
   stubGetImageSet,
+  stubGetImageSetsWithCvResults,
   stubImageSetJSON,
   stubGetCvResults,
+  stubCvResultJSON,
   stubGetUser
 };
