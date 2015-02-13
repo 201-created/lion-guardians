@@ -27,8 +27,7 @@ test('visiting /image-set with no current user', function() {
 });
 
 test('visiting /image-set', function() {
-  signIn();
-  visit('/image-set/24');
+  signInAndVisit('/image-set/24');
 
   andThen(function() {
     equal(currentPath(), 'image-set.index');

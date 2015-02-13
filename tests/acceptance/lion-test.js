@@ -61,8 +61,7 @@ test('visiting /lion/2 with no current user', function() {
 });
 
 test('visiting /lion/2', function() {
-  signIn();
-  visit('/lion/2');
+  signInAndVisit('/lion/2');
 
   andThen(function() {
     equal(currentPath(), 'lion.index');

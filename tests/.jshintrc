@@ -50,7 +50,8 @@
     "currentPath",
     "currentRouteName",
     "signIn",
-    "redirectsToLogin"
+    "redirectsToLogin",
+    "signInAndVisit"
   ],
   "node": false,
   "browser": false,

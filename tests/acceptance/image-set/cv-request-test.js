@@ -22,10 +22,9 @@ module('Acceptance: ImageSetCvRequest', {
 });
 
 test('visiting /image-set/24 and requesting CV', function() {
-  signIn();
   expect(3);
 
-  visit('/image-set/24');
+  signInAndVisit('/image-set/24');
 
   stubRequest('post', '/cvRequests', function(request) {
     ok(true, 'cv request post api called');
@@ -47,7 +46,6 @@ test('visiting /image-set/24 and requesting CV', function() {
 });
 
 test('visiting /image-set/24 and seeing request pending', function() {
-  signIn();
   expect(1);
 
   imageSetJSON.cv_request_id = '1';
@@ -59,7 +57,7 @@ test('visiting /image-set/24 and seeing request pending', function() {
     });
   });
 
-  visit('/image-set/24');
+  signInAndVisit('/image-set/24');
 
   andThen(function() {
     expectElement('.cv-request-pending');

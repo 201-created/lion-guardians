@@ -2,6 +2,7 @@ import Ember from 'ember';
 import {searchGenders} from 'lion-guardians/utils/units';
 
 export default Ember.Component.extend({
+  store: null,
   genders: searchGenders,
   selectedGender: searchGenders[0],
   defaultGender: Ember.computed.alias('genders.firstObject'),
@@ -9,6 +10,7 @@ export default Ember.Component.extend({
   selectedOrganization: null,
   selectedName: null,
   action: null,
+  searchModel: 'lion',
 
   defaultOrganization: function(){
     return Ember.Object.create({
@@ -58,8 +60,16 @@ export default Ember.Component.extend({
 
   actions: {
     search: function() {
-      var params = this.get('params');
-      this.sendAction('action', params);
+      var params = this.get('params'),
+          store = this.get('store'),
+          component = this,
+          searchModel = this.get('searchModel');
+
+      store.find(searchModel, params).then(function(results){
+        component.sendAction('action', results);
+      }, function() {
+        alert("There was an error searching.");
+      });
     }
   }
 });

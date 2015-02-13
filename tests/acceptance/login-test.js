@@ -79,8 +79,7 @@ test(`visit ${url} posts data to create token`, () => {
 });
 
 test(`visit ${url} while logged in redirects to dashboard`, () => {
-  signIn();
-  visit(url);
+  signInAndVisit(url);
   andThen( () => {
     equal(currentPath(), 'dashboard');
   });

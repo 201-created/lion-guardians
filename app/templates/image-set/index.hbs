@@ -9,7 +9,7 @@
     {{#if model.cvRequest}}
       <div class='cv-request-pending'>CV Request Pending</div>
     {{else}}
-      <button class='btn btn-primary btn-large request-cv' {{action 'requestCv'}}
+      <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
               type='button'>
         Request CV
       </button>

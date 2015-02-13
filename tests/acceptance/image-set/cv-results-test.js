@@ -33,8 +33,7 @@ test('visiting /image-set/cv-results with no currentuser', function() {
 });
 
 test('visiting /image-set/cv-results', function() {
-  signIn();
-  visit('/image-set/25/cv-results');
+  signInAndVisit('/image-set/25/cv-results');
 
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
@@ -50,8 +49,7 @@ test('visiting /image-set/cv-results', function() {
 test('visiting /image-set/cv-results and creating new lion', function() {
   expect(3);
 
-  signIn();
-  visit('/image-set/25/cv-results');
+  signInAndVisit('/image-set/25/cv-results');
 
   stubRequest('post', '/lions', function(){
     ok(true, 'lion create api called');
@@ -92,8 +90,7 @@ test('visiting /image-set/cv-results and creating new lion', function() {
 test('visiting /image-set/cv-results and associating with lion', function() {
   expect(3);
 
-  signIn();
-  visit('/image-set/25/cv-results');
+  signInAndVisit('/image-set/25/cv-results');
 
   stubGetUser();
   stubRequest('put', '/imageSets/25', function(){
@@ -117,8 +114,6 @@ test('visiting /image-set/cv-results and associating with lion', function() {
 });
 
 test('visiting /image-set/cv-results, cvResult associated with lion doesnt give option to change', function() {
-  signIn();
-
   // imageSet 24 is already associated with a lion
   stubGetCvResults('24');
   stubRequest('get', 'imageSets/:image_set_id', function(request){
@@ -126,7 +121,7 @@ test('visiting /image-set/cv-results, cvResult associated with lion doesnt give 
     return this.success(imageSetJSON);
   });
 
-  visit('/image-set/24/cv-results');
+  signInAndVisit('/image-set/24/cv-results');
 
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
