@@ -13,10 +13,10 @@ var genders = [
 
 var searchGenders = ['all'].concat(genders);
 
-// Amboseli National Park, Kajiado, Kenya
+// Maasai Mara National Reserve, Kenya
 var defaultLocation = {
-  latitude: -2.6527,
-  longitude: 37.26058,
+  latitude: -1.581981,
+  longitude: 35.2451,
   zoom: 10,
   mapType: 'road'
 };
