@@ -35,7 +35,11 @@ test('visiting /lions/search', function() {
 
   andThen(function() {
     expectComponent('lg-lion-summary', 1);
-    click('.lg-lion-summary-link');
+    click('.lg-lion-summary');
+  });
+
+  andThen(function() {
+    click('.view-lion');
   });
 
   andThen(function() {
