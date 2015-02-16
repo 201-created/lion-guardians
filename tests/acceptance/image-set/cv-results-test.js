@@ -38,7 +38,7 @@ test('visiting /image-set/cv-results', function() {
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
     expectComponent('lg-cv-result-summary');
-    click('.select-cv-result');
+    click('.lg-cv-result-summary');
   });
 
   andThen(function() {
@@ -70,7 +70,7 @@ test('visiting /image-set/cv-results and creating new lion', function() {
   });
 
   andThen(function() {
-    click('.select-cv-result');
+    click('.lg-cv-result-summary');
   });
 
   andThen(function() {
@@ -101,7 +101,7 @@ test('visiting /image-set/cv-results and associating with lion', function() {
   });
 
   andThen(function() {
-    click('.select-cv-result');
+    click('.lg-cv-result-summary');
   });
 
   andThen(function() {
@@ -126,7 +126,7 @@ test('visiting /image-set/cv-results, cvResult associated with lion doesnt give 
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
     expectComponent('lg-cv-result-summary');
-    click('.select-cv-result');
+    click('.lg-cv-result-summary');
   });
 
   andThen(function() {

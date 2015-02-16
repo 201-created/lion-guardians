@@ -1,12 +1,10 @@
 <li class='list-group-item'>
-  <a class='select-cv-result' href='#' {{action 'selectCvResult'}}>
-    {{#if cvResult.lion}}
-      Lion: {{cvResult.lion.name}}
-    {{else}}
-      {{#if cvResult.imageSet}}
-        Image Set: {{cvResult.imageSet.id}}
-      {{/if}}
+  {{#if cvResult.lion}}
+    Lion: {{cvResult.lion.name}}
+  {{else}}
+    {{#if cvResult.imageSet}}
+      Image Set: {{cvResult.imageSet.id}}
     {{/if}}
-    {{cvResult.percent}} %
-  </a>
+  {{/if}}
+  {{cvResult.percent}} %
 </li>

@@ -4,7 +4,11 @@
   <div class='col-sm-4'>
     <ul class='list-group'>
       {{#each model as |cvResult|}}
-        {{lg-cv-result-summary cvResult=cvResult action='setActiveCvResult'}}
+        {{#lg-selectable model=cvResult activeModel=activeCvResult
+          action='setActiveCvResult'
+          classNames='row'}}
+          {{lg-cv-result-summary cvResult=cvResult }}
+        {{/lg-selectable}}
       {{/each}}
     </ul>
   </div>
