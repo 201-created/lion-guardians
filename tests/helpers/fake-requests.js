@@ -104,9 +104,12 @@ function stubGetImageSetsWithCvResults() {
   });
 }
 
- function stubGetImageSet() {
-  stubRequest('get', '/imageSets/24', function(request){
-    return this.success(stubImageSetJSON());
+function stubGetImageSet() {
+  stubRequest('get', 'imageSets/:image_set_id', function(request){
+    var json = stubImageSetJSON();
+    json.id = request.params.image_set_id;
+
+    return this.success(json);
   });
  }
 

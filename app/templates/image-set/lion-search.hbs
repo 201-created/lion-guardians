@@ -1,0 +1,24 @@
+<h3>Search Lions</h3>
+
+<div class='row'>
+  <div class='col-sm-4'>
+    {{lg-lion-search action='displayResults' organizations=organizations store=store}}
+
+    {{#if model}}
+      <h3>Results</h3>
+      {{#each model as |lion|}}
+        {{#lg-selectable model=lion activeModel=activeLion action='selectLion' classNames="row"}}
+          {{lg-lion-summary lion=lion}}
+        {{/lg-selectable}}
+      {{/each}}
+    {{/if}}
+
+  </div>
+  <div class='col-sm-4'>
+    {{lg-lion-associator activeLion=activeLion
+      activeImageSet=activeLion.primaryImageSet
+      imageSet=imageSet
+      createLion='createLion'
+      associate='associate'}}
+  </div>
+</div>

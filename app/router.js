@@ -17,6 +17,7 @@ Router.map(function() {
 
   this.resource('image-set', { path: '/image-set/:image_set_id' }, function() {
     this.route("cv-results");
+    this.route("lion-search");
   });
 
   this.resource("lions", function() {

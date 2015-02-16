@@ -2,6 +2,7 @@ import Ember from 'ember';
 import startApp from '../../helpers/start-app';
 import { stubRequest } from '../../helpers/fake-server';
 import { stubGetCvResults,
+         stubGetImageSet,
          stubImageSetJSON,
          stubGetOrganizations,
          stubGetUser } from '../../helpers/fake-requests';
@@ -15,10 +16,7 @@ module('Acceptance: ImageSetCvResults', {
     imageSetJSON = stubImageSetJSON();
     imageSetJSON.id = 25;
 
-    stubRequest('get', 'imageSets/:image_set_id', function(request){
-      imageSetJSON.id = request.params.image_set_id;
-      return this.success(imageSetJSON);
-    });
+    stubGetImageSet();
 
     stubGetOrganizations();
     stubGetCvResults('25');
@@ -116,10 +114,6 @@ test('visiting /image-set/cv-results and associating with lion', function() {
 test('visiting /image-set/cv-results, cvResult associated with lion doesnt give option to change', function() {
   // imageSet 24 is already associated with a lion
   stubGetCvResults('24');
-  stubRequest('get', 'imageSets/:image_set_id', function(request){
-    imageSetJSON.id = request.params.image_set_id;
-    return this.success(imageSetJSON);
-  });
 
   signInAndVisit('/image-set/24/cv-results');
 
