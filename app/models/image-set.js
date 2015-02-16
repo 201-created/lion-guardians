@@ -3,7 +3,7 @@ import {defaultLocation} from 'lion-guardians/utils/units';
 
 export default DS.Model.extend({
   mainImage: DS.belongsTo('image'),
-  age: DS.attr('string'),
+  dateOfBirth: DS.attr('date'),
   latitude: DS.attr('number', {defaultValue: defaultLocation.latitude}),
   longitude: DS.attr('number', {defaultValue: defaultLocation.longitude}),
   gender: DS.attr('string'),

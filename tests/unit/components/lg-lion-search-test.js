@@ -6,7 +6,7 @@ import Ember from 'ember';
 
 moduleForComponent('lg-lion-search', 'LgLionSearchComponent', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['component:lg-dob-search-selector'],
 
   setup: function() {
     this.container.register('view:select', Ember.Select);

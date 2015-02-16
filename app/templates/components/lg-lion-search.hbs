@@ -3,6 +3,7 @@
     <li class='list-group-item'>{{input type='text' placeholder='Name' value=selectedName}}</li>
     <li class='list-group-item'>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
     <li class='list-group-item'>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
+    <li class='list-group-item'>Age: {{lg-dob-search-selector selectedSearchDateStart=selectedSearchDateStart selectedSearchDateEnd=selectedSearchDateEnd}}</li>
   </ul>
 
   <div class='panel-heading'>
