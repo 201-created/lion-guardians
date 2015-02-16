@@ -10,35 +10,10 @@
   </div>
 
   <div class='col-sm-4'>
-    <div class='row'>
-      {{#unless imageSet.lion}}
-        {{#if showLionNameField}}
-          {{input type='text' name='lionName' placeholder='Lion Name' value=lionName}}
-          <button class='btn btn-xs btn-warning create-lion' {{action 'createLion'}}>
-            Create Lion
-          </button>
-          <button class='btn btn-xs btn-warning' {{action 'toggleShowLionName'}}>
-            Cancel
-          </button>
-        {{else}}
-          <button class='btn btn-xs btn-warning start-create-lion' {{action 'toggleShowLionName'}}>
-            No Match - Create Lion
-          </button>
-        {{/if}}
-      {{/unless}}
-    </div>
-
-    <div class='row'>
-      {{#if showAssociateButton}}
-        <button class='btn btn-xs btn-warning associate-lion' {{action 'associate' activeCvResult}}>
-          Associate
-        </button>
-      {{/if}}
-
-    </div>
-
-    {{#if activeCvResult}}
-      {{lg-image-set-summary imageSet=activeCvResult.imageSet}}
-    {{/if}}
+    {{lg-lion-associator activeLion=activeLion
+      activeImageSet=activeImageSet
+      imageSet=imageSet
+      createLion='createLion'
+      associate='associate'}}
   </div>
 </div>

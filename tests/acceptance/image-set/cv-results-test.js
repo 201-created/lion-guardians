@@ -42,7 +42,7 @@ test('visiting /image-set/cv-results', function() {
   });
 
   andThen(function() {
-    expectElement('.lg-image-set-summary');
+    expectComponent('lg-lion-associator');
   });
 });
 

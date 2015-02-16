@@ -1,0 +1,29 @@
+<div class='row'>
+  {{#unless imageSet.lion}}
+    {{#if showLionNameField}}
+      {{input type='text' name='lionName' placeholder='Lion Name' value=lionName}}
+      <button class='btn btn-xs btn-warning create-lion' {{action 'createLion' imageSet lionName}}>
+        Create Lion
+      </button>
+      <button class='btn btn-xs btn-warning' {{action 'toggleShowLionName'}}>
+        Cancel
+      </button>
+    {{else}}
+      <button class='btn btn-xs btn-warning start-create-lion' {{action 'toggleShowLionName'}}>
+        No Match - Create Lion
+      </button>
+    {{/if}}
+  {{/unless}}
+</div>
+
+<div class='row'>
+  {{#if showAssociateButton}}
+    <button class='btn btn-xs btn-warning associate-lion' {{action 'associate' imageSet activeLion}}>
+      Associate
+    </button>
+  {{/if}}
+</div>
+
+{{#if activeImageSet}}
+  {{lg-image-set-summary imageSet=activeImageSet}}
+{{/if}}
