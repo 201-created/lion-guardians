@@ -38,6 +38,10 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
         name: lionName
       });
 
+      // Bind lion to controller so that we can show errors
+      var controller = this.get('controller');
+      controller.set('newLion', lion);
+
       lion.save().then(function(lion){
         route.transitionTo('lion', lion);
       });
