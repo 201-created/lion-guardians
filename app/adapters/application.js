@@ -32,9 +32,10 @@ export default HalAdapter.extend({
         });
 
         return new DS.InvalidError(errors);
+      } else {
+        return error;
       }
-    }
-    else {
+    } else {
       return error;
     }
   }

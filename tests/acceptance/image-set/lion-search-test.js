@@ -23,7 +23,7 @@ module('Acceptance: ImageSetLionSearch', {
 });
 
 test('visiting /image-set/lion-search', function() {
-  expect(6);
+  expect(9);
 
   signInAndVisit('/image-set/25');
   click('.lion-search-button');
@@ -41,21 +41,33 @@ test('visiting /image-set/lion-search', function() {
 
   andThen(function() {
     expectElement('.row.active');
-  });
 
-    andThen(function() {
+    stubRequest('put', '/imageSets/:image_set_id', function(){
+      ok(true, 'put update image set api called');
+      return this.error(422, {
+        errors: {lion: 'already associated with different lion'}
+      });
+    });
+
     click('button.associate-lion');
   });
 
-  stubRequest('put', 'imageSets/:image_set_id', function(request){
-    var json = stubImageSetJSON();
-    json.id = request.params.image_set_id;
-    json.lion_id = 2;
+  andThen(function() {
+    expectElement('div.error');
+    equal(find('div.error').last().text().trim(), "Image Set lion already associated with different lion");
 
-    ok(true, 'put update image set api called');
-    json.lion_id = 2;
+    stubRequest('put', 'imageSets/:image_set_id', function(request){
+      var json = stubImageSetJSON();
+      json.id = request.params.image_set_id;
+      json.lion_id = 2;
 
-    return this.success(json);
+      ok(true, 'put update image set api called');
+      json.lion_id = 2;
+
+      return this.success(json);
+    });
+
+    click('button.associate-lion');
   });
 
   andThen(function() {

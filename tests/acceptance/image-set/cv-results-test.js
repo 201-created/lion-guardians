@@ -45,27 +45,9 @@ test('visiting /image-set/cv-results', function() {
 });
 
 test('visiting /image-set/cv-results and creating new lion', function() {
-  expect(3);
+  expect(6);
 
   signInAndVisit('/image-set/25/cv-results');
-
-  stubRequest('post', '/lions', function(){
-    ok(true, 'lion create api called');
-    return this.success({
-      id: 3,
-      name: 'isaac',
-      primary_image_set_id: 25,
-      _embedded: {
-        image_sets: [
-          imageSetJSON
-        ],
-        organization: {
-          id: 1,
-          name: "Lion Guardians"
-        }
-      }
-    });
-  });
 
   andThen(function() {
     click('.lg-cv-result-summary');
@@ -76,6 +58,39 @@ test('visiting /image-set/cv-results and creating new lion', function() {
   });
 
   andThen(function() {
+    stubRequest('post', '/lions', function(){
+      ok(true, 'lion create api called');
+      return this.error(422, {
+        errors: {name: 'must be unique'}
+      });
+    });
+
+    fillIn('input[name="lionName"]', 'isaac');
+    click('button.create-lion');
+  });
+
+  andThen(function() {
+    expectElement('div.error');
+    equal(find('div.error').last().text().trim(), "Lion name must be unique");
+
+    stubRequest('post', '/lions', function(){
+      ok(true, 'lion create api called');
+      return this.success({
+        id: 3,
+        name: 'isaac',
+        primary_image_set_id: 25,
+        _embedded: {
+          image_sets: [
+            imageSetJSON
+          ],
+          organization: {
+            id: 1,
+            name: "Lion Guardians"
+          }
+        }
+      });
+    });
+
     fillIn('input[name="lionName"]', 'isaac');
     click('button.create-lion');
   });
@@ -86,23 +101,37 @@ test('visiting /image-set/cv-results and creating new lion', function() {
 });
 
 test('visiting /image-set/cv-results and associating with lion', function() {
-  expect(3);
+  expect(6);
 
   signInAndVisit('/image-set/25/cv-results');
-
   stubGetUser();
-  stubRequest('put', '/imageSets/25', function(){
-    ok(true, 'put update image set api called');
-    imageSetJSON.lion_id = 2;
-
-    return this.success(imageSetJSON);
-  });
 
   andThen(function() {
     click('.lg-cv-result-summary');
   });
 
   andThen(function() {
+    stubRequest('put', '/imageSets/25', function(){
+      ok(true, 'put update image set api called');
+      return this.error(422, {
+        errors: {lion: 'already associated with different lion'}
+      });
+    });
+
+    click('button.associate-lion');
+  });
+
+  andThen(function() {
+    expectElement('div.error');
+    equal(find('div.error').last().text().trim(), "Image Set lion already associated with different lion");
+
+    stubRequest('put', '/imageSets/25', function(){
+      ok(true, 'put update image set api called');
+      imageSetJSON.lion_id = 2;
+
+      return this.success(imageSetJSON);
+    });
+
     click('button.associate-lion');
   });
 

@@ -19,7 +19,9 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
 
   actions: {
     associate: function(imageSet, lion) {
-      var route = this;
+      var route = this,
+          previousIsVerified = imageSet.get('isVerified');
+
       imageSet.setProperties({
         lion: lion,
         isVerified: false
@@ -27,6 +29,11 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
 
       imageSet.save().then(function() {
         route.transitionTo('lion', lion);
+      }, function(){
+        imageSet.setProperties({
+          lion: null,
+          isVerified: previousIsVerified
+        });
       });
     },
 
@@ -44,6 +51,8 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
 
       lion.save().then(function(lion){
         route.transitionTo('lion', lion);
+      }, function(){
+        //error shown in template
       });
     }
   }
