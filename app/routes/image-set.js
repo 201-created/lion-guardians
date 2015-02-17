@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 import config from '../config/environment';
 import OrganizationRouteMixin from 'lion-guardians/mixins/organization-route';
 import RequireUserMixin from 'lion-guardians/mixins/require-user';
@@ -29,11 +30,15 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
 
       imageSet.save().then(function() {
         route.transitionTo('lion', lion);
-      }, function(){
+      }, function(error){
         imageSet.setProperties({
           lion: null,
           isVerified: previousIsVerified
         });
+
+        if (!(error instanceof DS.InvalidError)) {
+          alert("There was an error saving");
+        }
       });
     },
 
@@ -51,8 +56,10 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
 
       lion.save().then(function(lion){
         route.transitionTo('lion', lion);
-      }, function(){
-        //error shown in template
+      }, function(error){
+        if (!(error instanceof DS.InvalidError)) {
+          alert("There was an error saving");
+        }
       });
     }
   }
