@@ -5,36 +5,13 @@
 
   <div class='scrollable-gallery'>
     {{#each imageSet.images as |image|}}
-      <div class='image-gallery-image'>
-        <img {{bind-attr src=image.url}}>
-
-        <div class='image-properties'>
-          {{#if editingEnabled}}
-            {{view 'select' class='form-control' content=imageTypes value=image.imageType}}
-            <div class='public-private checkbox'>
-              {{input type='checkbox' checked=image.isPublic}} Public
-            </div>
-            {{#if image.id}}
-              <button class='btn btn-xs btn-warning' {{action 'makeMainImage' image}}>
-                Make Main Image
-              </button>
-            {{/if}}
-            <button class='btn btn-xs btn-danger' {{action 'deleteImage' image}}>
-              Delete Image
-            </button>
-
-          {{else}}
-            <li>{{image.imageType}}</li>
-            <li>
-              {{#if image.isPublic}}
-                Public
-              {{else}}
-                Private
-              {{/if}}
-            </li>
-          {{/if}}
-        </div>
-      </div>
+      {{lg-image-controller image=image
+        imageTypes=imageTypes
+        editingEnabled=editingEnabled
+        makeMainImage='makeMainImage'
+        deleteImage='deleteImage'
+        saveImageSet='saveImageSet'
+      }}
     {{/each}}
   </div>
   <div class='scroll-arrows'>

@@ -1,0 +1,38 @@
+<div class='image-gallery-image'>
+  <img {{bind-attr src=image.url}}>
+
+  <div class='image-properties'>
+    {{#if editingEnabled}}
+      {{view 'select' class='form-control' content=imageTypes value=selectedImageType}}
+      <div class='public-private checkbox'>
+        {{input type='checkbox' checked=selectedIsPublic disabled=image.isMainImage}} Public
+      </div>
+      {{#if image.id}}
+        <button
+          {{bind-attr class=":btn :btn-xs image.isMainImage:btn-success:btn-warning canMakeMain::disabled"}}
+          {{action 'makeMainImage'}}>
+          {{#if image.isMainImage}}
+            Main
+          {{else}}
+            Make Main
+          {{/if}}
+        </button>
+      {{/if}}
+      <button
+        {{bind-attr class=":btn :btn-xs :btn-danger canDelete::disabled"}}
+        {{action 'deleteImage'}}>
+        Delete
+      </button>
+
+    {{else}}
+      <li>{{image.imageType}}</li>
+      <li>
+        {{#if image.isPublic}}
+          Public
+          {{else}}
+          Private
+        {{/if}}
+      </li>
+    {{/if}}
+  </div>
+</div>

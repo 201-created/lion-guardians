@@ -133,3 +133,13 @@ body > .ember-view {
 .row.active {
   color: red
 }
+
+.error {
+  border: 1px solid red;
+  color: red;
+}
+
+.status-message {
+  border: 1px solid green;
+  color: green;
+}

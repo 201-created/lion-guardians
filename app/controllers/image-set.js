@@ -7,6 +7,11 @@ export default Ember.Controller.extend({
   uploadIsPublic: false,
   organizations: null,
 
+  // If creating a new lion from an imageSet,
+  // this property will be set to the new lion record
+  // used mainly for showing saving status and errors
+  newLion: null,
+
   actions: {
     addImage: function(upload){
       var url = upload.get('url'),

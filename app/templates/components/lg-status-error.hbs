@@ -1,0 +1,11 @@
+{{#if model.isSaving}}
+  <div class='status-message'>
+    {{prefix}} Saving In Progress...
+  </div>
+{{/if}}
+
+{{#each model.errors.messages as |error|}}
+  <div class='error'>
+    {{prefix}} {{error}}
+  </div>
+{{/each}}

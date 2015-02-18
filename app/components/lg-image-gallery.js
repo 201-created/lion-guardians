@@ -9,6 +9,13 @@ export default Ember.Component.extend({
   isVisible: Ember.computed.gt('imageSet.images.length', 0),
 
   actions: {
+    saveImageSet: function() {
+      var imageSet = this.get('imageSet');
+      if (imageSet.get('id')) {
+        imageSet.save();
+      }
+    },
+
     makeMainImage: function(image) {
       var imageSet = this.get('imageSet');
       imageSet.set('mainImage', image);

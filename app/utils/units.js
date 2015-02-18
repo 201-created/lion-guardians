@@ -1,9 +1,9 @@
 var imageTypes = [
+  'cv',
   'full-body',
   'whisker',
-  'markings',
-  'cv',
-  'face'
+  'main-id',
+  'markings'
 ];
 
 var genders = [

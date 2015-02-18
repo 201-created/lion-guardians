@@ -1,6 +1,17 @@
 <h2>Image Sets for {{currentOrganization.name}}</h2>
 
-{{lg-lion-search action='displayResults' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization}}
+<div class='row'>
+  <div class='col-md-4'>
+    {{lg-lion-search action='displayResults' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization}}
+  </div>
+  <div class='col-md-4'>
+    {{#if activeImageSet.mainImage.url}}
+      <div class='image-thumbnail'>
+        <img {{bind-attr src=activeImageSet.mainImage.url}}>
+      </div>
+    {{/if}}
+  </div>
+</div>
 
 <div class='container'>
   <div class='row'>
