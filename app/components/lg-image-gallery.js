@@ -25,12 +25,15 @@ export default Ember.Component.extend({
     },
 
     deleteImage: function(image) {
-      var imageSet = this.get('imageSet');
-      imageSet.get('images').removeObject(image);
-      if (imageSet.get('mainImage') === image) {
-        imageSet.set('mainImage', null);
+      if (confirm('Are you sure you want to delete this image? This cannot be undone.')) {
+        var imageSet = this.get('imageSet');
+        imageSet.get('images').removeObject(image);
+
+        if (imageSet.get('mainImage') === image) {
+          imageSet.set('mainImage', null);
+        }
+        image.destroyRecord();
       }
-      image.destroyRecord();
     }
   }
 });

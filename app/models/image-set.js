@@ -9,6 +9,7 @@ export default DS.Model.extend({
   gender: DS.attr('string'),
   isVerified: DS.attr('boolean'),
   hasCvResults: DS.attr('boolean'),
+  hasCvRequest: DS.attr('boolean'),
   images: DS.hasMany('images'),
   user: DS.belongsTo('user', {async: true}),
   lion: DS.belongsTo('lion', {inverse: 'imageSets'}),
@@ -16,10 +17,15 @@ export default DS.Model.extend({
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
 
+  cvRequestPending: function() {
+    return this.get('hasCvRequest') && !this.get('hasCvResults');
+  }.property('hasCvRequest', 'hasCvResults'),
+
   status: function() {
     var hasCvResults = this.get('hasCvResults'),
         lion = this.get('lion'),
         isVerified = this.get('isVerified'),
+        cvRequestPending = this.get('cvRequestPending'),
         status = "";
 
     if (hasCvResults && lion) {
@@ -31,8 +37,12 @@ export default DS.Model.extend({
       status = isVerified ? 'Verified' : 'Unverified';
     }
 
+    if (cvRequestPending) {
+      status += ', CV Request Pending';
+    }
+
     return status;
-  }.property('hasCvResults', 'lion', 'isVerified'),
+  }.property('hasCvResults', 'lion', 'isVerified', 'cvRequestPending'),
 
   addImage: function(url, isPublic, imageType) {
     var image = this.store.createRecord('image', {

@@ -42,9 +42,12 @@ export default Ember.Controller.extend({
     deleteImageSet: function() {
       var imageSet = this.get('model'),
           controller = this;
-      imageSet.destroyRecord().then(function() {
-        controller.transitionToRoute('image-sets');
-      });
+
+      if (confirm("Are you sure you want to delete image set " + imageSet.get('id') + "? this cannot be undone.")) {
+        imageSet.destroyRecord().then(function() {
+          controller.transitionToRoute('image-sets');
+        });
+      }
     }
   }
 });

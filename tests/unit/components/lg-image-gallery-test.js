@@ -4,9 +4,21 @@ import {
 } from 'ember-qunit';
 import Ember from 'ember';
 
+var oldConfirm;
+
 moduleForComponent('lg-image-gallery', 'LgImageGalleryComponent', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
+
+  setup: function() {
+    oldConfirm = window.confirm;
+    window.confirm = function() {
+      return true;
+    };
+  },
+  teardown: function() {
+    window.confirm = oldConfirm;
+  }
 });
 
 test('it renders', function() {

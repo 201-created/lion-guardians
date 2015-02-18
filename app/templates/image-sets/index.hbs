@@ -17,7 +17,13 @@
   <div class='row'>
     <button type="button"
             {{action 'requestCv' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary canRequestCv::disabled :request-cv"}}>Run CV</button>
+            {{bind-attr class=":btn :btn-primary canRequestCv::disabled :request-cv"}}>
+      {{#if cvRequestPending}}
+        Request Pending
+      {{else}}
+        Run CV
+      {{/if}}
+    </button>
     <button type="button"
             {{action 'viewCv'}}
             {{bind-attr class=":btn :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>

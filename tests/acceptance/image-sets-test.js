@@ -3,15 +3,21 @@ import startApp from '../helpers/start-app';
 import { stubGetOrganizations, stubGetImageSets, stubCvResultJSON, stubGetImageSetsWithCvResults } from '../helpers/fake-requests';
 import { stubRequest } from '../helpers/fake-server';
 
-var application;
+var application, oldConfirm;
 
 module('Acceptance: ImageSets', {
   setup: function() {
     application = startApp();
     stubGetImageSets();
     stubGetOrganizations();
+
+    oldConfirm = window.confirm;
+    window.confirm = function() {
+      return true;
+    };
   },
   teardown: function() {
+    window.confirm = oldConfirm;
     Ember.run(application, 'destroy');
   }
 });
