@@ -61,6 +61,21 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
           alert("There was an error saving");
         }
       });
+    },
+
+    requestCv: function(imageSet) {
+      var cvRequest = this.store.createRecord('cvRequest', {
+        imageSet: imageSet
+      });
+
+      this.set('controller.newCvRequest', cvRequest);
+
+      cvRequest.save().then(function(){
+      }, function(error){
+        if (!(error instanceof DS.InvalidError)) {
+          alert("There was an error saving");
+        }
+      });
     }
   }
 });

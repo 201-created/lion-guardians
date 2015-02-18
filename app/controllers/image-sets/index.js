@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 
 export default Ember.Controller.extend({
   organizations: null,
@@ -6,6 +7,7 @@ export default Ember.Controller.extend({
   currentOrganization: Ember.computed.alias('currentUser.organization'),
   activeImageSet: null,
   selectedOrganization: Ember.computed.reads('currentOrganization'),
+  newCvRequest: null,
 
   canView: Ember.computed.alias('activeImageSet'),
   canViewCv: Ember.computed.alias('activeImageSet.hasCvResults'),
@@ -49,11 +51,18 @@ export default Ember.Controller.extend({
       }
     },
 
-    requestCv: function(activeImageSet) {
-      if (activeImageSet) {
-        // Bubble up to handler on application route
-        return true;
-      }
+    requestCv: function(imageSet) {
+      var cvRequest = this.store.createRecord('cvRequest', {
+        imageSet: imageSet
+      });
+
+      this.controllerFor('image-set').set('newCvRequest', cvRequest);
+      cvRequest.save().then(function(){
+      }, function(error){
+        if (!(error instanceof DS.InvalidError)) {
+          alert("There was an error saving");
+        }
+      });
     }
   }
 });

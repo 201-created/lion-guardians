@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   // this property will be set to the new lion record
   // used mainly for showing saving status and errors
   newLion: null,
+  newCvRequest: null,
 
   actions: {
     addImage: function(upload){

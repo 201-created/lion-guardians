@@ -14,16 +14,6 @@ export default Ember.Route.extend({
         route.transitionTo('login');
       });
     },
-    requestCv: function(imageSet) {
-      var currentUser = this.get('toriiSession.currentUser');
-
-      var cvRequest = this.store.createRecord('cvRequest', {
-        imageSet: imageSet,
-        uploadingOrganization: currentUser.get('organization')
-      });
-
-      cvRequest.save();
-    },
 
     viewImageSet: function(imageSet) {
       if (imageSet) {
