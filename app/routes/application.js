@@ -23,6 +23,12 @@ export default Ember.Route.extend({
       });
 
       cvRequest.save();
+    },
+
+    viewImageSet: function(imageSet) {
+      if (imageSet) {
+        this.transitionTo('image-set', imageSet);
+      }
     }
   }
 });

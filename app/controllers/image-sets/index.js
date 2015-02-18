@@ -30,13 +30,6 @@ export default Ember.Controller.extend({
       this.set('activeImageSet', imageSet);
     },
 
-    viewImageSet: function() {
-      var activeImageSet = this.get('activeImageSet');
-      if (activeImageSet) {
-        this.transitionToRoute('image-set', activeImageSet);
-      }
-    },
-
     deleteImageSet: function() {
       var activeImageSet = this.get('activeImageSet'),
           canDelete = this.get('canDelete');

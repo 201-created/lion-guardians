@@ -18,14 +18,19 @@
 <div class='container'>
   <div class='row'>
     <button type="button"
-            {{action 'viewImageSet'}}
+            {{action 'viewImageSet' activeImageSet}}
             {{bind-attr class=":btn :btn-primary activeImageSet::disabled :view-image-set"}}>
       View/Edit
     </button>
     <button type="button"
-            {{action 'makePrimaryImageSet'}}
-            {{bind-attr class=":btn :btn-primary canMakePrimary::disabled :make-primary"}}>
+            {{action 'makePrimaryImageSet' activeImageSet}}
+            {{bind-attr class=":btn :btn-primary canEdit::disabled :make-primary"}}>
       Make Primary
+    </button>
+    <button type="button"
+            {{action 'removeImageSet' activeImageSet}}
+            {{bind-attr class=":btn :btn-primary canEdit::disabled :remove-image-set"}}>
+      Unassociate from Lion
     </button>
   </div>
 </div>

@@ -28,7 +28,7 @@
             {{action 'viewCv'}}
             {{bind-attr class=":btn :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>
     <button type="button"
-            {{action 'viewImageSet'}}
+            {{action 'viewImageSet' activeImageSet}}
             {{bind-attr class=":btn :btn-primary canView::disabled :view-image-set"}}>View/Edit</button>
     <button type="button"
             {{action 'deleteImageSet'}}

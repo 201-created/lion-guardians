@@ -2,13 +2,16 @@ import { stubRequest } from '../helpers/fake-server';
 import { defaultLocation } from 'lion-guardians/utils/units';
 
 function stubLionJSON() {
+  var imageSet = stubImageSetJSON();
+  imageSet.lion_id = 2;
+
   return {
     id: 2,
     name: "Simba",
     primary_image_set_id: 24,
     _embedded: {
       image_sets: [
-        stubImageSetJSON()
+        imageSet
       ],
       organization: {
         id: 1,
