@@ -1,4 +1,8 @@
-<h2>Lion {{model.name}}</h2>
+<h2>{{model.name}}</h2>
+
+<div class='messages'>
+  {{lg-status-error model=model prefix='Lion'}}
+</div>
 
 <div class='row'>
   {{lg-image-set-editor
@@ -10,9 +14,32 @@
 <hr>
 
 <h3>Image Sets</h3>
-{{#each model.imageSets as |imageSet|}}
+
+<div class='container'>
   <div class='row'>
-    <h4>Image Set {{imageSet.id}}</h4>
-    {{lg-image-gallery imageSet=imageSet editingEnabled=false}}
+    <button type="button"
+            {{action 'viewImageSet'}}
+            {{bind-attr class=":btn :btn-primary activeImageSet::disabled :view-image-set"}}>
+      View/Edit
+    </button>
+    <button type="button"
+            {{action 'makePrimaryImageSet'}}
+            {{bind-attr class=":btn :btn-primary canMakePrimary::disabled :make-primary"}}>
+      Make Primary
+    </button>
   </div>
+</div>
+
+{{#each model.imageSets as |imageSet|}}
+  {{#lg-selectable model=imageSet
+    activeModel=activeImageSet
+    action='selectImageSet'}}
+    <div class='row'>
+      <h4>Image Set {{imageSet.id}}</h4>
+      <div class='image-thumbnail'>
+        <img {{bind-attr src=imageSet.mainImage.url}}>
+      </div>
+      {{lg-image-gallery imageSet=imageSet editingEnabled=false}}
+    </div>
+  {{/lg-selectable}}
 {{/each}}

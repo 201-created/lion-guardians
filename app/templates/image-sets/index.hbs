@@ -50,7 +50,7 @@
 
     {{#if model}}
       {{#each model as |imageSet|}}
-        {{#lg-selectable model=imageSet activeModel=activeImageSet action='selectImageSet' classNames="row"}}
+        {{#lg-selectable model=imageSet activeModel=activeImageSet action='selectImageSet'}}
 
           <div class='col-sm-2 image-set-id'>{{imageSet.id}}</div>
           <div class='col-sm-2'>

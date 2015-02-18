@@ -6,11 +6,11 @@
   <div class='row'>
     <button type="button"
             {{action 'viewLion' activeLion}}
-            {{bind-attr class=":btn :btn-primary :view-lion"}}>View/Edit</button>
+            {{bind-attr class=":btn :btn-primary :view-lion activeLion::disabled"}}>View/Edit</button>
   </div>
 
   {{#each model as |lion|}}
-    {{#lg-selectable model=lion activeModel=activeLion action='selectLion' classNames="row"}}
+    {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
       {{lg-lion-summary lion=lion}}
     {{/lg-selectable}}
   {{/each}}

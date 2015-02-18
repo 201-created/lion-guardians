@@ -151,6 +151,7 @@ function stubGetUser() {
 
 export {
   stubGetLions,
+  stubLionJSON,
   stubGetOrganizations,
   stubGetImageSets,
   stubGetImageSet,
