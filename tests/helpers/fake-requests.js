@@ -31,6 +31,8 @@ function stubImageSetJSON() {
     age: "24",
     main_image_id: 49,
     user_id: 1,
+    organization_id: 1,
+    uploading_organization_id: 1,
     _embedded: {
       images: [
         {
@@ -39,11 +41,7 @@ function stubImageSetJSON() {
           image_type: "full-body",
           is_public: true
         }
-      ],
-      uploading_organization: {
-        id: 1,
-        name: "Lion Guardians"
-      }
+      ]
     }
   };
 }

@@ -19,9 +19,11 @@ export default Ember.Controller.extend({
     return activeImageSet && !activeImageSet.get('hasCvRequest');
   }.property('activeImageSet', 'activeImageSet.hasCvRequest'),
 
-  canDelete: function() {
-    return this.get('activeImageSet.uploadingOrganization') === this.get('currentOrganization');
-  }.property('activeImageSet.uploadingOrganization', 'currentOrganization'),
+  isOwner: function() {
+    return this.get('activeImageSet.organization') === this.get('currentOrganization');
+  }.property('activeImageSet.organization', 'currentOrganization'),
+
+  canDelete: Ember.computed.alias('isOwner'),
 
   actions: {
     displayResults: function(imageSets) {

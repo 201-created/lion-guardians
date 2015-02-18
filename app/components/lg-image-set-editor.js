@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   selectedAge: Ember.computed.reads('imageSet.age'),
   selectedLatitude: Ember.computed.reads('imageSet.latitude'),
   selectedLongitude: Ember.computed.reads('imageSet.longitude'),
-  selectedOrganization: Ember.computed.reads('imageSet.uploadingOrganization'),
+  selectedOrganization: Ember.computed.reads('imageSet.organization'),
   selectedGender: Ember.computed.reads('imageSet.gender'),
   selectedIsVerified: Ember.computed.reads('imageSet.isVerified'),
 
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
       selectedAge: imageSet.get('age'),
       selectedLatitude: imageSet.get('latitude'),
       selectedLongitude: imageSet.get('longitude'),
-      selectedOrganization: imageSet.get('uploadingOrganization'),
+      selectedOrganization: imageSet.get('organization'),
       selectedGender: imageSet.get('gender'),
       selectedIsVerified: imageSet.get('isVerified')
     });
@@ -42,10 +42,31 @@ export default Ember.Component.extend({
       age: this.get('selectedAge'),
       latitude: this.get('selectedLatitude'),
       longitude: this.get('selectedLongitude'),
-      uploadingOrganization: this.get('selectedOrganization'),
+      organization: this.get('selectedOrganization'),
       gender: this.get('selectedGender'),
       isVerified: this.get('selectedIsVerified')
     });
+  },
+
+  finishEditing: function() {
+    this.set('isSavingImageSet', true);
+    this.updateValues();
+
+    var imageSet = this.get('imageSet'),
+        component = this;
+    if (imageSet.get('id')) {
+      imageSet.save().then(function() {
+        component.setProperties({
+          isEditing: false,
+          isSavingImageSet: false
+        });
+      });
+    } else {
+      this.setProperties({
+        isEditing: false,
+        isSavingImageSet: false
+      });
+    }
   },
 
   actions: {
@@ -59,23 +80,19 @@ export default Ember.Component.extend({
     },
 
     finishEditing: function() {
-      this.set('isSavingImageSet', true);
-      this.updateValues();
+      var organization = this.get('imageSet.organization'),
+          selectedOrganization = this.get('selectedOrganization');
 
-      var imageSet = this.get('imageSet'),
-          component = this;
-      if (imageSet.get('id')) {
-        imageSet.save().then(function() {
-          component.setProperties({
-            isEditing: false,
-            isSavingImageSet: false
-          });
-        });
+      if (selectedOrganization !== organization) {
+        var message = 'You are about to change ownership of this organization from ' +
+              organization.get('name') + ' to ' + selectedOrganization.get('name') +
+              '. After changing, you will no longer have access to edit this image set. Are you sure?';
+
+        if(confirm(message)) {
+          this.finishEditing();
+        }
       } else {
-        this.setProperties({
-          isEditing: false,
-          isSavingImageSet: false
-        });
+        this.finishEditing();
       }
     }
   }

@@ -5,8 +5,20 @@ import {
 
 import Ember from 'ember';
 
+var oldConfirm;
+
 moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
-  needs: ['component:lg-google-map']
+  needs: ['component:lg-google-map'],
+
+  setup: function() {
+    oldConfirm = window.confirm;
+    window.confirm = function() {
+      return true;
+    };
+  },
+  teardown: function() {
+    window.confirm = oldConfirm;
+  }
 });
 
 test('it renders', function() {
@@ -25,7 +37,7 @@ test('updating values', function() {
   var age = 10,
       latitude = 15,
       longitude = 20,
-      uploadingOrganization = '201',
+      organization = Ember.Object.create({name: '201'}),
       gender = 'male',
       isVerified = false;
 
@@ -33,7 +45,7 @@ test('updating values', function() {
     age: age,
     latitude: latitude,
     longitude: longitude,
-    uploadingOrganization: uploadingOrganization,
+    organization: organization,
     gender: gender,
     isVerified: isVerified
   });
@@ -41,7 +53,7 @@ test('updating values', function() {
   var newAge = 20,
       newLatitude = 25,
       newLongitude = 30,
-      newUploadingOrganization = 'LG',
+      newOrganization = Ember.Object.create({name: 'LG'}),
       newGender = 'female',
       newIsVerified = true;
 
@@ -51,7 +63,7 @@ test('updating values', function() {
     selectedAge: newAge,
     selectedLatitude: newLatitude,
     selectedLongitude: newLongitude,
-    selectedOrganization: newUploadingOrganization,
+    selectedOrganization: newOrganization,
     selectedGender: newGender,
     selectedIsVerified: newIsVerified
   });
@@ -61,7 +73,7 @@ test('updating values', function() {
   equal(imageSet.get('age'), newAge);
   equal(imageSet.get('latitude'), newLatitude);
   equal(imageSet.get('longitude'), newLongitude);
-  equal(imageSet.get('uploadingOrganization'), newUploadingOrganization);
+  equal(imageSet.get('organization'), newOrganization);
   equal(imageSet.get('gender'), newGender);
   equal(imageSet.get('isVerified'), newIsVerified);
 });
@@ -70,7 +82,7 @@ test('resetting values', function() {
   var age = 10,
       latitude = 15,
       longitude = 20,
-      uploadingOrganization = '201',
+      organization = Ember.Object.create({name: '201'}),
       gender = 'male',
       isVerified = false;
 
@@ -78,7 +90,7 @@ test('resetting values', function() {
     age: age,
     latitude: latitude,
     longitude: longitude,
-    uploadingOrganization: uploadingOrganization,
+    organization: organization,
     gender: gender,
     isVerified: isVerified
   });
@@ -86,7 +98,7 @@ test('resetting values', function() {
   var newAge = 20,
       newLatitude = 25,
       newLongitude = 30,
-      newUploadingOrganization = 'LG',
+      newOrganization = Ember.Object.create({name: 'LG'}),
       newGender = 'female',
       newIsVerified = true;
 
@@ -96,7 +108,7 @@ test('resetting values', function() {
     selectedAge: newAge,
     selectedLatitude: newLatitude,
     selectedLongitude: newLongitude,
-    selectedOrganization: newUploadingOrganization,
+    selectedOrganization: newOrganization,
     selectedGender: newGender,
     selectedIsVerified: newIsVerified
   });
@@ -106,14 +118,14 @@ test('resetting values', function() {
   equal(imageSet.get('age'), age);
   equal(imageSet.get('latitude'), latitude);
   equal(imageSet.get('longitude'), longitude);
-  equal(imageSet.get('uploadingOrganization'), uploadingOrganization);
+  equal(imageSet.get('organization'), organization);
   equal(imageSet.get('gender'), gender);
   equal(imageSet.get('isVerified'), isVerified);
 
   equal(component.get('selectedAge'), age);
   equal(component.get('selectedLatitude'), latitude);
   equal(component.get('selectedLongitude'), longitude);
-  equal(component.get('selectedOrganization'), uploadingOrganization);
+  equal(component.get('selectedOrganization'), organization);
   equal(component.get('selectedGender'), gender);
   equal(component.get('selectedIsVerified'), isVerified);
 });
