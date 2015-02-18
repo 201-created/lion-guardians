@@ -5,8 +5,7 @@
     <ul class='list-group'>
       {{#each model as |cvResult|}}
         {{#lg-selectable model=cvResult activeModel=activeCvResult
-          action='setActiveCvResult'
-          classNames='row'}}
+          action='setActiveCvResult'}}
           {{lg-cv-result-summary cvResult=cvResult }}
         {{/lg-selectable}}
       {{/each}}
