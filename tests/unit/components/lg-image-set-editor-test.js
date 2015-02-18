@@ -39,7 +39,7 @@ test('updating values', function() {
       longitude = 20,
       organization = Ember.Object.create({name: '201'}),
       gender = 'male',
-      isVerified = false;
+      isVerified = true;
 
   var imageSet = Ember.Object.create({
     age: age,
@@ -54,8 +54,7 @@ test('updating values', function() {
       newLatitude = 25,
       newLongitude = 30,
       newOrganization = Ember.Object.create({name: 'LG'}),
-      newGender = 'female',
-      newIsVerified = true;
+      newGender = 'female';
 
   var component = this.subject({
     imageSet: imageSet,
@@ -64,8 +63,7 @@ test('updating values', function() {
     selectedLatitude: newLatitude,
     selectedLongitude: newLongitude,
     selectedOrganization: newOrganization,
-    selectedGender: newGender,
-    selectedIsVerified: newIsVerified
+    selectedGender: newGender
   });
 
   component.send('finishEditing');
@@ -75,7 +73,15 @@ test('updating values', function() {
   equal(imageSet.get('longitude'), newLongitude);
   equal(imageSet.get('organization'), newOrganization);
   equal(imageSet.get('gender'), newGender);
-  equal(imageSet.get('isVerified'), newIsVerified);
+  equal(imageSet.get('isVerified'), false, 'isVerified set to false when changing organization');
+
+  component.setProperties({
+    isEditing: true,
+    selectedIsVerified: true
+  });
+
+  component.send('finishEditing');
+  equal(imageSet.get('isVerified'), true, 'can change isVerified to true as long as it is independent of organization');
 });
 
 test('resetting values', function() {

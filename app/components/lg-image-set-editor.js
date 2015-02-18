@@ -89,6 +89,8 @@ export default Ember.Component.extend({
               '. After changing, you will no longer have access to edit this image set. Are you sure?';
 
         if(confirm(message)) {
+          // automatically set is Verified to false when changing organization
+          this.set('selectedIsVerified', false);
           this.finishEditing();
         }
       } else {
