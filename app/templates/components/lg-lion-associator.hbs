@@ -24,6 +24,12 @@
   {{/if}}
 </div>
 
+{{#if activeImageSet.lion.primaryImageSet}}
+  <h3>Primary Image Set</h3>
+  {{lg-image-set-summary imageSet=activeImageSet.lion.primaryImageSet}}
+{{/if}}
+
 {{#if activeImageSet}}
+  <h3>CV Image Set</h3>
   {{lg-image-set-summary imageSet=activeImageSet}}
 {{/if}}

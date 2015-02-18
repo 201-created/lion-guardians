@@ -11,7 +11,14 @@
 
   {{#each model as |lion|}}
     {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
-      {{lg-lion-summary lion=lion}}
+      <div class='row'>
+        <div class='col-md-4'>
+          {{lg-lion-summary lion=lion}}
+        </div>
+        <div class='col-md-4'>
+          {{lg-image-set-summary imageSet=lion.primaryImageSet}}
+        </div>
+      </div>
     {{/lg-selectable}}
   {{/each}}
 {{/if}}

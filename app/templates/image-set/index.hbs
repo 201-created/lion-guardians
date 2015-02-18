@@ -1,27 +1,28 @@
 <div class='row'>
-  {{#if model.hasCvResults}}
-    {{#link-to 'image-set.cv-results' model}}
-      <button class='btn btn-primary btn-large' type='button'>
-        View CV Results
+  {{#if model.id}}
+    {{#if model.hasCvResults}}
+      {{#link-to 'image-set.cv-results' model}}
+        <button class='btn btn-primary btn-large' type='button'>
+          View CV Results
+        </button>
+      {{/link-to}}
+    {{else}}
+      {{#if model.cvRequest}}
+        <div class='cv-request-pending'>CV Request Pending</div>
+      {{else}}
+        <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
+                type='button'>
+          Request CV
+        </button>
+      {{/if}}
+    {{/if}}
+
+    {{#link-to 'image-set.lion-search' model}}
+      <button class='btn btn-primary btn-large lion-search-button' type='button'>
+        Lion Search
       </button>
     {{/link-to}}
-  {{else}}
-    {{#if model.cvRequest}}
-      <div class='cv-request-pending'>CV Request Pending</div>
-    {{else}}
-      <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
-              type='button'>
-        Request CV
-      </button>
-    {{/if}}
   {{/if}}
-
-  {{#link-to 'image-set.lion-search' model}}
-    <button class='btn btn-primary btn-large lion-search-button' type='button'>
-      Lion Search
-    </button>
-  {{/link-to}}
-
   <hr>
 </div>
 
