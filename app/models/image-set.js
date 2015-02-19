@@ -1,3 +1,5 @@
+/* global moment */
+
 import DS from 'ember-data';
 import {defaultLocation} from 'lion-guardians/utils/units';
 
@@ -17,6 +19,11 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization'),
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
+  age: function() {
+    if (this.get('dateOfBirth')) {
+      return moment(this.get('dateOfBirth')).fromNow(true) + " ago";
+    }
+  }.property('dateOfBirth'),
 
   cvRequestPending: function() {
     return this.get('hasCvRequest') && !this.get('hasCvResults');

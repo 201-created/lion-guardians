@@ -1,5 +1,10 @@
+$lg-orange: #DB5300;
+$lg-light-orange: #EE7F00;
+$active-row-yellow: #F5E961;
+
 @import "bootstrap";
 @import "components";
+@import "image-sets";
 
 @import "components/lg-google-map";
 @import "components/lg-lion-associator";
@@ -8,8 +13,6 @@
 @import "components/lg-mini-image-gallery";
 @import "components/lg-lion-search";
 
-$lg-orange: #DB5300;
-$lg-light-orange: #EE7F00;
 
 html, body {
   margin: 0;
@@ -180,9 +183,9 @@ body > .ember-view {
 .selectable-row.active {
   text-weight: bold;
 
-  .list-group-item {
+  .list-group-item, {
     border: 1px solid black;
-    background-color: #F5E961;
+    background-color: $active-row-yellow;
   }
 }
 
