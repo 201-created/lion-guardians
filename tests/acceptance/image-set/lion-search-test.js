@@ -35,12 +35,12 @@ test('visiting /image-set/lion-search', function() {
 
   andThen(function() {
     expectComponent('lg-lion-summary');
-    expectNoElement('.row.active');
+    expectNoElement('.row.lion.active');
     click('.lg-lion-summary');
   });
 
   andThen(function() {
-    expectElement('.row.active');
+    expectElement('.row.lion.active');
 
     stubRequest('put', '/imageSets/:image_set_id', function(){
       ok(true, 'put update image set api called');

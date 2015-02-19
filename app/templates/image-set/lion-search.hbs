@@ -7,7 +7,11 @@
     {{#if model}}
       <h3>Results</h3>
       {{#each model as |lion|}}
-        {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
+        {{#lg-selectable
+          model=lion
+          activeModel=activeLion
+          action='selectLion'
+          classNames='row lion'}}
           {{lg-lion-summary lion=lion}}
         {{/lg-selectable}}
       {{/each}}
