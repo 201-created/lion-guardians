@@ -8,7 +8,7 @@ module.exports = function(environment) {
     locationType: 'auto',
     googleMap: {
       lazyLoad: true,
-      apiKey: 'AIzaSyCoc_T6TNxu5Mnw28aJleIm63fR7WzViUU'
+      apiKey: null // Set per environment below
     },
     showMaps: true,
     EmberENV: {
@@ -50,6 +50,7 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.apiHost = 'http://localhost:5000';
+    ENV.googleMap.apiKey = 'AIzaSyCoc_T6TNxu5Mnw28aJleIm63fR7WzViUU';
 
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -76,6 +77,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.apiHost = 'http://lion-guardians-api.herokuapp.com';
+    ENV.googleMap.apiKey = 'AIzaSyCyBbvflCLH9nmebwUVm0IjrYObWZ345NA';
   }
 
   return ENV;
