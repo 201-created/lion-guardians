@@ -3,9 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('lg-image-set-summary', 'LgImageSetSummaryComponent', {
+moduleForComponent('lg-mini-image-gallery', 'LgMiniImageGalleryComponent', {
   // specify the other units that are required for this test
-  needs: ['component:lg-mini-image-gallery']
+  // needs: ['component:foo', 'helper:bar']
 });
 
 test('it renders', function() {

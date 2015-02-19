@@ -1,0 +1,30 @@
+$summary-height: 280px;
+$gallery-height: 100px;
+$small-thumbnail-height: 120px;
+
+.image-summary {
+  background-color: #DDD;
+  border-radius: 5px;
+  padding: 10px;
+  height: $summary-height;
+
+  .small-image-thumbnail {
+    img, .no-main-image {
+      border: 1px solid black;
+      border-radius: 5px;
+      height: $small-thumbnail-height;
+    }
+
+    .no-main-image {
+      width: $small-thumbnail-height;
+      text-align: center;
+      line-height: $small-thumbnail-height;
+      color: #CCC;
+    }
+  }
+
+  .metadata-and-selected {
+    margin: 4px;
+  }
+
+}
