@@ -1,0 +1,39 @@
+.image-set-control-panel {
+  padding: 0 15px 15px 15px;
+
+  div {
+    padding: 0;
+  }
+
+}
+
+.image-set-list {
+  border-radius: 5px;
+  border: 1px solid #DDD;
+
+  .row.selectable-row {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #DDD;
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:active, &:hover {
+      background-color: #DCDCDC;
+    }
+  }
+
+ .row.selectable-row.active {
+    background-color: $active-row-yellow;
+  }
+
+  .heading {
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 15px;
+  }
+}

@@ -8,12 +8,18 @@ $small-thumbnail-height: 120px;
   padding: 10px;
   height: $summary-height;
   margin-top: -20px;
+  margin-bottom: 40px;
 
   .small-image-thumbnail {
+    height: $small-thumbnail-height;
+    width: $small-thumbnail-height;
+    overflow: hidden;
+
     img, .no-main-image {
       border: 1px solid black;
       border-radius: 5px;
       height: $small-thumbnail-height;
+      width: 100%;
     }
 
     .no-main-image {
@@ -26,6 +32,11 @@ $small-thumbnail-height: 120px;
 
   .metadata-and-selected {
     margin: 4px;
+  }
+
+  .view-edit-button {
+    line-height: 35px;
+    margin-top: 35px;
   }
 
 }
