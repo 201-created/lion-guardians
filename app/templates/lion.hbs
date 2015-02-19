@@ -36,12 +36,16 @@
   </div>
 </div>
 
-{{#each model.imageSets as |imageSet|}}
-  {{#lg-selectable model=imageSet
-    activeModel=activeImageSet
-    action='selectImageSet'
-    classNames='row image-set'}}
+<div class='lion-image-sets row'>
+  <div class='col-sm-8'>
+    {{#each model.imageSets as |imageSet|}}
+      {{#lg-selectable model=imageSet
+        activeModel=activeImageSet
+        action='selectImageSet'
+        classNames='row image-set'}}
 
-    {{lg-image-set-summary imageSet=imageSet setName=imageSet.id}}
-  {{/lg-selectable}}
-{{/each}}
+        {{lg-image-set-summary imageSet=imageSet setName=imageSet.id}}
+      {{/lg-selectable}}
+    {{/each}}
+  </div>
+</div>
