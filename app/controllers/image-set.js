@@ -2,6 +2,7 @@ import Ember from 'ember';
 import {imageTypes} from 'lion-guardians/utils/units';
 
 export default Ember.Controller.extend({
+  currentUser: null,
   imageTypes: imageTypes,
   uploadImageType: imageTypes[0],
   uploadIsPublic: false,
@@ -12,6 +13,10 @@ export default Ember.Controller.extend({
   // used mainly for showing saving status and errors
   newLion: null,
   newCvRequest: null,
+
+  isOwner: function() {
+    return this.get('currentUser.organization') === this.get('model.organization');
+  }.property('currentUser.organization', 'model.organization'),
 
   actions: {
     addImage: function(upload){
