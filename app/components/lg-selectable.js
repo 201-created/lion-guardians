@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   model: null,
   activeModel: null,
-  classNames: ['row'],
+  classNames: ['row', 'selectable-row'],
   classNameBindings: ["isActive:active"],
 
   isActive: function() {
