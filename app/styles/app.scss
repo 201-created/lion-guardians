@@ -3,6 +3,8 @@
 
 @import "components/lg-google-map";
 @import "components/lg-image-gallery";
+@import "components/lg-image-set-summary";
+@import "components/lg-mini-image-gallery";
 @import "components/lg-lion-search";
 
 html, body {
@@ -137,9 +139,14 @@ body > .ember-view {
 .error {
   border: 1px solid red;
   color: red;
+  padding: 20px;
 }
 
 .status-message {
   border: 1px solid green;
   color: green;
+}
+
+.cv-result-viewer {
+  padding: 0 15px;
 }

@@ -1,0 +1,35 @@
+$mini-gallery-height: 100px;
+
+.mini-image-gallery {
+  height: $mini-gallery-height;
+
+  .mini-image-gallery-image {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+    height: $mini-gallery-height;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    img {
+      border: 1px solid black;
+      border-radius: 5px;
+      height: $mini-gallery-height;
+    }
+  }
+
+  .scrollable-gallery {
+    height: $mini-gallery-height;
+  }
+
+  .scroll-arrows {
+    width: 20px;
+    right: 6px;
+
+    .glyphicon {
+      margin-top: $mini-gallery-height / 2 - 10px;
+    }
+  }
+}

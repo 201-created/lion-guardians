@@ -1,22 +1,25 @@
-<h3>CV Results</h3>
+<hr>
+<div class='cv-result-viewer'>
+  <h3>CV Results</h3>
 
-<div class='row'>
-  <div class='col-sm-4'>
-    <ul class='list-group'>
-      {{#each model as |cvResult|}}
-        {{#lg-selectable model=cvResult activeModel=activeCvResult
-          action='setActiveCvResult'}}
-          {{lg-cv-result-summary cvResult=cvResult }}
-        {{/lg-selectable}}
-      {{/each}}
-    </ul>
-  </div>
+  <div class='row'>
+    <div class='col-sm-4'>
+      <ul class='list-group'>
+        {{#each model as |cvResult|}}
+          {{#lg-selectable model=cvResult activeModel=activeCvResult
+            action='setActiveCvResult'}}
+            {{lg-cv-result-summary cvResult=cvResult }}
+          {{/lg-selectable}}
+        {{/each}}
+      </ul>
+    </div>
 
-  <div class='col-sm-4'>
-    {{lg-lion-associator activeLion=activeLion
-      activeImageSet=activeImageSet
-      imageSet=imageSet
-      createLion='createLion'
-      associate='associate'}}
+    <div class='col-sm-8'>
+      {{lg-lion-associator activeLion=activeLion
+        activeImageSet=activeImageSet
+        imageSet=imageSet
+        createLion='createLion'
+        associate='associate'}}
+    </div>
   </div>
 </div>

@@ -1,34 +1,40 @@
-<div class='image-summary row'>
-  <div class='col-sm-4'>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        Image Set
+<div class='image-summary'>
+  <div class='metadata-and-selected row'>
+    <div class='col-sm-6'>
+      <div class='lg-image-set-summary-header'>
+        <h4>Image Set {{imageSet.id}}</h4>
+      </div>
+      <div class='panel panel-default'>
+        <ul class='list-group'>
+          <li class='list-group-item'>
+            Status: {{status}}
+          </li>
+          <li class='list-group-item'>
+            Has CV Results: {{imageSet.hasCvResults}}
+          </li>
+        </ul>
+      </div>
+      <div>
         {{#link-to 'image-set' imageSet classNames='lg-image-set-summary-link'}}
           <button class='btn btn-xs btn-info'>
-            View Details
+            View More Details
           </button>
         {{/link-to}}
       </div>
-      <ul class='list-group'>
-        <li class='list-group-item'>
-          ID: {{imageSet.id}}
-        </li>
-        <li class='list-group-item'>
-          Status: {{status}}
-        </li>
-        <li class='list-group-item'>
-          Has CV Results: {{imageSet.hasCvResults}}
-        </li>
-      </ul>
+    </div>
+    <div class='col-sm-6'>
+      <div class='small-image-thumbnail'>
+        {{#if selectedImage}}
+          <img {{bind-attr src=imageSet.mainImage.url}}>
+        {{else}}
+          <div class='no-main-image'>
+            (Main Image)
+          </div>
+        {{/if}}
+      </div>
     </div>
   </div>
-  <div class='image-thumbnail col-sm-4'>
-    {{#if imageSet.mainImage}}
-      <img {{bind-attr src=imageSet.mainImage.url}}>
-    {{else}}
-      <div class='no-main-image'>
-        (Main Image)
-      </div>
-    {{/if}}
+  <div class='row'>
+    {{lg-mini-image-gallery imageSet=imageSet selectedImage=selectedImage selectedImageType=selectedImageType}}
   </div>
 </div>
