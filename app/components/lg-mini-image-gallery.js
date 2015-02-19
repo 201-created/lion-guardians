@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   selectedImage: null,
   imageTypes: imageTypesForFilter,
   selectedImageType: imageTypesForFilter[0],
+  hasFilteredImages: Ember.computed.gt('filteredImages.length', 0),
 
   filteredImages: function() {
     var selectedImageType = this.get('selectedImageType'),

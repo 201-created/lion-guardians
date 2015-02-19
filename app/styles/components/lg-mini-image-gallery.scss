@@ -26,10 +26,18 @@ $mini-gallery-height: 100px;
 
   .scroll-arrows {
     width: 20px;
-    right: 6px;
+    right: -5px;
+    border-radius: 0 5px 5px 0;
 
     .glyphicon {
       margin-top: $mini-gallery-height / 2 - 10px;
     }
+  }
+
+  .empty-scroll-message {
+    line-height: $mini-gallery-height - 40px;
+    border: 1px solid #AAA;
+    border-radius: 5px;
+    padding: 20px;
   }
 }
