@@ -51,7 +51,8 @@
     "currentRouteName",
     "signIn",
     "redirectsToLogin",
-    "signInAndVisit"
+    "signInAndVisit",
+    "moment"
   ],
   "node": false,
   "browser": false,

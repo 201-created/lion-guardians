@@ -31,7 +31,7 @@
                                                     optionValuePath='content'
                                                     optionLabelPath='content.name'
                                                     value=selectedOrganization}}</li>
-        <li class='list-group-item'>Age: {{input type='text' placeholder='Age' value=selectedAge}}</li>
+        <li class='list-group-item'>Age: {{lg-dob-selector selectedDob=selectedDob isEditing=isEditing}}</li>
         <li class='list-group-item'>Lat/Long: {{selectedLatitude}} x {{selectedLongitude}}</li>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
 
@@ -50,7 +50,7 @@
         <li class='list-group-item'>Image Set ID: {{imageSet.id}}</li>
         <li class='list-group-item'>Organization: {{imageSet.organization.name}}</li>
         <li class='list-group-item'>Uploading Organization: {{imageSet.uploadingOrganization.name}}</li>
-        <li class='list-group-item'>Age: {{imageSet.age}}</li>
+        <li class='list-group-item'>Age: {{lg-dob-selector selectedDob=selectedDob isEditing=isEditing}} <small>{{ago imageSet.dateOfBirth}}</small></li>
         <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
         <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
         {{#if imageSet.lion}}

@@ -6,6 +6,10 @@ export default Ember.Component.extend({
   genders: searchGenders,
   selectedGender: searchGenders[0],
   defaultGender: Ember.computed.alias('genders.firstObject'),
+
+  selectedSearchDateStart: null,
+  selectedSearchDateEnd: null,
+
   organizations: null,
   selectedOrganization: null,
   selectedName: null,
@@ -39,24 +43,31 @@ export default Ember.Component.extend({
     var params = {},
         selectedGender = this.get('selectedGender'),
         defaultGender = this.get('defaultGender'),
-        selectedOrganization = this.get('selectedOrganization'),
-        selectedName = this.get('selectedName');
+        selectedOrganizationId = this.get('selectedOrganization.id'),
+        selectedName = this.get('selectedName'),
+        selectedSearchDateStart = this.get('selectedSearchDateStart'),
+        selectedSearchDateEnd = this.get('selectedSearchDateEnd');
 
     if (selectedGender !== defaultGender){
       params['gender'] = selectedGender;
     }
 
-    if (selectedOrganization && selectedOrganization.get('id') !== -1) {
-      params['organization_id'] = selectedOrganization.get('id');
+    if (selectedOrganizationId && selectedOrganizationId !== -1) {
+      params['organization_id'] = selectedOrganizationId;
     }
 
     if (selectedName && !Ember.isBlank(selectedName)) {
       params['name'] = selectedName;
     }
 
+    if (selectedSearchDateStart && selectedSearchDateEnd) {
+      params['dob_range_start'] = selectedSearchDateStart;
+      params['dob_range_end'] = selectedSearchDateEnd;
+    }
+
     return params;
   }.property('selectedGender', 'defaultGender', 'selectedOrganization',
-             'selectedName'),
+             'selectedName', 'selectedSearchDateEnd', 'selectedSearchDateStart'),
 
   actions: {
     search: function() {

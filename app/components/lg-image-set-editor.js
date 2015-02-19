@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   imageSet: null,
   organizations: null,
 
-  selectedAge: Ember.computed.reads('imageSet.age'),
+  selectedDob: Ember.computed.reads('imageSet.dateOfBirth'),
   selectedLatitude: Ember.computed.reads('imageSet.latitude'),
   selectedLongitude: Ember.computed.reads('imageSet.longitude'),
   selectedOrganization: Ember.computed.reads('imageSet.organization'),
@@ -26,7 +26,7 @@ export default Ember.Component.extend({
     var imageSet = this.get('imageSet');
 
     this.setProperties({
-      selectedAge: imageSet.get('age'),
+      selectedDob: imageSet.get('dateOfBirth'),
       selectedLatitude: imageSet.get('latitude'),
       selectedLongitude: imageSet.get('longitude'),
       selectedOrganization: imageSet.get('organization'),
@@ -39,7 +39,7 @@ export default Ember.Component.extend({
     var imageSet = this.get('imageSet');
 
     imageSet.setProperties({
-      age: this.get('selectedAge'),
+      dateOfBirth: this.get('selectedDob'),
       latitude: this.get('selectedLatitude'),
       longitude: this.get('selectedLongitude'),
       organization: this.get('selectedOrganization'),

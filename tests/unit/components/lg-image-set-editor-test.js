@@ -8,7 +8,7 @@ import Ember from 'ember';
 var oldConfirm;
 
 moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
-  needs: ['component:lg-google-map'],
+  needs: ['component:lg-google-map', 'component:lg-dob-selector'],
 
   setup: function() {
     oldConfirm = window.confirm;
@@ -34,7 +34,7 @@ test('it renders', function() {
 });
 
 test('updating values', function() {
-  var age = 10,
+  var dateOfBirth = new Date(),
       latitude = 15,
       longitude = 20,
       organization = Ember.Object.create({name: '201'}),
@@ -42,7 +42,7 @@ test('updating values', function() {
       isVerified = true;
 
   var imageSet = Ember.Object.create({
-    age: age,
+    dateOfBirth: dateOfBirth,
     latitude: latitude,
     longitude: longitude,
     organization: organization,
@@ -50,7 +50,7 @@ test('updating values', function() {
     isVerified: isVerified
   });
 
-  var newAge = 20,
+  var newDateOfBirth = new Date(),
       newLatitude = 25,
       newLongitude = 30,
       newOrganization = Ember.Object.create({name: 'LG'}),
@@ -59,7 +59,7 @@ test('updating values', function() {
   var component = this.subject({
     imageSet: imageSet,
     isEditing: true,
-    selectedAge: newAge,
+    selectedDob: newDateOfBirth,
     selectedLatitude: newLatitude,
     selectedLongitude: newLongitude,
     selectedOrganization: newOrganization,
@@ -68,7 +68,7 @@ test('updating values', function() {
 
   component.send('finishEditing');
   equal(component.get('isEditing'), false);
-  equal(imageSet.get('age'), newAge);
+  equal(imageSet.get('dateOfBirth'), newDateOfBirth);
   equal(imageSet.get('latitude'), newLatitude);
   equal(imageSet.get('longitude'), newLongitude);
   equal(imageSet.get('organization'), newOrganization);
@@ -85,7 +85,7 @@ test('updating values', function() {
 });
 
 test('resetting values', function() {
-  var age = 10,
+  var dateOfBirth = new Date(),
       latitude = 15,
       longitude = 20,
       organization = Ember.Object.create({name: '201'}),
@@ -93,7 +93,7 @@ test('resetting values', function() {
       isVerified = false;
 
   var imageSet = Ember.Object.create({
-    age: age,
+    dateOfBirth: dateOfBirth,
     latitude: latitude,
     longitude: longitude,
     organization: organization,
@@ -101,7 +101,7 @@ test('resetting values', function() {
     isVerified: isVerified
   });
 
-  var newAge = 20,
+  var newDateOfBirth = new Date(),
       newLatitude = 25,
       newLongitude = 30,
       newOrganization = Ember.Object.create({name: 'LG'}),
@@ -111,7 +111,7 @@ test('resetting values', function() {
   var component = this.subject({
     imageSet: imageSet,
     isEditing: true,
-    selectedAge: newAge,
+    selectedDob: newDateOfBirth,
     selectedLatitude: newLatitude,
     selectedLongitude: newLongitude,
     selectedOrganization: newOrganization,
@@ -121,14 +121,14 @@ test('resetting values', function() {
 
   component.send('cancelEditing');
   equal(component.get('isEditing'), false);
-  equal(imageSet.get('age'), age);
+  equal(imageSet.get('dateOfBirth'), dateOfBirth);
   equal(imageSet.get('latitude'), latitude);
   equal(imageSet.get('longitude'), longitude);
   equal(imageSet.get('organization'), organization);
   equal(imageSet.get('gender'), gender);
   equal(imageSet.get('isVerified'), isVerified);
 
-  equal(component.get('selectedAge'), age);
+  equal(component.get('selectedDob'), dateOfBirth);
   equal(component.get('selectedLatitude'), latitude);
   equal(component.get('selectedLongitude'), longitude);
   equal(component.get('selectedOrganization'), organization);
