@@ -2,10 +2,14 @@
 @import "components";
 
 @import "components/lg-google-map";
+@import "components/lg-lion-associator";
 @import "components/lg-image-gallery";
 @import "components/lg-image-set-summary";
 @import "components/lg-mini-image-gallery";
 @import "components/lg-lion-search";
+
+$lg-orange: #DB5300;
+$lg-light-orange: #EE7F00;
 
 html, body {
   margin: 0;
@@ -36,7 +40,7 @@ body > .ember-view {
   .navbar-brand {
     font-weight: bold;
     text-transform: uppercase;
-    color: #DB5300;
+    color: $lg-orange;
   }
 
   li.no-link-nav-el {
@@ -132,14 +136,23 @@ body > .ember-view {
   line-height: 20px;
 }
 
-.row.active {
-  color: red
+.selectable-row.active {
+  text-weight: bold;
+
+  .list-group-item {
+    border: 1px solid black;
+    background-color: #F5E961;
+  }
 }
 
 .error {
   border: 1px solid red;
   color: red;
   padding: 20px;
+}
+
+.btn-lion-guardians {
+  background-color: $lg-light-orange;
 }
 
 .status-message {
@@ -149,4 +162,8 @@ body > .ember-view {
 
 .cv-result-viewer {
   padding: 0 15px;
+
+  .spaced-out .list-group-item {
+    margin-bottom: 10px;
+  }
 }
