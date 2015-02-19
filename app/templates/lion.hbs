@@ -39,13 +39,9 @@
 {{#each model.imageSets as |imageSet|}}
   {{#lg-selectable model=imageSet
     activeModel=activeImageSet
-    action='selectImageSet'}}
-    <div class='row'>
-      <h4>Image Set {{imageSet.id}}</h4>
-      <div class='image-thumbnail'>
-        <img {{bind-attr src=imageSet.mainImage.url}}>
-      </div>
-      {{lg-image-gallery imageSet=imageSet editingEnabled=false}}
-    </div>
+    action='selectImageSet'
+    classNames='row image-set'}}
+
+    {{lg-image-set-summary imageSet=imageSet setName=imageSet.id}}
   {{/lg-selectable}}
 {{/each}}

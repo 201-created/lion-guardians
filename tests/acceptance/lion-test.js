@@ -38,14 +38,14 @@ test('visiting /lion/2', function() {
     equal(currentURL(), '/lion/2');
 
     expectComponent('lg-image-set-editor');
-    expectComponent('lg-image-gallery');
+    expectComponent('lg-mini-image-gallery');
 
-    expectNoElement('.row.active');
-    click('.image-thumbnail');
+    expectNoElement('.row.image-set.active');
+    click('.mini-image-gallery');
   });
 
   andThen(function() {
-    expectElement('.row.active');
+    expectElement('.row.image-set.active');
     click('.view-image-set');
   });
 
@@ -58,10 +58,10 @@ test('visiting /lion/2 and setting primary image set', function() {
   expect(2);
   signInAndVisit('/lion/2');
 
-  click('.image-thumbnail');
+  click('.mini-image-gallery');
 
   andThen(function() {
-    expectElement('.row.active');
+    expectElement('.row.image-set.active');
 
     stubRequest('put', '/lions/2', function(request){
       ok(true, 'put api called');
@@ -77,10 +77,10 @@ test('visiting /lion/2 and removing image set', function() {
   stubGetUser();
   signInAndVisit('/lion/2');
 
-  click('.image-thumbnail');
+  click('.mini-image-gallery');
 
   andThen(function() {
-    expectElement('.row.active');
+    expectElement('.row.image-set.active');
 
     stubRequest('put', '/imageSets/24', function(request){
       ok(true, 'put api called');
