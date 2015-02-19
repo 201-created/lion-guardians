@@ -18,7 +18,11 @@ export default Ember.Route.extend({
       this.get('toriiSession').open('lion-guardians', credentials).then(function(){
         route.transitionTo('dashboard');
       }).catch(function(e){
-        controller.set('error', e.message || 'Unknown error');
+        var error = 'Unknown error.';
+        if (e.responseJSON && e.responseJSON.error) {
+          error = e.responseJSON.error;
+        }
+        controller.set('error', e.message || error);
       });
     }
   }

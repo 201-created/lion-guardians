@@ -36,6 +36,47 @@ body > .ember-view {
   background-color: #F8F8F8;
 }
 
+.login {
+  height: 400px;
+  width: 500px;
+  margin: 50px auto;
+
+  .lion-guardians-logo, .login-form {
+    display: inline-block;
+    width: 250px;
+  }
+
+  .lion-guardians-logo .logo {
+    width: 175px;
+    margin: 0 40px;
+  }
+
+  .login-form {
+    float: right;
+
+    .alert-danger {
+      margin-top: 20px;
+    }
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .login-button-wrapper {
+    height: 40px;
+  }
+
+  .login-button {
+    float: right;
+    border-radius: 30px;
+    background-color: $lg-light-orange;
+    width: 110px;
+    font-weight: bold;
+  }
+}
+
 .navbar {
   .navbar-brand {
     font-weight: bold;
