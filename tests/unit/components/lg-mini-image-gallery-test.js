@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 import {
   moduleForComponent,
   test
@@ -6,6 +8,9 @@ import {
 moduleForComponent('lg-mini-image-gallery', 'LgMiniImageGalleryComponent', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
+  setup: function() {
+    this.container.register('view:select', Ember.Select);
+  }
 });
 
 test('it renders', function() {

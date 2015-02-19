@@ -6,6 +6,8 @@ var imageTypes = [
   'markings'
 ];
 
+var imageTypesForFilter = ['all'].concat(imageTypes);
+
 var genders = [
   'male',
   'female'
@@ -44,4 +46,10 @@ var dobSearchOptions = [
   {label: '25+ years',  value: '24-100'}
 ];
 
-export {imageTypes, genders, dobSearchOptions, searchGenders, defaultLocation, dobOptions};
+export {imageTypes,
+        imageTypesForFilter,
+        genders,
+        dobSearchOptions,
+        searchGenders,
+        defaultLocation,
+        dobOptions};
