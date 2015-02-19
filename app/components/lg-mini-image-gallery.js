@@ -10,8 +10,8 @@ export default Ember.Component.extend({
   }.property('selectedImageType'),
 
   actions: {
-    setSelectedImage: function(image) {
-      this.set('selectedImage', image);
+    selectImage: function(image) {
+      this.sendAction('setSelectedImage', image);
     }
   }
 });

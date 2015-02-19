@@ -25,7 +25,7 @@
     <div class='col-sm-6'>
       <div class='small-image-thumbnail'>
         {{#if selectedImage}}
-          <img {{bind-attr src=imageSet.mainImage.url}}>
+          <img {{bind-attr src=selectedImage.url}}>
         {{else}}
           <div class='no-main-image'>
             (Main Image)
@@ -35,6 +35,10 @@
     </div>
   </div>
   <div class='row'>
-    {{lg-mini-image-gallery imageSet=imageSet selectedImage=selectedImage selectedImageType=selectedImageType}}
+    {{lg-mini-image-gallery
+      imageSet=imageSet
+      selectedImage=selectedImage
+      setSelectedImage='setSelectedImage'
+      selectedImageType=selectedImageType}}
   </div>
 </div>
