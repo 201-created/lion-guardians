@@ -80,5 +80,7 @@ module.exports = function(environment) {
     ENV.googleMap.apiKey = 'AIzaSyCyBbvflCLH9nmebwUVm0IjrYObWZ345NA';
   }
 
+  ENV.adminPath = ENV.apiHost + '/admin';
+
   return ENV;
 };

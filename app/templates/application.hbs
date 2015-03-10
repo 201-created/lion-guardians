@@ -17,11 +17,12 @@
         {{/if}}
         <ul class="nav navbar-nav navbar-right">
           {{#if toriiSession.isAuthenticated}}
-          <li class='no-link-nav-el'>Logged in as <b>{{toriiSession.currentUser.email}}</b></li>
+            <li class='no-link-nav-el'>Logged in as <b>{{toriiSession.currentUser.email}}</b></li>
             <li><a href='#' {{action 'logout'}}>Logout</a></li>
           {{else}}
             <li>{{link-to 'Login' 'login'}}</li>
           {{/if}}
+          <li><a {{bind-attr href='adminPath'}}>Admin</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

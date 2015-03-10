@@ -41,7 +41,7 @@
     "ember-google-map": "0.0.18",
     "ember-moment": "1.0.0",
     "express": "^4.8.5",
-    "glob": "^4.0.5",
+    "glob": "4.2.0",
     "torii": "^0.2.2"
   }
 }
