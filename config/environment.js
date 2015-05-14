@@ -22,7 +22,6 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-
     apiHost: 'http://lion-guardians-api.herokuapp.com',
 
     // The path to POST to to create a new token
@@ -49,7 +48,9 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    // Comment on the next line to point to production API server
     ENV.apiHost = 'http://localhost:5000';
+
     ENV.googleMap.apiKey = 'AIzaSyCoc_T6TNxu5Mnw28aJleIm63fR7WzViUU';
 
     // ENV.APP.LOG_RESOLVER = true;
@@ -76,7 +77,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'http://lion-guardians-api.herokuapp.com';
     ENV.googleMap.apiKey = 'AIzaSyCyBbvflCLH9nmebwUVm0IjrYObWZ345NA';
   }
 
