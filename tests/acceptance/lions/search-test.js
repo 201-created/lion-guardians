@@ -86,7 +86,7 @@ test('searching by age', function() {
   var ageSearchChoice = dobSearchOptions[3]; //6-9 years
 
   andThen(function() {
-    fillIn('.lg-dob-search-selector', ageSearchChoice.value);
+    fillIn('.lg-dob-search-selector input', ageSearchChoice.value);
   });
 
   andThen(function() {

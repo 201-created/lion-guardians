@@ -4,6 +4,7 @@ import Ember from 'ember';
 import {dobOptions} from 'lion-guardians/utils/units';
 
 export default Ember.Component.extend({
+  classNames: ['lg-dob-selector'],
   dobOptions: dobOptions,
   selectedDobOption: dobOptions[0].value,
   selectedDob: null,

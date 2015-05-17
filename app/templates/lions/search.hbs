@@ -1,24 +1,51 @@
-<h2>Lion Search</h2>
+<div class='lg-page-header'>Search All Lions</div>
+
 {{lg-lion-search action='displayResults' organizations=organizations store=store}}
 
+<hr>
 {{#if model}}
   <h3>Results</h3>
-  <div class='row'>
-    <button type="button"
-            {{action 'viewLion' activeLion}}
-            {{bind-attr class=":btn :btn-primary :view-lion activeLion::disabled"}}>View/Edit</button>
+  
+
+  <div class='lion-summary-list col-sm-5'>
+    <div class='heading'>
+      <div class='row'>
+        <div class='col-sm-1'>ID</div>
+        <div class='col-sm-3'>Name</div>
+        <div class='col-sm-3'>Age</div>
+        <div class='col-sm-2'>Sex</div>
+        <div class='col-sm-3'>Organization</div>
+      </div>
+    </div>
+
+    {{#each model as |lion|}}
+      {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
+        <div class='lion-summary-item'>
+          <div class='col-sm-1'>{{lion.id}}</div>
+          <div class='col-sm-3'>{{lion.name}}</div>
+          <div class='col-sm-3'>{{lion.primaryImageSet.age}}</div>
+          <div class='col-sm-2'>{{lion.gender}}</div>
+          <div class='col-sm-3'>{{lion.organization.name}}</div>
+        </div>
+      {{/lg-selectable}}
+    {{/each}}
   </div>
 
-  {{#each model as |lion|}}
-    {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
-      <div class='row'>
-        <div class='col-md-4'>
-          {{lg-lion-summary lion=lion}}
-        </div>
-        <div class='col-md-8'>
-          {{lg-image-set-summary imageSet=lion.primaryImageSet setName=lion.name}}
-        </div>
+  <div class='col-sm-7'>
+    {{#if activeLion}}
+      <div class='active-lion-metadata'>
+        Metadata goes here.
+        <button type="button"
+                {{action 'viewLion' activeLion}}
+                {{bind-attr class=":btn :btn-primary :view-lion activeLion::disabled"}}>View Lion</button>
       </div>
-    {{/lg-selectable}}
-  {{/each}}
+        {{lg-image-set-summary imageSet=activeLion.primaryImageSet setName='Primary Image Set'}}
+    {{/if}}
+  </div>
+
+{{else}}
+  <!-- <h3>Results</h3> -->
+  <!-- <div class='row'> -->
+    <!-- No results found for given search parameters. Please try your search again. -->
+  <!-- </div> -->
 {{/if}}
