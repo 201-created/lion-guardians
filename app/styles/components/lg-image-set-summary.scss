@@ -1,6 +1,8 @@
-$summary-height: 280px;
+$summary-height: 310px;
 $gallery-height: 100px;
 $small-thumbnail-height: 120px;
+
+$hero-image-height: 300px;
 
 .image-summary {
   background-color: #DDD;
@@ -9,6 +11,25 @@ $small-thumbnail-height: 120px;
   height: $summary-height;
   margin-top: -20px;
   margin-bottom: 40px;
+
+  &.hero-gallery {
+    height: $summary-height * 1.5;
+    margin-top: 0;
+
+    .hero-image {
+      height: $hero-image-height;
+      width: $hero-image-height;
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      img {
+        border: 1px solid black;
+        border-radius: 5px;
+        height: $hero-image-height;
+        width: 100%;
+      }
+    }
+  }
 
   .small-image-thumbnail {
     height: $small-thumbnail-height;
@@ -40,6 +61,10 @@ $small-thumbnail-height: 120px;
 
   .view-edit-button {
     margin-top: 25px;
+
+    button:first-child {
+      margin-bottom: 20px;
+    }
   }
 
 }

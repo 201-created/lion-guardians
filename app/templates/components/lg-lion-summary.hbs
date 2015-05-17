@@ -1,0 +1,18 @@
+<div class='row'>
+  <div class='col-sm-8'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        {{lion.name}}
+      </div>
+      <ul class='list-group'>
+        <li class='list-group-item'>Gender: {{lion.gender}}</li>
+        <li class='list-group-item'>Organization: {{lion.organization.name}}</li>
+        <li class='list-group-item'>Age: {{lion.age}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='col-sm-4'>
+    <img {{bind-attr src=lion.primaryImageSet.mainImage.url}} width='100' height='100'>
+  </div>
+</div>

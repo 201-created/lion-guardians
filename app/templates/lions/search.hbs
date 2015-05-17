@@ -1,12 +1,21 @@
-<div class='lg-page-header'>Search All Lions</div>
+<div class='lg-page-header row'>
+  <div class='page-title col-sm-3'>
+    Lions
+  </div>
+  <div class='col-sm-1'></div>
+  <div class='page-summary col-sm-8'>
+    Search lions to view summaries of name, age, sex, and organization. Select a search result row to view a lion's primary image set, metadata, and click through to more lion information.
+  </div>
+</div>
+
+<hr>
 
 {{lg-lion-search action='displayResults' organizations=organizations store=store}}
 
 <hr>
-{{#if model}}
-  <h3>Results</h3>
-  
 
+
+{{#if model}}
   <div class='lion-summary-list col-sm-5'>
     <div class='heading'>
       <div class='row'>
@@ -18,34 +27,32 @@
       </div>
     </div>
 
-    {{#each model as |lion|}}
-      {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
-        <div class='lion-summary-item'>
-          <div class='col-sm-1'>{{lion.id}}</div>
-          <div class='col-sm-3'>{{lion.name}}</div>
-          <div class='col-sm-3'>{{lion.primaryImageSet.age}}</div>
-          <div class='col-sm-2'>{{lion.gender}}</div>
-          <div class='col-sm-3'>{{lion.organization.name}}</div>
-        </div>
-      {{/lg-selectable}}
-    {{/each}}
+    <div class='lion-summary-body'>
+      {{#each model as |lion|}}
+        {{#lg-selectable model=lion activeModel=activeLion action='selectLion'}}
+          <div class='lion-summary-item'>
+            <div class='col-sm-1'>{{lion.id}}</div>
+            <div class='col-sm-3'>{{lion.name}}</div>
+            <div class='col-sm-3'>{{lion.primaryImageSet.age}}</div>
+            <div class='col-sm-2'>{{lion.gender}}</div>
+            <div class='col-sm-3'>{{lion.organization.name}}</div>
+          </div>
+        {{/lg-selectable}}
+      {{/each}}
+    </div>
+
+    <div class='footing'>
+      <span class='glyphicon glyphicon-globe'></span> {{numberOfSearchResults}} Lions Found
+    </div>
   </div>
 
   <div class='col-sm-7'>
     {{#if activeLion}}
-      <div class='active-lion-metadata'>
-        Metadata goes here.
-        <button type="button"
-                {{action 'viewLion' activeLion}}
-                {{bind-attr class=":btn :btn-primary :view-lion activeLion::disabled"}}>View Lion</button>
+      {{lg-image-set-summary imageSet=activeLion.primaryImageSet setName='Primary Image Set' heroImage=true}}
+    {{else}}
+      <div class='col-sm-4'>
+        <h5>Select a row at left to view lion metadata and primary image set</h5>
       </div>
-        {{lg-image-set-summary imageSet=activeLion.primaryImageSet setName='Primary Image Set'}}
     {{/if}}
   </div>
-
-{{else}}
-  <!-- <h3>Results</h3> -->
-  <!-- <div class='row'> -->
-    <!-- No results found for given search parameters. Please try your search again. -->
-  <!-- </div> -->
 {{/if}}

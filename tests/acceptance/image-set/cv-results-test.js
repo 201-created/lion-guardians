@@ -45,7 +45,7 @@ test('visiting /image-set/cv-results', function() {
 });
 
 test('visiting /image-set/cv-results and creating new lion', function() {
-  expect(6);
+  expect(8);
 
   signInAndVisit('/image-set/25/cv-results');
 

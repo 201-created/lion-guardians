@@ -32,7 +32,7 @@ test('visiting /image-sets', function() {
     expectElement('.image-set-id');
 
     expectNoElement('.row.active');
-    expectNoElement('.image-thumbnail');
+    expectNoElement('.active-image-thumbnail');
     expectElement('.view-image-set.disabled');
   });
 
@@ -42,7 +42,7 @@ test('visiting /image-sets', function() {
 
   andThen(function() {
     expectElement('.row.active');
-    expectElement('.image-thumbnail');
+    expectElement('.active-image-thumbnail');
     click('button.view-image-set');
   });
 

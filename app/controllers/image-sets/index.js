@@ -6,8 +6,14 @@ export default Ember.Controller.extend({
   currentUser: null,
   currentOrganization: Ember.computed.alias('currentUser.organization'),
   activeImageSet: null,
+  hasLion: Ember.computed.reads('activeImageSet.lion'),
+  activeLionName: function() {
+    return this.get('activeImageSet.lion.name') || 'Lion';
+  }.property('activeImageSet'),
   selectedOrganization: Ember.computed.reads('currentOrganization'),
   newCvRequest: null,
+  model: [],
+  numberOfSearchResults: Ember.computed.reads('model.length'),
 
   canView: Ember.computed.alias('activeImageSet'),
   canViewCv: Ember.computed.alias('activeImageSet.hasCvResults'),
@@ -27,6 +33,7 @@ export default Ember.Controller.extend({
 
   actions: {
     displayResults: function(imageSets) {
+      this.set('activeImageSet', null);
       this.set('model', imageSets);
     },
 
@@ -44,6 +51,12 @@ export default Ember.Controller.extend({
           activeImageSet.destroyRecord();
         }
       }
+    },
+
+    disassociateLion: function() {
+      // var activeImageSet = this.get('activeImageSet');
+      // disassociateLion from Set
+      return;
     },
 
     viewCv: function() {

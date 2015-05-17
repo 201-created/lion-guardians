@@ -1,8 +1,94 @@
 .image-set-control-panel {
+  border: 1px solid #DCDCDC;
+  background-color: #EEE;
+  border-radius: 5px;
+
+  margin-bottom: 20px;
+}
+
+.image-set-control-panel-header {
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.image-set-control-panel-body {
+  padding: 10px 0;
+}
+
+.control-panel-grouping, .control-panel-buttons {
+  display: inline-block;
+}
+
+.control-panel-grouping {
+  padding: 0;
+  margin-top: -5px;
+  text-align: center;
+
+  &.single-row {
+    text-align:right;
+    line-height: 30px;
+    margin-top: 0;
+  }
+}
+
+.image-set-control-panel-column {
   padding: 0 15px 15px 15px;
 
   div {
     padding: 0;
   }
 
+  div:first-child {
+    font-weight: 500px;
+    font-size: 14px;
+  }
+
+}
+
+.status-badge {
+  font-weight: 400;
+
+  &[class*="Unverified"] {
+    background-color: #D9534F;
+  }
+
+  &[class*="Verified"] {
+    background-color: #5CB85C;
+  }
+
+  &[class*="Pending"] {
+    background-color: yellow;
+    color: black;
+  }
+
+  &[class*="Results"] {
+    background-color: #5CB85C;
+  }
+
+}
+
+.right-panel {
+  padding-right: 0;
+}
+
+.active-image-set-panel {
+  border: 1px solid $active-row-yellow;
+  border-radius: 5px;
+  background-color: #DCDCDC;
+  padding: 15px;
+
+  .active-image-header {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .active-image-thumbnail {
+    img {
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 332px;
+    }
+  }
 }

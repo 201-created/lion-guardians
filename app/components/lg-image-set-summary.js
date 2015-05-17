@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   classNames: ['lg-image-set-summary'],
   selectedImage: Ember.computed.reads('imageSet.mainImage'),
   setName: null,
+  heroImage: false,
 
   status: function() {
     return this.get('imageSet.isVerified') ? 'Verified' : 'Unverified';
