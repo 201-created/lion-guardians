@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import startApp from '../../helpers/start-app';
-import {stubRequest} from '../../helpers/fake-server.js';
+import {stubRequest} from '../../helpers/fake-server';
 import { stubGetImageSet,
          stubGetOrganizations,
          stubImageSetJSON,
