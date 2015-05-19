@@ -1,0 +1,71 @@
+<div class='col-sm-4'>
+  <div {{bind-attr class=':metadata-panel :panel :panel-default :lion'}}>
+    <div class='panel-heading'>
+      Metadata
+      <div class='edit-save-button'>
+        {{#if editingEnabled}}
+          {{#if isEditing}}
+            {{#if isSavingImageSet}}
+              Saving In Progress..
+            {{else}}
+              <button class='btn btn-xs btn-success' {{action 'finishEditing'}} >
+                Save
+              </button>
+              <button class='btn btn-xs btn-warning' {{action 'cancelEditing'}} >
+                Cancel
+              </button>
+            {{/if}}
+          {{else}}
+            <button class='btn btn-xs btn-info' {{action 'startEditing'}} >
+              Edit
+            </button>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+    {{#if isEditing}}
+      <ul class='list-group'>
+        <li class='list-group-item'>Lion ID: {{lion.id}}</li>
+        <li class='list-group-item'>Organization: {{view 'select'
+                                                    content=organizations
+                                                    optionValuePath='content'
+                                                    optionLabelPath='content.name'
+                                                    value=selectedOrganization}}</li>
+        <li class='list-group-item'>Name: {{input value=selectedName placeholder='Name'}}</li>
+      </ul>
+
+    {{else}}
+      <ul class='list-group'>
+        <li class='list-group-item'>Lion ID: {{lion.id}}</li>
+        <li class='list-group-item'>Name: {{lion.name}}</li>
+        <li class='list-group-item'>Organization: {{lion.organization.name}}</li>
+        <li class='list-group-item'>Age: {{lg-dob-selector selectedDob=imageSet.dateOfBirth isEditing=isEditing}} <small>{{ago imageSet.dateOfBirth}}</small></li>
+        <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
+        <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
+        <li class='list-group-item'>Is Verified: {{imageSet.isVerified}}</li>
+
+        <li class='list-group-item'>
+          Meta Data:
+          {{#each imageSet.tags as |tag|}}
+            {{tag}}
+          {{/each}}
+        </li>
+      </ul>
+    {{/if}}
+  </div>
+</div>
+
+<div class='col-sm-4'>
+  <div class='main-image'>
+    {{#if imageSet.mainImage}}
+      <img {{bind-attr src=imageSet.mainImage.url}}>
+    {{else}}
+      <div class='no-main-image'>
+        (Main Image)
+      </div>
+    {{/if}}
+  </div>
+</div>
+<div class='col-sm-4'>
+  {{lg-google-map marker=mapMarker}}
+</div>
