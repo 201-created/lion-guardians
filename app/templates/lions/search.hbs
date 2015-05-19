@@ -16,6 +16,27 @@
 
 
 {{#if model}}
+  <div class='image-set-control-panel'>
+    <div class='image-set-control-panel-header'>
+      Lion Control Panel
+    </div>
+    <div class='image-set-control-panel-body row'>
+      <div class='control-panel-grouping single-row col-sm-1'>
+        Lion Actions
+      </div>
+      <div class='control-panel-buttons col-sm-3'>
+        <button type="button"
+                {{action 'deleteLion'  activeLion}}
+                {{bind-attr class=":btn :btn-sm :btn-danger canDeleteLion::disabled :delete-lion"}}>
+          Delete Lion
+      </button>
+      <button type="button"
+              {{action 'viewLion' activeLion}}
+              {{bind-attr class=":btn :btn-sm :btn-primary activeLion::disabled :view-lion"}}>View Lion</button>
+      </div>
+    </div>
+  </div>
+
   <div class='lion-summary-list col-sm-5'>
     <div class='heading'>
       <div class='row'>
