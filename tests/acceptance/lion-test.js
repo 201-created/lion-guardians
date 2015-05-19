@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import { stubRequest } from '../helpers/fake-server';
-import { stubLionJSON, stubImageSetJSON, stubGetOrganizations, stubGetUser } from '../helpers/fake-requests';
+import { stubLionJSON, stubImageSetJSON, stubGetOrganizations,
+         stubGetUser, stubGetSearchOptions } from '../helpers/fake-requests';
 
 var application, oldConfirm;
 
@@ -10,7 +11,7 @@ module('Acceptance: Lion', {
     application = startApp();
 
     stubGetOrganizations();
-
+    stubGetSearchOptions();
     stubRequest('get', '/lions/2', function(request){
       return this.success(stubLionJSON());
     });

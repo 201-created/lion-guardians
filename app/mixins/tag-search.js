@@ -74,6 +74,7 @@ export default Ember.Mixin.create({
     var options = this.get('allSearchOptions');
 
     return ajax(url, {}).then(function(data) {
+      options.clear();
       var newOptions = data['search_options'];
       options.pushObjects(newOptions);
     });

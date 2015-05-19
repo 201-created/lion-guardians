@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import {genders} from 'lion-guardians/utils/units';
 import ImageSetMarker from 'lion-guardians/models/image-set-marker';
+import TagSearchMixin from 'lion-guardians/mixins/tag-search';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(TagSearchMixin, {
   genders: genders,
   isEditing: false,
   editingEnabled: false,
@@ -15,6 +16,29 @@ export default Ember.Component.extend({
   selectedOrganization: Ember.computed.reads('imageSet.organization'),
   selectedGender: Ember.computed.reads('imageSet.gender'),
   selectedIsVerified: Ember.computed.reads('imageSet.isVerified'),
+
+  setDefaultTag: function(property, category) {
+    var tags = this.get('imageSet.tags');
+    if (tags) {
+      var selected = tags.find(function(tag) {
+        return tag.indexOf(category) !== -1;
+      });
+
+      if (selected) {
+        this.set(property, selected);
+      }
+    }
+  },
+
+  imageSetTagsObserver: function() {
+    this.setDefaultTag('selectedEarMarking', 'EAR_MARKING');
+    this.setDefaultTag('selectedEyeDamage',  'EYE_DAMAGE');
+    this.setDefaultTag('selectedMouthMarkin', 'MOUTH_MARKING');
+    this.setDefaultTag('selectedNoseColour', 'NOSE_COLOUR');
+    this.setDefaultTag('selectedTailMarking', 'TAIL_MARKING');
+    this.setDefaultTag('selectedTeeth', 'TEETH');
+    this.setDefaultTag('selectedScar', 'SCARS');
+  }.observes('imageSet.tags.[]').on('init'),
 
   mapMarker: function() {
     return ImageSetMarker.create({
@@ -44,7 +68,8 @@ export default Ember.Component.extend({
       longitude: this.get('selectedLongitude'),
       organization: this.get('selectedOrganization'),
       gender: this.get('selectedGender'),
-      isVerified: this.get('selectedIsVerified')
+      isVerified: this.get('selectedIsVerified'),
+      tags: this.get('selectedTags')
     });
   },
 

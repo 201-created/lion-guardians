@@ -5,6 +5,7 @@ import { stubGetCvResults,
          stubGetImageSet,
          stubImageSetJSON,
          stubGetOrganizations,
+         stubGetSearchOptions,
          stubGetUser } from '../../helpers/fake-requests';
 
 var application, imageSetJSON;
@@ -17,7 +18,7 @@ module('Acceptance: ImageSetCvResults', {
     imageSetJSON.id = 25;
 
     stubGetImageSet();
-
+    stubGetSearchOptions();
     stubGetOrganizations();
     stubGetCvResults('25');
   },
