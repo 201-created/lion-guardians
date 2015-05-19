@@ -21,6 +21,8 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization'),
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
+  tags: DS.attr('array'),
+
   age: function() {
     if (this.get('dateOfBirth')) {
       return moment(this.get('dateOfBirth')).fromNow(true) + " old";

@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
   hasLion: Ember.computed.reads('activeImageSet.lion'),
   activeLionName: function() {
     return this.get('activeImageSet.lion.name') || 'Lion';
-  }.property('activeImageSet'),
+  }.property('activeImageSet', 'activeImageSet.lion.name'),
   selectedOrganization: Ember.computed.reads('currentOrganization'),
   newCvRequest: null,
   model: [],
@@ -54,9 +54,13 @@ export default Ember.Controller.extend({
     },
 
     disassociateLion: function() {
-      // var activeImageSet = this.get('activeImageSet');
-      // disassociateLion from Set
-      return;
+      var activeImageSet = this.get('activeImageSet');
+      activeImageSet.setProperties({
+        lion: null,
+        isVerified: false
+      });
+
+      activeImageSet.save();
     },
 
     viewCv: function() {

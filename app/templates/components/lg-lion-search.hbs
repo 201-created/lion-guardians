@@ -10,6 +10,18 @@
       <ul class='list-group search-param-input'>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
       </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Ear Markings: {{view 'select' classNames='lg-lion-search-ear-markings' content=earMarkingOptions value=selectedEarMarking}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Eye Damage: {{view 'select' classNames='lg-lion-search-eye-damage' content=eyeDamageOptions value=selectedEyeDamage}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Mouth Markings: {{view 'select' classNames='lg-lion-search-mouth-markings' content=mouthMarkingOptions value=selectedMouthMarking}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Nose Colour: {{view 'select' classNames='lg-lion-search-nose-colour' content=noseColourOptions value=selectedNoseColour}}</li>
+      </ul>
     </div>
     <div class='col-md-4'>
       <ul class='list-group search-param-input'>
@@ -17,6 +29,15 @@
       </ul>
       <ul class='list-group search-param-input'>
         <li class='list-group-item'>Age: {{lg-dob-search-selector selectedSearchDateStart=selectedSearchDateStart selectedSearchDateEnd=selectedSearchDateEnd}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Tail Markings: {{view 'select' classNames='lg-lion-search-tail-marking' content=tailMarkingOptions value=selectedTailMarking}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Broken Teeth: {{view 'select' classNames='lg-lion-search-nose-colour' content=teethOptions value=selectedTeeth}}</li>
+      </ul>
+      <ul class='list-group search-param-input'>
+        <li class='list-group-item'>Scars: {{view 'select' classNames='lg-lion-search-nose-colour' content=scarOptions value=selectedScar}}</li>
       </ul>
     </div>
     <div class='col-md-2'>

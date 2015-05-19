@@ -153,9 +153,14 @@ body > .ember-view {
 }
 
 .metadata-panel {
+  display: inline-table;
   position: relative;
   margin-top: 20px;
-  height: 400px;
+  height: 425px;
+
+  &.is-editing {
+    height: 775px;
+  }
 
   .edit-save-button {
     position: absolute;
