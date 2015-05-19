@@ -44,8 +44,12 @@ test('visiting /lions/search', function() {
   });
 
   andThen(function() {
-    expectComponent('lg-lion-summary', 1);
-    click('.lg-lion-summary');
+    expectElement('.lion-summary-list', 1);
+    click('.lion-summary-item');
+  });
+
+  andThen(function() {
+    expectComponent('lg-image-set-summary', 1);
   });
 
   andThen(function() {
@@ -86,7 +90,7 @@ test('searching by age', function() {
   var ageSearchChoice = dobSearchOptions[3]; //6-9 years
 
   andThen(function() {
-    fillIn('.lg-dob-search-selector', ageSearchChoice.value);
+    fillIn('.lg-dob-search-selector select', ageSearchChoice.value);
   });
 
   andThen(function() {

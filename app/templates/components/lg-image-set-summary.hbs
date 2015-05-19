@@ -1,34 +1,29 @@
-<div class='image-summary'>
+<div {{bind-attr class=':image-summary heroImage:hero-gallery'}}>
   <div class='metadata-and-selected row'>
     <div class='col-sm-5'>
-      <div class='lg-image-set-summary-header'>
-        <h3>{{setName}}</h3>
+      <div {{bind-attr class=':lg-image-set-summary-header imageSet.isPrimary:primary-image-set'}}>
+        {{#if setName}}
+          <h3>{{setName}}</h3>
+        {{else}}
+          <h4>Image Set {{imageSet.id}}</h4>
+        {{/if}}
       </div>
       <div class='view-edit-button'>
+        {{#link-to 'lion' imageSet.lion}}
+          <button class='btn btn-small btn-info view-lion'>
+            View Lion Details
+          </button>
+        {{/link-to}}
         {{#link-to 'image-set' imageSet}}
           <button class='btn btn-small btn-info'>
-            View More Details
+            View Image Set Details
           </button>
         {{/link-to}}
       </div>
     </div>
-    <div class='col-sm-4'>
-      <div class='lg-image-set-summary-header'>
-        <h4>Image Set {{imageSet.id}}</h4>
-      </div>
-      <div class='image-set-summary-details panel panel-default'>
-        <ul class='list-group'>
-          <li class='list-group-item'>
-            Status: {{status}}
-          </li>
-          <li class='list-group-item'>
-            Has CV Results: {{imageSet.hasCvResults}}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class='col-sm-3'>
-      <div class='small-image-thumbnail'>
+    {{#if heroImage}}
+      <div class='col-sm-1'></div>
+      <div class='col-sm-6 hero-image'>
         {{#if selectedImage}}
           <img {{bind-attr src=selectedImage.url}}>
         {{else}}
@@ -37,7 +32,31 @@
           </div>
         {{/if}}
       </div>
-    </div>
+    {{else}}
+      <div class='col-sm-4'>
+        <div class='image-set-summary-details panel panel-default'>
+          <ul class='list-group'>
+            <li class='list-group-item'>
+              Status: {{status}}
+            </li>
+            <li class='list-group-item'>
+              Has CV Results: {{imageSet.hasCvResults}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='col-sm-3'>
+        <div class='small-image-thumbnail'>
+          {{#if selectedImage}}
+            <img {{bind-attr src=selectedImage.url}}>
+          {{else}}
+            <div class='no-main-image'>
+              (Main Image)
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
   </div>
   {{lg-mini-image-gallery
     imageSet=imageSet

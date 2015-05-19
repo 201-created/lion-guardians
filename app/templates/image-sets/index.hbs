@@ -1,84 +1,129 @@
-<h2>Image Sets for {{currentOrganization.name}}</h2>
-
-<div class='row'>
-  <div class='col-md-4'>
-    {{lg-lion-search action='displayResults' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization}}
+<div class='lg-page-header row'>
+  <div class='page-title col-sm-3'>
+    Image Sets for {{currentOrganization.name}}
   </div>
-  <div class='col-md-4'>
-    {{#if activeImageSet.mainImage.url}}
-      <div class='image-thumbnail'>
-        <img {{bind-attr src=activeImageSet.mainImage.url}}>
-      </div>
-    {{/if}}
+  <div class='col-sm-1'></div>
+  <div class='page-summary col-sm-8'>
+    Search image sets to view summaries of name, age, organization, and CV status. Select a search result row to view an image set's primary image, to create a lion from an image set, dissociate a lion from an image set, or run or view a CV.
   </div>
 </div>
 
 <hr>
 
-<div class='image-set-control-panel row'>
-  <div class='col-sm-2'>
-    <h4>
-      {{#if activeImageSet}}
-        Image Set ID {{activeImageSet.id}}
-      {{else}}
-        Image Set Controls
-      {{/if}}
-    </h4>
+{{lg-lion-search action='displayResults' searchType='filter' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization}}
+
+<hr>
+
+<div class='image-set-control-panel'>
+  <div class='image-set-control-panel-header'>
+    Image Set Control Panel
   </div>
-  <div class='col-sm-10'>
-    <button type="button"
-            {{action 'requestCv' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary canRequestCv::disabled :request-cv"}}>
-      {{#if cvRequestPending}}
-        Request Pending
-      {{else}}
-        Run CV
-      {{/if}}
-    </button>
-    <button type="button"
-            {{action 'viewCv'}}
-            {{bind-attr class=":btn :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>
-    <button type="button"
-            {{action 'viewImageSet' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary canView::disabled :view-image-set"}}>View/Edit</button>
-    <button type="button"
-            {{action 'deleteImageSet'}}
-            {{bind-attr class=":btn :btn-danger canDelete::disabled :delete"}}>Delete</button>
+  <div class='image-set-control-panel-body row'>
+    <div class='control-panel-grouping single-row col-sm-1'>
+      CV Actions
+    </div>
+    <div class='control-panel-buttons col-sm-3'>
+      <button type="button"
+              {{action 'requestCv' activeImageSet}}
+              {{bind-attr class=":btn :btn-sm :btn-primary canRequestCv::disabled :request-cv"}}>
+        {{#if cvRequestPending}}
+          Request Pending
+        {{else}}
+          Run CV
+        {{/if}}
+      </button>
+      <button type="button"
+              {{action 'viewCv'}}
+              {{bind-attr class=":btn :btn-sm :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>
+    </div>
+    <div class='control-panel-grouping col-sm-1'>
+      Image Set Actions
+    </div>
+    <div class='control-panel-buttons col-sm-3'>
+      <button type="button"
+              {{action 'viewImageSet' activeImageSet}}
+              {{bind-attr class=":btn :btn-sm :btn-primary canView::disabled :view-image-set"}}>View/Edit</button>
+      <button type="button"
+              {{action 'deleteImageSet'}}
+              {{bind-attr class=":btn :btn-sm :btn-danger canDelete::disabled :delete"}}>Delete</button>
+    </div>
+    <div class='control-panel-grouping col-sm-1'>
+      Lion Management
+    </div>
+    <div class='control-panel-buttons col-sm-3'>
+      <button type="button"
+              {{action 'disassociateLion'}}
+              {{bind-attr class=":btn :btn-sm :btn-danger hasLion::disabled"}}>Dissociate {{activeLionName}}</button>
+      <button type="button"
+              {{action 'viewImageSet' activeImageSet}}
+              {{bind-attr class=":btn :btn-sm :btn-primary hasLion:disabled"}}>Create Lion</button>
+    </div>
   </div>
 </div>
 
-<div class='image-set-list'>
+<div class='image-set-list col-sm-8'>
   <div class='heading'>
     <div class='row'>
       <div class='col-sm-1'>ID</div>
-      <div class='col-sm-2'>Name</div>
+      <div class='col-sm-3'>Lion Name</div>
       <div class='col-sm-2'>Age</div>
       <div class='col-sm-2'>Organization</div>
       <div class='col-sm-4'>Status</div>
-      <div class='col-sm-1'></div>
     </div>
   </div>
 
-  {{#if model}}
-    {{#each model as |imageSet|}}
-      {{#lg-selectable model=imageSet activeModel=activeImageSet action='selectImageSet'}}
-        <div class='image-set-item'>
-          <div class='col-sm-1 image-set-id'>{{imageSet.id}}</div>
-          <div class='col-sm-2'>
-            {{#if imageSet.lion}}
-              {{imageSet.lion.name}}
-            {{/if}}
+  <div class='image-set-body'>
+    {{#if model}}
+      {{#each model as |imageSet|}}
+        {{#lg-selectable model=imageSet activeModel=activeImageSet action='selectImageSet'}}
+          <div class='image-set-item'>
+            <div {{bind-attr class=':col-sm-1 :image-set-id imageSet.isPrimary:primary-image-set'}}>
+              {{imageSet.id}}
+            </div>
+            <div class='col-sm-3'>
+              {{#if imageSet.lion}}
+                {{imageSet.lion.name}}
+              {{/if}}
+            </div>
+            <div class='col-sm-2'>{{imageSet.age}}</div>
+            <div class='col-sm-2'>{{imageSet.organization.name}}</div>
+            <div class='col-sm-4'>
+              {{#each imageSet.status as |status|}}
+                <span {{bind-attr class=':status-badge :badge status'}}>
+                  {{status}}
+                </span>
+              {{/each}}
+            </div>
           </div>
-          <div class='col-sm-2'>{{imageSet.age}}</div>
-          <div class='col-sm-2'>{{imageSet.organization.name}}</div>
-          <div class='col-sm-4'>{{imageSet.status}}</div>
-          <div class='col-sm-1'>
-            <button type="button"
-                    {{action 'viewImageSet' model}}
-                    {{bind-attr class=":btn :btn-primary :btn-xs :view-image-set"}}>View/Edit</button>
-          </div>
-        </div>
-      {{/lg-selectable}}
-    {{/each}}
+        {{/lg-selectable}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <div class='footing'>
+    <span class='glyphicon glyphicon-picture'></span> {{numberOfSearchResults}} Image Sets Found
+  </div>
+</div>
+
+<div class='right-panel col-sm-4'>
+  {{#if activeImageSet}}
+    <div class='active-image-set-panel'>
+      <div class='active-image-header'>
+        <h4>
+          {{#if activeImageSet.isPrimary}}
+            <span class='primary-image-set'>Primary Image Set ID {{activeImageSet.id}}</span>
+          {{else}}
+            Image Set ID {{activeImageSet.id}}
+          {{/if}}
+        </h4>
+      </div>
+      <div class='active-image-thumbnail'>
+        <img {{bind-attr src=activeImageSet.mainImage.url}}>
+      </div>
+    </div>
+  {{else}}
+    <div class='col-sm-6'>
+      <h5>Select a row at left to view image set controls and details</h5>
+    </div>
   {{/if}}
 </div>

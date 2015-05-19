@@ -1,5 +1,6 @@
 /* global moment */
 
+import Ember from 'ember';
 import DS from 'ember-data';
 import {defaultLocation} from 'lion-guardians/utils/units';
 
@@ -15,15 +16,20 @@ export default DS.Model.extend({
   images: DS.hasMany('images'),
   user: DS.belongsTo('user', {async: true}),
   lion: DS.belongsTo('lion', {inverse: 'imageSets'}),
+  lionless: Ember.computed.not('lion'),
   uploadingOrganization: DS.belongsTo('organization'),
   organization: DS.belongsTo('organization'),
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
   age: function() {
     if (this.get('dateOfBirth')) {
-      return moment(this.get('dateOfBirth')).fromNow(true) + " ago";
+      return moment(this.get('dateOfBirth')).fromNow(true) + " old";
     }
   }.property('dateOfBirth'),
+
+  isPrimary: function() {
+    return this === this.get('lion.primaryImageSet');
+  }.property('lion'),
 
   cvRequestPending: function() {
     return this.get('hasCvRequest') && !this.get('hasCvResults');
@@ -34,19 +40,19 @@ export default DS.Model.extend({
         lion = this.get('lion'),
         isVerified = this.get('isVerified'),
         cvRequestPending = this.get('cvRequestPending'),
-        status = "";
+        status = [];
 
     if (hasCvResults && lion) {
-      status += 'Has CV Results, ';
-      status += isVerified ? 'Verified' : 'Unverified';
+      status.pushObject('Has CV Results');
+      status.pushObject(isVerified ? 'Verified' : 'Unverified');
     } else if (hasCvResults) {
-      status = 'Has CV Results';
+      status.pushObject('Has CV Results');
     } else if (lion) {
-      status = isVerified ? 'Verified' : 'Unverified';
+      status.pushObject(isVerified ? 'Verified' : 'Unverified');
     }
 
     if (cvRequestPending) {
-      status += ', CV Request Pending';
+      status.pushObject('CV Request Pending');
     }
 
     return status;

@@ -14,16 +14,6 @@ $gallery-height: 300px;
     margin-top: 20px;
   }
 
-  .scroll-arrows {
-    width: 50px;
-
-    .glyphicon {
-      font-size: 40px;
-      margin: 0 3px;
-      margin-top: $gallery-height / 2 + 15px;
-    }
-  }
-
   .image-gallery-image {
     display: inline-block;
     margin-right: 20px;

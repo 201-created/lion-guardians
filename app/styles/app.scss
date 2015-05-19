@@ -7,11 +7,11 @@ $active-row-yellow: #F5E961;
 @import "image-sets";
 
 @import "components/lg-google-map";
-@import "components/lg-lion-associator";
 @import "components/lg-image-gallery";
 @import "components/lg-image-set-summary";
-@import "components/lg-mini-image-gallery";
+@import "components/lg-lion-associator";
 @import "components/lg-lion-search";
+@import "components/lg-mini-image-gallery";
 
 
 html, body {
@@ -93,6 +93,10 @@ body > .ember-view {
   }
 }
 
+.primary-image-set {
+  color: $lg-orange;
+}
+
 .image-set-header {
   position: relative;
 
@@ -120,6 +124,14 @@ body > .ember-view {
     text-align: center;
     line-height: 160px;
     color: #CCC;
+  }
+}
+
+.image-thumbnail-tiny {
+  img, .no-main-image {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100px;
   }
 }
 
@@ -189,6 +201,29 @@ body > .ember-view {
   }
 }
 
+.lg-page-header {
+  margin-bottom: 20px;
+
+  .page-title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .page-summary {
+    color: #555;
+    font-size: 16px;
+  }
+}
+
+.search-results-count {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.lg-dob-search-selector, .lg-dob-selector {
+  display: inline-block;
+}
+
 .error {
   border: 1px solid red;
   color: red;
@@ -215,4 +250,57 @@ body > .ember-view {
 .lion-image-sets {
   margin-top: 30px;
   margin-left: 0;
+}
+
+.image-set-list, .lion-summary-list {
+  border-radius: 5px;
+  border: 1px solid #DDD;
+  padding: 0;
+
+  .image-set-body, .lion-summary-body {
+    overflow: auto;
+  }
+
+  .image-set-body {
+    max-height: 350px;
+  }
+
+  .lion-summary-body {
+    max-height: 450px;
+  }
+
+  .row.selectable-row {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #DDD;
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:active, &:hover {
+      background-color: #DCDCDC;
+    }
+  }
+
+ .row.selectable-row.active {
+    background-color: $active-row-yellow;
+  }
+
+  .heading {
+    border-bottom: 1px solid #DDD;
+  }
+
+  .heading, .footing {
+    background-color: #F5F5F5;
+    padding: 10px 15px;
+    font-weight: 500;
+  }
+
+}
+
+.active-lion-metadata {
+  margin-bottom: 40px;
 }

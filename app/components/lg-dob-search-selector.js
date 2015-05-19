@@ -5,6 +5,7 @@ import {dobSearchOptions} from 'lion-guardians/utils/units';
 import parseAgeRange from 'lion-guardians/utils/parse-age-range';
 
 export default Ember.Component.extend({
+  classNames: ['lg-dob-search-selector'],
   dobSearchOptions: dobSearchOptions,
   selectedDobOption: dobSearchOptions[0].value,
 
