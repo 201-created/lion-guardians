@@ -3,12 +3,14 @@ import {
   test
 } from 'ember-qunit';
 import Ember from 'ember';
+import { stubGetSearchOptions } from '../../helpers/fake-requests';
 
 moduleForComponent('lg-lion-search', 'LgLionSearchComponent', {
   // specify the other units that are required for this test
   needs: ['component:lg-dob-search-selector'],
 
   setup: function() {
+    stubGetSearchOptions();
     this.container.register('view:select', Ember.Select);
   }
 });
@@ -60,4 +62,36 @@ test('it sets params for name', function(){
 
   component.set('selectedName', 'Simba');
   deepEqual(component.get('params'), {name: 'Simba'});
+});
+
+test('tags', function() {
+  var component = this.subject();
+  deepEqual(component.get('params'), {});
+
+  var nullOption = component.get('nullOption');
+  component.set('selectedEarMarking', nullOption);
+  deepEqual(component.get('params'), {});
+
+  component.set('selectedEarMarking', 'EAR_LEFT');
+  deepEqual(component.get('params'), {tags: ['EAR_LEFT']});
+
+  component.set('selectedEyeDamage', 'EYE_RIGHT');
+  deepEqual(component.get('params'), {tags: ['EAR_LEFT', 'EYE_RIGHT']});
+
+  component.set('selectedEarMarking', nullOption);
+  deepEqual(component.get('params'), {tags: ['EYE_RIGHT']});
+
+  component.setProperties({
+    selectedEarMarking: 'EAR_LEFT',
+    selectedMouthMarking: 'MOUTH_FRONT',
+    selectedNoseColour: 'NOSE_PINK',
+    selectedTailMarking: 'TAIL_TUFT',
+    selectedTeeth: 'BROKEN_CANINE_LEFT',
+    selectedScar: 'SCAR_BODY_LEFT'
+  });
+
+  deepEqual(component.get('params'), {tags: [
+    'EAR_LEFT', 'EYE_RIGHT', 'MOUTH_FRONT', 'NOSE_PINK', 'TAIL_TUFT',
+    'BROKEN_CANINE_LEFT', 'SCAR_BODY_LEFT'
+  ]});
 });

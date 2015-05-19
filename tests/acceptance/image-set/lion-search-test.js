@@ -5,6 +5,7 @@ import { stubGetImageSet,
          stubGetOrganizations,
          stubImageSetJSON,
          stubGetUser,
+         stubGetSearchOptions,
          stubGetLions } from '../../helpers/fake-requests';
 
 var application;
@@ -16,6 +17,7 @@ module('Acceptance: ImageSetLionSearch', {
     stubGetLions();
     stubGetImageSet(25);
     stubGetUser();
+    stubGetSearchOptions();
   },
   teardown: function() {
     Ember.run(application, 'destroy');

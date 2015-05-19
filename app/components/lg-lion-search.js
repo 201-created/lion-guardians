@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import {searchGenders} from 'lion-guardians/utils/units';
+import TagSearchMixin from 'lion-guardians/mixins/tag-search';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(TagSearchMixin, {
   store: null,
   genders: searchGenders,
   selectedGender: searchGenders[0],
@@ -46,7 +47,8 @@ export default Ember.Component.extend({
         selectedOrganizationId = this.get('selectedOrganization.id'),
         selectedName = this.get('selectedName'),
         selectedSearchDateStart = this.get('selectedSearchDateStart'),
-        selectedSearchDateEnd = this.get('selectedSearchDateEnd');
+        selectedSearchDateEnd = this.get('selectedSearchDateEnd'),
+        selectedTags = this.get('selectedTags');
 
     if (selectedGender !== defaultGender){
       params['gender'] = selectedGender;
@@ -65,9 +67,13 @@ export default Ember.Component.extend({
       params['dob_range_end'] = selectedSearchDateEnd;
     }
 
+    if(selectedTags.length) {
+      params['tags'] = selectedTags;
+    }
     return params;
   }.property('selectedGender', 'defaultGender', 'selectedOrganization',
-             'selectedName', 'selectedSearchDateEnd', 'selectedSearchDateStart'),
+             'selectedName', 'selectedSearchDateEnd', 'selectedSearchDateStart',
+             'selectedTags'),
 
   actions: {
     search: function() {

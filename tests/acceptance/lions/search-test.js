@@ -3,7 +3,7 @@
 import Ember from 'ember';
 import startApp from '../../helpers/start-app';
 import { stubRequest } from '../../helpers/fake-server';
-import { stubGetOrganizations, stubGetLions } from '../../helpers/fake-requests';
+import { stubGetOrganizations, stubGetLions, stubGetSearchOptions } from '../../helpers/fake-requests';
 import { dobSearchOptions } from 'lion-guardians/utils/units';
 import parseAgeRange from 'lion-guardians/utils/parse-age-range';
 
@@ -14,6 +14,7 @@ module('Acceptance: LionsSearch', {
     application = startApp();
 
     stubGetOrganizations();
+    stubGetSearchOptions();
     stubGetLions();
 
     oldMoment = moment;

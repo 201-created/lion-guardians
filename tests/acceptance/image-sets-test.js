@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import { stubGetOrganizations, stubGetImageSets, stubCvResultJSON, stubGetImageSetsWithCvResults } from '../helpers/fake-requests';
+import { stubGetOrganizations, stubGetImageSets, stubCvResultJSON, stubGetImageSetsWithCvResults, stubGetSearchOptions } from '../helpers/fake-requests';
 import { stubRequest } from '../helpers/fake-server';
 
 var application, oldConfirm;
@@ -10,6 +10,7 @@ module('Acceptance: ImageSets', {
     application = startApp();
     stubGetImageSets();
     stubGetOrganizations();
+    stubGetSearchOptions();
 
     oldConfirm = window.confirm;
     window.confirm = function() {
