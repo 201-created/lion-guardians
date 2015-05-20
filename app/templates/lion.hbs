@@ -19,11 +19,13 @@
 
 <div class='container'>
   <div class='row'>
-    <button type="button"
-            {{action 'viewImageSet' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary activeImageSet::disabled :view-image-set"}}>
-      View/Edit
-    </button>
+    {{#link-to 'image-set' activeImageSet}}
+      <button type="button"
+              {{bind-attr class=":btn :btn-primary activeImageSet::disabled :view-image-set"}}>
+        View/Edit
+        <span class='glyphicon glyphicon-share'></span>
+      </button>
+    {{/link-to}}
     <button type="button"
             {{action 'makePrimaryImageSet' activeImageSet}}
             {{bind-attr class=":btn :btn-primary canEdit::disabled :make-primary"}}>

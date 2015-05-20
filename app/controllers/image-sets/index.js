@@ -63,13 +63,6 @@ export default Ember.Controller.extend({
       activeImageSet.save();
     },
 
-    viewCv: function() {
-      var activeImageSet = this.get('activeImageSet');
-      if (activeImageSet) {
-        this.transitionToRoute('image-set.cv-results', activeImageSet);
-      }
-    },
-
     requestCv: function(imageSet) {
       var cvRequest = this.store.createRecord('cvRequest', {
         imageSet: imageSet

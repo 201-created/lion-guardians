@@ -32,17 +32,23 @@
           Run CV
         {{/if}}
       </button>
-      <button type="button"
-              {{action 'viewCv'}}
-              {{bind-attr class=":btn :btn-sm :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>
+      {{#link-to 'image-set.cv-results' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary canViewCv::disabled :view-cv"}}>View CV
+          <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
     </div>
     <div class='control-panel-grouping col-sm-1'>
       Image Set Actions
     </div>
     <div class='control-panel-buttons col-sm-3'>
-      <button type="button"
-              {{action 'viewImageSet' activeImageSet}}
-              {{bind-attr class=":btn :btn-sm :btn-primary canView::disabled :view-image-set"}}>View/Edit</button>
+      {{#link-to 'image-set' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary canView::disabled :view-image-set"}}>View/Edit
+          <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
       <button type="button"
               {{action 'deleteImageSet'}}
               {{bind-attr class=":btn :btn-sm :btn-danger canDelete::disabled :delete"}}>Delete</button>
@@ -54,9 +60,12 @@
       <button type="button"
               {{action 'disassociateLion'}}
               {{bind-attr class=":btn :btn-sm :btn-danger hasLion::disabled"}}>Dissociate {{activeLionName}}</button>
-      <button type="button"
-              {{action 'viewImageSet' activeImageSet}}
-              {{bind-attr class=":btn :btn-sm :btn-primary hasLion:disabled"}}>Create Lion</button>
+      {{#link-to 'image-set' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary hasLion:disabled"}}>Create Lion
+            <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
     </div>
   </div>
 </div>
