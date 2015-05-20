@@ -18,6 +18,10 @@ export default Ember.Controller.extend({
     return this.get('currentUser.organization') === this.get('model.organization');
   }.property('currentUser.organization', 'model.organization'),
 
+  showSaveButton: function() {
+    return !this.get('model.id') && this.get('model.images.length');
+  }.property('model.id', 'model.images.length'),
+
   actions: {
     addImage: function(upload){
       var url = upload.get('url'),

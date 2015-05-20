@@ -6,9 +6,10 @@
 </div>
 
 <div class='row'>
-  {{lg-image-set-editor
-    imageSet=model.primaryImageSet
-    editingEnabled=false
+  {{lg-lion-editor
+    lion=model
+    organizations=organizations
+    editingEnabled=isOwner
   }}
 </div>
 

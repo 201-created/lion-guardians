@@ -95,12 +95,14 @@ export default Ember.Component.extend({
 
       fail: function(e) {
         Ember.run(function(){
+          fileInput[0].value = "";
           component.set('error', true);
           component.set('errorMessage', e.message);
         });
       },
 
       done: function(e, data){
+        fileInput[0].value = "";
         var upload = data.uploadObj;
 
         // S3 returns some XML after an upload with the full URL in a Location tag.

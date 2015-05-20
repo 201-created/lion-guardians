@@ -158,6 +158,10 @@ body > .ember-view {
   margin-top: 20px;
   height: 425px;
 
+  &.lion {
+    height: 400px;
+  }
+
   &.is-editing {
     height: 775px;
   }

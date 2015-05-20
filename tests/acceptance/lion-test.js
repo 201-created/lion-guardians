@@ -38,7 +38,7 @@ test('visiting /lion/2', function() {
     equal(currentPath(), 'lion.index');
     equal(currentURL(), '/lion/2');
 
-    expectComponent('lg-image-set-editor');
+    expectComponent('lg-lion-editor');
     expectComponent('lg-mini-image-gallery');
 
     expectNoElement('.row.image-set.active');

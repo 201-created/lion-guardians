@@ -1,13 +1,29 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import OrganizationRouteMixin from 'lion-guardians/mixins/organization-route';
+import config from '../config/environment';
 import RequireUserMixin from 'lion-guardians/mixins/require-user';
 
-export default Ember.Route.extend(OrganizationRouteMixin, RequireUserMixin, {
+export default Ember.Route.extend(RequireUserMixin, {
+  beforeModel: function() {
+    var route = this;
+    return this._super().then(function() {
+      return route.store.find('organization');
+    }).then(function(organizations){
+      route.set('organizations', organizations);
+    }).then(function() {
+      if (config.showMaps) {
+        return route.loadGoogleMap();
+      }
+    });
+  },
+
   setupController: function(controller, model) {
-    var currentUser = this.get('toriiSession.currentUser');
+    this._super(controller, model);
+    var currentUser = this.get('toriiSession.currentUser'),
+        organizations = this.get('organizations');
 
     controller.setProperties({
+      organizations: organizations,
       model: model,
       currentUser: currentUser
     });
