@@ -16,6 +16,14 @@ export default Ember.Component.extend(TagSearchMixin, {
   selectedName: null,
   action: null,
   searchModel: 'lion',
+  numberOfSearchResults: 0,
+  searchIcon: function() {
+    if (this.get('searchModel') === 'lion') {
+      return 'glyphicon-globe';
+    } else {
+      return 'glyphicon-picture';
+    }
+  }.property('searchModel'),
 
   defaultOrganization: function(){
     return Ember.Object.create({
@@ -83,6 +91,7 @@ export default Ember.Component.extend(TagSearchMixin, {
           searchModel = this.get('searchModel');
 
       store.find(searchModel, params).then(function(results){
+        component.set('numberOfSearchResults', results.get('length'));
         component.sendAction('action', results);
       }, function() {
         alert("There was an error searching.");

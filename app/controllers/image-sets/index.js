@@ -13,7 +13,6 @@ export default Ember.Controller.extend({
   selectedOrganization: Ember.computed.reads('currentOrganization'),
   newCvRequest: null,
   model: [],
-  numberOfSearchResults: Ember.computed.reads('model.length'),
 
   canView: Ember.computed.alias('activeImageSet'),
   canViewCv: Ember.computed.alias('activeImageSet.hasCvResults'),

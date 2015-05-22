@@ -210,6 +210,19 @@ body > .ember-view {
   }
 }
 
+.search-panel {
+  height: 190px;
+}
+
+.list-group-item-small {
+  position: relative;
+  display: block;
+  padding: 5px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
 .lg-page-header {
   margin-bottom: 20px;
 
@@ -302,7 +315,7 @@ body > .ember-view {
     border-bottom: 1px solid #DDD;
   }
 
-  .heading, .footing {
+  .heading {
     background-color: #F5F5F5;
     padding: 10px 15px;
     font-weight: 500;

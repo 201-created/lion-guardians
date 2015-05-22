@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
   organizations: null,
   activeLion: null,
   model: [],
-  numberOfSearchResults: Ember.computed.reads('model.length'),
   currentUser: Ember.computed.alias('toriiSession.currentUser'),
 
   canDeleteLion: function() {
@@ -26,10 +25,16 @@ export default Ember.Controller.extend({
     },
 
     deleteLion: function() {
-      var activeLion = this.get('activeLion');
-      this.set('activeLion', null);
-      this.get('model').removeObject(activeLion);
-      activeLion.destroyRecord();
+      var activeLion = this.get('activeLion'),
+          canDeleteLion = this.get('canDeleteLion');
+
+      if (activeLion && canDeleteLion) {
+        if (confirm("Are you sure you want to delete lion " + activeLion.get('name') + "? This cannot be undone.")) {
+          this.set('activeLion', null);
+          this.get('model').removeObject(activeLion);
+          activeLion.destroyRecord();
+        }
+      }
     },
 
     viewLion: function(lion) {
