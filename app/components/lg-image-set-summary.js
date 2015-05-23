@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   setName: null,
   heroImage: false,
 
-  status: function() {
+  verificationStatus: function() {
     return this.get('imageSet.isVerified') ? 'Verified' : 'Unverified';
   }.property('imageSet.isVerified'),
 

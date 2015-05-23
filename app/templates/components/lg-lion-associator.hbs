@@ -1,30 +1,25 @@
-<div class='associate-buttons'>
-  {{#unless imageSet.lion}}
-    {{#if showLionNameField}}
+{{#if showHeader}}
+  <div class='control-panel-grouping single-row col-sm-3'>
+    New Lion Actions
+  </div>
+{{/if}}
+<div {{bind-attr class='showHeader:col-sm-9 :create-fields'}}>
+  {{#if showLionNameField}}
+    <div class='name-input'>
       {{input class='form-control' type='text' name='lionName' placeholder='Lion Name' value=lionName}}
-      <button class='btn btn-small btn-lion-guardians create-lion' {{action 'createLion' imageSet lionName}}>
+    </div>
+    <div class='create-buttons'>
+      <button class='btn btn-xs btn-lion-guardians create-lion' {{action 'createLion' imageSet lionName}}>
         Create Lion
       </button>
-      <button class='btn btn-small btn-lion-guardians' {{action 'toggleShowLionName'}}>
+      <button class='btn btn-xs btn-lion-guardians' {{action 'toggleShowLionName'}}>
         Cancel
       </button>
-    {{else}}
-      <button class='btn btn-small btn-lion-guardians start-create-lion' {{action 'toggleShowLionName'}}>
+    </div>
+  {{else}}
+    <button {{bind-attr class=':btn :btn-sm :btn-lion-guardians :start-create-lion imageSet.lion:disabled imageSet::disabled'}} 
+      {{action 'toggleShowLionName'}}>
         Create Lion
-      </button>
-    {{/if}}
-  {{/unless}}
-  {{#if showAssociateButton}}
-    <button class='btn btn-small btn-lion-guardians associate-lion' {{action 'associate' imageSet activeLion}}>
-      Associate Lion
     </button>
   {{/if}}
 </div>
-
-{{#if activeImageSet.lion.primaryImageSet}}
-  {{lg-image-set-summary imageSet=activeImageSet.lion.primaryImageSet setName="Primary Image Set"}}
-{{/if}}
-
-{{#if activeImageSet}}
-  {{lg-image-set-summary imageSet=activeImageSet setName="CV Image Set"}}
-{{/if}}

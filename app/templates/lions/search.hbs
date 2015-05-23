@@ -16,12 +16,12 @@
 
 
 {{#if model}}
-  <div class='image-set-control-panel'>
-    <div class='image-set-control-panel-header'>
+  <div class='lion-control-panel'>
+    <div class='control-panel-header'>
       Lion Control Panel
     </div>
-    <div class='image-set-control-panel-body row'>
-      <div class='control-panel-grouping single-row col-sm-1'>
+    <div class='control-panel-body row'>
+      <div class='control-panel-grouping single-row col-sm-3'>
         Lion Actions
       </div>
       <div class='control-panel-buttons col-sm-3'>
@@ -29,10 +29,26 @@
                 {{action 'deleteLion'  activeLion}}
                 {{bind-attr class=":btn :btn-sm :btn-danger canDeleteLion::disabled :delete-lion"}}>
           Delete Lion
-      </button>
-      <button type="button"
-              {{action 'viewLion' activeLion}}
-              {{bind-attr class=":btn :btn-sm :btn-primary activeLion::disabled :view-lion"}}>View Lion</button>
+        </button>
+        {{#link-to 'lion' activeLion}}
+          <button 
+                {{bind-attr class=":btn :btn-sm :btn-primary activeLion::disabled :view-lion"}}>
+            View Lion
+            <span class='glyphicon glyphicon-share'></span>
+          </button>
+        {{/link-to}}
+      </div>
+      <div class='control-panel-grouping single-row col-sm-2'>
+        Image Set Actions
+      </div>
+      <div class='control-panel-buttons col-sm-3'>
+        {{#link-to 'image-set' activeLion.primaryImageSet}}
+          <button 
+                {{bind-attr class=":btn :btn-sm :btn-primary activeLion::disabled"}}>
+            View Image Set Details
+            <span class='glyphicon glyphicon-share'></span>
+          </button>
+        {{/link-to}}
       </div>
     </div>
   </div>

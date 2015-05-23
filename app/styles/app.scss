@@ -263,9 +263,14 @@ body > .ember-view {
 
 .cv-result-viewer {
   padding: 0 15px;
+  margin-top: -15px;
 
-  .spaced-out .list-group-item {
+  .results-count {
     margin-bottom: 10px;
+
+    h4 {
+      padding-left: 10px;
+    }
   }
 }
 
@@ -274,7 +279,7 @@ body > .ember-view {
   margin-left: 0;
 }
 
-.image-set-list, .lion-summary-list {
+.image-set-list, .lion-summary-list, .cv-result-list {
   border-radius: 5px;
   border: 1px solid #DDD;
   padding: 0;
@@ -325,4 +330,85 @@ body > .ember-view {
 
 .active-lion-metadata {
   margin-bottom: 40px;
+}
+
+.lion-control-panel, .image-set-control-panel, .lion-associator-control-panel {
+  border: 1px solid #DCDCDC;
+  background-color: #EEE;
+  border-radius: 5px;
+
+  margin-bottom: 20px;
+}
+
+.lion-associator-control-panel .control-panel-header {
+  margin-bottom: 10px;
+}
+
+.control-panel-header {
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.control-panel-body {
+  padding: 10px 0;
+}
+
+.control-panel-grouping, .control-panel-buttons {
+  display: inline-block;
+}
+
+.control-panel-grouping {
+  padding: 0;
+  margin-top: -5px;
+  text-align: center;
+
+  &.single-row {
+    text-align:right;
+    line-height: 30px;
+    margin-top: 0;
+  }
+}
+
+.control-panel-column {
+  padding: 0 15px 15px 15px;
+
+  div {
+    padding: 0;
+  }
+
+  div:first-child {
+    font-weight: 500px;
+    font-size: 14px;
+  }
+
+}
+
+.lion-management-button {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.create-fields {
+  display: inline-block;
+
+  .name-input {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: -2px;
+  }
+}
+
+.create-buttons {
+  display: inline-block;
+
+  button {
+    display: block;
+  }
+
+  .create-lion {
+    margin-top: -10px;
+    margin-bottom: 5px;
+  }
 }

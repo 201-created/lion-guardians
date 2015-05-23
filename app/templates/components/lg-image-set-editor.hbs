@@ -32,7 +32,8 @@
                                                     optionLabelPath='content.name'
                                                     value=selectedOrganization}}</li>
         <li class='list-group-item'>Age: {{lg-dob-selector selectedDob=selectedDob isEditing=isEditing}}</li>
-        <li class='list-group-item'>Lat/Long: {{input value=selectedLatitude}} x {{input value=selectedLongitude}}</li>
+        <li class='list-group-item'>Lat: {{input value=selectedLatitude}}<br>
+                                    Long: {{input value=selectedLongitude}}</li>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
 
         {{#if imageSet.lion}}
@@ -78,7 +79,7 @@
         {{/if}}
 
         <li class='list-group-item'>
-          Meta Data:
+          Metadata:
           {{#each imageSet.tags as |tag|}}
             {{tag}}
           {{/each}}

@@ -13,8 +13,17 @@
 
 .search-button {
   margin-top: 110px;
- 
- .results-count {
+
+  .results-count {
     margin-top: 15px;
+  }
+}
+
+
+.results-count {
+  display: inline-block;
+
+  h3, h4 {
+    display: inline-block;
   }
 }

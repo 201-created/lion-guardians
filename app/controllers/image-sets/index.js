@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
   selectedOrganization: Ember.computed.reads('currentOrganization'),
   newCvRequest: null,
   model: [],
+  showLionNameField: false,
 
   canView: Ember.computed.alias('activeImageSet'),
   canViewCv: Ember.computed.alias('activeImageSet.hasCvResults'),
@@ -59,6 +60,14 @@ export default Ember.Controller.extend({
         isVerified: false
       });
 
+      activeImageSet.save();
+    },
+
+    verifyImageSet: function() {
+      var activeImageSet = this.get('activeImageSet');
+      activeImageSet.setProperties({
+        isVerified: true
+      });
       activeImageSet.save();
     },
 

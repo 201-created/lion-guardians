@@ -1,3 +1,10 @@
+.lg-lion-associator {
+  display: inline-block;
+
+  &.row {
+    width: 100%;
+  }
+}
 .associate-buttons {
   margin: 0 20px 20px 0;
   font-weight: bold;
@@ -16,4 +23,11 @@
 
 .image-set-summary-name {
   margin: -20px 0 20px 0;
+}
+
+.lg-lion-associator .control-panel-grouping {
+  &.single-row {
+    margin-top: -5px;
+    line-height: 1.25em;
+  }
 }
