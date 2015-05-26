@@ -3,7 +3,7 @@
   "dependencies": {
     "blueimp-load-image": "~1.13.0",
     "bootstrap-sass": "~3.3.4",
-    "ember": "1.10.0",
+    "ember": "1.10.1",
     "ember-data": "1.0.0-beta.16.1",
     "ember-cli-moment-shim": "~0.0.3",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
