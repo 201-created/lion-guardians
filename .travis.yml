@@ -1,17 +1,27 @@
+---
 language: node_js
+node_js:
+  - "0.12"
+
 sudo: false
+
 cache:
   directories:
     - node_modules
-notifications:
-  slack:
-    secure: TtbGT8CAE0WcDiF6lfZgi/SfaO1EDJY5SbL84cvIVx9LKDNZI4fZPg2kyzBTDn6GCDNsGOAVgi/BMJdcaSb+YKmUQeoNuoOttJr7kMcaQFA7ZKbHi+9x73Wkwy+9vIlm4hVCAQIGCVv1eGghxlW3bi2Acu/kKnBIgl8l67mM3fw=
+
 before_install:
+  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - npm config set spin false
   - npm install -g npm@^2
+
 install:
   - npm install -g bower
   - npm install
   - bower install
+
 script:
   - npm test
+
+notifications:
+  slack:
+    secure: TtbGT8CAE0WcDiF6lfZgi/SfaO1EDJY5SbL84cvIVx9LKDNZI4fZPg2kyzBTDn6GCDNsGOAVgi/BMJdcaSb+YKmUQeoNuoOttJr7kMcaQFA7ZKbHi+9x73Wkwy+9vIlm4hVCAQIGCVv1eGghxlW3bi2Acu/kKnBIgl8l67mM3fw=

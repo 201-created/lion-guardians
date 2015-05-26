@@ -2,7 +2,12 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+  // see https://github.com/lifegadget/ember-cli-bootstrap-sassy
+  'ember-cli-bootstrap-sassy': {
+    js: false
+  }
+});
 
 // file upload deps
 app.import('vendor/jquery-ui/jquery.ui.widget.js');
