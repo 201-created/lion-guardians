@@ -15,38 +15,72 @@
 
 <hr>
 
-<h3>Image Sets</h3>
-
-<div class='container'>
-  <div class='row'>
-    <button type="button"
-            {{action 'viewImageSet' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary activeImageSet::disabled :view-image-set"}}>
-      View/Edit
-    </button>
-    <button type="button"
-            {{action 'makePrimaryImageSet' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary canEdit::disabled :make-primary"}}>
-      Make Primary
-    </button>
-    <button type="button"
-            {{action 'removeImageSet' activeImageSet}}
-            {{bind-attr class=":btn :btn-primary canEdit::disabled :remove-image-set"}}>
-      Unassociate from Lion
-    </button>
+<div class='lion-control-panel'>
+  <div class='control-panel-header'>
+    Lion Control Panel
+  </div>
+  <div class='control-panel-body row'>
+    <div class='control-panel-grouping single-row col-sm-4'>
+      Image Set Actions
+    </div>
+    <div class='control-panel-buttons col-sm-8'>
+      {{#link-to 'image-set' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary :view-image-set activeImageSet::disabled"}}>
+          View Image Set Details
+          <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
+      <button type="button"
+              {{action 'makePrimaryImageSet' activeImageSet}}
+              {{bind-attr class=":btn :btn-sm :btn-primary canEdit::disabled :make-primary"}}>
+        Make Primary Image Set
+      </button>
+      <button type="button"
+              {{action 'removeImageSet' activeImageSet}}
+              {{bind-attr class=":btn :btn-sm :btn-primary canEdit::disabled :remove-image-set"}}>
+        Unassociate from Lion
+      </button>
+    </div>
   </div>
 </div>
 
-<div class='lion-image-sets row'>
-  <div class='col-sm-8'>
-    {{#each model.imageSets as |imageSet|}}
-      {{#lg-selectable model=imageSet
-        activeModel=activeImageSet
-        action='selectImageSet'
-        classNames='row image-set'}}
+<div class='lion-summary-list col-sm-5'>
+  <div class='heading'>
+    <div class='row'>
+      <div class='col-sm-1'>ID</div>
+      <div class='col-sm-3'>Age</div>
+      <div class='col-sm-3'>Organization</div>
+      <div class='col-sm-5'>Status</div>
+    </div>
+  </div>
 
-        {{lg-image-set-summary imageSet=imageSet}}
+  <div class='lion-summary-body'>
+    {{#each model.imageSets as |imageSet|}}
+      {{#lg-selectable model=imageSet activeModel=activeImageSet action='selectImageSet'}}
+        <div class='lion-summary-item'>
+          <div class='col-sm-1 image-set-id'>{{imageSet.id}}</div>
+          <div class='col-sm-3'>{{imageSet.age}}</div>
+          <div class='col-sm-3'>{{imageSet.organization.name}}</div>
+          <div class='col-sm-5'>
+            {{#each imageSet.cvAndVerificationStatus as |imageSetStatus|}}
+              <span {{bind-attr class=':status-badge :badge imageSetStatus'}}>
+                {{imageSetStatus}}
+              </span>
+            {{/each}}
+          </div>
+        </div>
       {{/lg-selectable}}
     {{/each}}
   </div>
+</div>
+
+<div class='col-sm-7'>
+  {{#if activeImageSet}}
+    {{lg-image-set-summary imageSet=activeImageSet heroImage=true}}
+  {{else}}
+    <div class='col-sm-4 select-instructions'>
+      <h5>Select a row at left to view an image set.</h5>
+    </div>
+  {{/if}}
 </div>

@@ -32,6 +32,8 @@ test('visiting /lion/2 with no current user', function() {
 });
 
 test('visiting /lion/2', function() {
+  expect(12);
+
   signInAndVisit('/lion/2');
 
   andThen(function() {
@@ -39,14 +41,19 @@ test('visiting /lion/2', function() {
     equal(currentURL(), '/lion/2');
 
     expectComponent('lg-lion-editor');
-    expectComponent('lg-mini-image-gallery');
-
-    expectNoElement('.row.image-set.active');
-    click('.mini-image-gallery');
+    expectElement('.lion-summary-list');
+    expectElement('.view-image-set.disabled');
+    expectElement('.select-instructions');
+    expectNoElement('lion-summary-list .row.selectable-row.active');
+    click('.lion-summary-item .image-set-id:contains(24)');
   });
 
   andThen(function() {
-    expectElement('.row.image-set.active');
+    expectElement('.lion-summary-list .row.selectable-row.active');
+    expectElement('.lg-image-set-summary');
+    expectNoElement('.select-instructions');
+    expectElement('.mini-image-gallery');
+
     click('.view-image-set');
   });
 
@@ -59,10 +66,13 @@ test('visiting /lion/2 and setting primary image set', function() {
   expect(2);
   signInAndVisit('/lion/2');
 
-  click('.mini-image-gallery');
 
   andThen(function() {
-    expectElement('.row.image-set.active');
+    click('.lion-summary-item .image-set-id:contains(24)');
+  });
+
+  andThen(function() {
+    expectElement('.mini-image-gallery .row.selectable-row.active');
 
     stubRequest('put', '/lions/2', function(request){
       ok(true, 'put api called');
@@ -78,10 +88,12 @@ test('visiting /lion/2 and removing image set', function() {
   stubGetUser();
   signInAndVisit('/lion/2');
 
-  click('.mini-image-gallery');
+  andThen(function() {
+    click('.lion-summary-item .image-set-id:contains(24)');
+  });
 
   andThen(function() {
-    expectElement('.row.image-set.active');
+    expectElement('.mini-image-gallery .row.selectable-row.active');
 
     stubRequest('put', '/imageSets/24', function(request){
       ok(true, 'put api called');

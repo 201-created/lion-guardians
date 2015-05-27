@@ -32,12 +32,13 @@ test('visiting /image-set/cv-results with no currentuser', function() {
 });
 
 test('visiting /image-set/cv-results', function() {
+  expect(4);
   signInAndVisit('/image-set/25/cv-results');
 
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
-    expectComponent('lg-cv-result-summary');
-    click('.lg-cv-result-summary');
+    expectElement('.cv-result-list');
+    click('.cv-id:first-child');
   });
 
   andThen(function() {
@@ -46,15 +47,16 @@ test('visiting /image-set/cv-results', function() {
 });
 
 test('visiting /image-set/cv-results and creating new lion', function() {
-  expect(8);
+  expect(7);
 
   signInAndVisit('/image-set/25/cv-results');
 
   andThen(function() {
-    click('.lg-cv-result-summary');
+    click('.cv-id:first-child');
   });
 
   andThen(function() {
+    expectElement('button.start-create-lion');
     click('button.start-create-lion');
   });
 
@@ -73,7 +75,10 @@ test('visiting /image-set/cv-results and creating new lion', function() {
   andThen(function() {
     expectElement('div.error');
     equal(find('div.error').last().text().trim(), "Lion name must be unique");
+    click('button.start-create-lion');
+  });
 
+  andThen(function() {
     stubRequest('post', '/lions', function(){
       ok(true, 'lion create api called');
       return this.success({
@@ -108,7 +113,7 @@ test('visiting /image-set/cv-results and associating with lion', function() {
   stubGetUser();
 
   andThen(function() {
-    click('.lg-cv-result-summary');
+    click('.cv-id');
   });
 
   andThen(function() {
@@ -149,12 +154,13 @@ test('visiting /image-set/cv-results, cvResult associated with lion doesnt give 
 
   andThen(function() {
     equal(currentPath(), 'image-set.cv-results');
-    expectComponent('lg-cv-result-summary');
-    click('.lg-cv-result-summary');
+    expectElement('.cv-result-list');
+    click('.cv-result-list .lion-summary-item .cv-id');
   });
 
   andThen(function() {
+    expectElement('.lion-associator-control-panel');
     expectNoElement('.button.associate-lion');
-    expectNoElement('.button.start-create--lion');
+    expectNoElement('.button.start-create-lion');
   });
 });

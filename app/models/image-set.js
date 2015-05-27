@@ -37,27 +37,27 @@ export default DS.Model.extend({
     return this.get('hasCvRequest') && !this.get('hasCvResults');
   }.property('hasCvRequest', 'hasCvResults'),
 
-  status: function() {
+  cvAndVerificationStatus: function() {
     var hasCvResults = this.get('hasCvResults'),
         lion = this.get('lion'),
         isVerified = this.get('isVerified'),
         cvRequestPending = this.get('cvRequestPending'),
-        status = [];
+        statusArray = [];
 
     if (hasCvResults && lion) {
-      status.pushObject('Has CV Results');
-      status.pushObject(isVerified ? 'Verified' : 'Unverified');
+      statusArray.pushObject('Has CV Results');
+      statusArray.pushObject(isVerified ? 'Verified' : 'Unverified');
     } else if (hasCvResults) {
-      status.pushObject('Has CV Results');
+      statusArray.pushObject('Has CV Results');
     } else if (lion) {
-      status.pushObject(isVerified ? 'Verified' : 'Unverified');
+      statusArray.pushObject(isVerified ? 'Verified' : 'Unverified');
     }
 
     if (cvRequestPending) {
-      status.pushObject('CV Request Pending');
+      statusArray.pushObject('CV Request Pending');
     }
 
-    return status;
+    return statusArray;
   }.property('hasCvResults', 'lion', 'isVerified', 'cvRequestPending'),
 
   addImage: function(url, isPublic, imageType) {

@@ -1,25 +1,70 @@
 <hr>
 <div class='cv-result-viewer'>
-  <h3>CV Results</h3>
+  <div class='results-count'>
+    <h3>CV Results:</h3><h4> {{model.length}} results found</h4>
+  </div>
 
   <div class='row'>
-    <div class='col-sm-4'>
-      <ul class='spaced-out list-group'>
+    <div class='cv-result-list col-sm-4'>
+      <div class='heading'>
+        <div class='row'>
+          <div class='col-sm-1'>ID</div>
+          <div class='col-sm-4'>Name</div>
+          <div class='col-sm-4'>Organization</div>
+          <div class='col-sm-3'>Match Probability</div>
+        </div>
+      </div>
+
+      <div class='lion-summary-body'>
         {{#each model as |cvResult|}}
-          {{#lg-selectable model=cvResult activeModel=activeCvResult
-            action='setActiveCvResult'}}
-            {{lg-cv-result-summary cvResult=cvResult }}
+          {{#lg-selectable model=cvResult activeModel=activeCvResult action='setActiveCvResult'}}
+            <div class='lion-summary-item'>
+              <div class='col-sm-1 cv-id'>{{cvResult.id}}</div>
+              <div class='col-sm-4'>{{cvResult.lion.name}}</div>
+              <div class='col-sm-4'>{{cvResult.lion.organization.name}}</div>
+              <div class='col-sm-3'>
+                <span class='badge'>{{cvResult.percent}}%</span>
+              </div>
+            </div>
           {{/lg-selectable}}
         {{/each}}
-      </ul>
+      </div>
     </div>
 
     <div class='col-sm-8'>
-      {{lg-lion-associator activeLion=activeLion
-        activeImageSet=activeImageSet
-        imageSet=imageSet
-        createLion='createLion'
-        associate='associate'}}
+      {{#if activeCvResult}}
+        <div class='lion-associator-control-panel'>
+          <div class='control-panel-header'>
+            CV Result Control Panel
+          </div>
+          <div class='control-panel-body row'>
+            <div class='col-sm-7'>
+              {{lg-lion-associator activeLion=activeLion
+                activeImageSet=activeImageSet
+                imageSet=imageSet
+                createLion='createLion'
+                showHeader=true}}
+            </div>
+            {{#if showAssociateButton}}
+              <div class='control-panel-grouping col-sm-2'>
+                Existing Lion Actions
+              </div>
+              <div class='control-panel-buttons col-sm-3'>
+                  <button class='btn btn-small btn-lion-guardians associate-lion' {{action 'associate' imageSet activeLion}}>
+                    Associate Lion
+                  </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+          {{#if activeImageSet.lion.primaryImageSet}}
+            {{lg-image-set-summary imageSet=activeImageSet.lion.primaryImageSet setName="Primary Image Set" heroImage=true}}
+          {{/if}}
+      {{else}}
+        <div class='col-sm-4'>
+          <h5>Select a row at left to view potentially matching image sets.</h5>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>

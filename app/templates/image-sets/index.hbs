@@ -1,6 +1,6 @@
 <div class='lg-page-header row'>
   <div class='page-title col-sm-3'>
-    Image Sets for {{currentOrganization.name}}
+    Image Sets
   </div>
   <div class='col-sm-1'></div>
   <div class='page-summary col-sm-8'>
@@ -10,39 +10,45 @@
 
 <hr>
 
-{{lg-lion-search action='displayResults' searchType='filter' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization}}
+{{lg-lion-search action='displayResults' searchModel='imageSet' organizations=organizations store=store selectedOrganization=selectedOrganization numberOfSearchResults=model.length}}
 
 <hr>
 
 <div class='image-set-control-panel'>
-  <div class='image-set-control-panel-header'>
+  <div class='control-panel-header'>
     Image Set Control Panel
   </div>
-  <div class='image-set-control-panel-body row'>
+  <div class='control-panel-body row'>
     <div class='control-panel-grouping single-row col-sm-1'>
       CV Actions
     </div>
-    <div class='control-panel-buttons col-sm-3'>
+    <div class='control-panel-buttons col-sm-2'>
       <button type="button"
               {{action 'requestCv' activeImageSet}}
               {{bind-attr class=":btn :btn-sm :btn-primary canRequestCv::disabled :request-cv"}}>
         {{#if cvRequestPending}}
           Request Pending
         {{else}}
-          Run CV
+          Request
         {{/if}}
       </button>
-      <button type="button"
-              {{action 'viewCv'}}
-              {{bind-attr class=":btn :btn-sm :btn-primary canViewCv::disabled :view-cv"}}>View CV</button>
+      {{#link-to 'image-set.cv-results' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary canViewCv::disabled :view-cv"}}>View
+          <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
     </div>
     <div class='control-panel-grouping col-sm-1'>
       Image Set Actions
     </div>
-    <div class='control-panel-buttons col-sm-3'>
-      <button type="button"
-              {{action 'viewImageSet' activeImageSet}}
-              {{bind-attr class=":btn :btn-sm :btn-primary canView::disabled :view-image-set"}}>View/Edit</button>
+    <div class='control-panel-buttons col-sm-2'>
+      {{#link-to 'image-set' activeImageSet}}
+        <button type="button"
+                {{bind-attr class=":btn :btn-sm :btn-primary canView::disabled :view-image-set"}}>View/Edit
+          <span class='glyphicon glyphicon-share'></span>
+        </button>
+      {{/link-to}}
       <button type="button"
               {{action 'deleteImageSet'}}
               {{bind-attr class=":btn :btn-sm :btn-danger canDelete::disabled :delete"}}>Delete</button>
@@ -50,13 +56,22 @@
     <div class='control-panel-grouping col-sm-1'>
       Lion Management
     </div>
-    <div class='control-panel-buttons col-sm-3'>
-      <button type="button"
-              {{action 'disassociateLion'}}
-              {{bind-attr class=":btn :btn-sm :btn-danger hasLion::disabled"}}>Dissociate {{activeLionName}}</button>
-      <button type="button"
-              {{action 'viewImageSet' activeImageSet}}
-              {{bind-attr class=":btn :btn-sm :btn-primary hasLion:disabled"}}>Create Lion</button>
+    <div class='control-panel-buttons col-sm-5'>
+      <div class='lion-management-button'>
+        <button type="button"
+                {{action 'verifyImageSet'}}
+                {{bind-attr class=":btn :btn-sm :btn-primary :verify-image-set isOwner::disabled hasLion::disabled imageSet.isVerified:verified:unverified"}}>
+                  Verify {{activeLionName}}
+        </button>
+      </div>
+      <div class='lion-management-button'>
+        <button type="button"
+                {{action 'disassociateLion'}}
+                {{bind-attr class=":btn :btn-sm :btn-danger hasLion::disabled"}}>Dissociate {{activeLionName}}</button>
+      </div>
+      {{lg-lion-associator activeLion=activeLion
+        imageSet=activeImageSet
+        createLion='createLion'}}
     </div>
   </div>
 </div>
@@ -86,11 +101,13 @@
               {{/if}}
             </div>
             <div class='col-sm-2'>{{imageSet.age}}</div>
-            <div class='col-sm-2'>{{imageSet.organization.name}}</div>
+            <div class='col-sm-2'>
+              {{imageSet.organization.name}}
+            </div>
             <div class='col-sm-4'>
-              {{#each imageSet.status as |status|}}
-                <span {{bind-attr class=':status-badge :badge status'}}>
-                  {{status}}
+              {{#each imageSet.cvAndVerificationStatus as |imageSetStatus|}}
+                <span {{bind-attr class=':status-badge :badge imageSetStatus'}}>
+                  {{imageSetStatus}}
                 </span>
               {{/each}}
             </div>
@@ -98,10 +115,6 @@
         {{/lg-selectable}}
       {{/each}}
     {{/if}}
-  </div>
-
-  <div class='footing'>
-    <span class='glyphicon glyphicon-picture'></span> {{numberOfSearchResults}} Image Sets Found
   </div>
 </div>
 
@@ -116,10 +129,15 @@
             Image Set ID {{activeImageSet.id}}
           {{/if}}
         </h4>
+        {{#if isOwner}}
+          <span class='glyphicon glyphicon-star'></span> Owned by {{currentOrganization.name}}
+        {{/if}}
       </div>
-      <div class='active-image-thumbnail'>
-        <img {{bind-attr src=activeImageSet.mainImage.url}}>
-      </div>
+      {{#link-to 'image-set' activeImageSet}}
+        <div class='active-image-thumbnail'>
+          <img {{bind-attr src=activeImageSet.mainImage.url}}>
+        </div>
+      {{/link-to}}
     </div>
   {{else}}
     <div class='col-sm-6'>

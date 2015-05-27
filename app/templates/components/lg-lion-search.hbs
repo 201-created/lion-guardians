@@ -1,43 +1,22 @@
 <div class='search-panel'>
   <div class='row'>
-    <div class='filter-instructions col-md-2'>
-      <h4>Filter Results</h4>
-    </div>
-    <div class='col-md-4'>
+    <div class='col-md-5'>
       <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Name: {{input type='text' placeholder='Name' value=selectedName}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Ear Markings: {{view 'select' classNames='lg-lion-search-ear-markings' content=earMarkingOptions value=selectedEarMarking}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Eye Damage: {{view 'select' classNames='lg-lion-search-eye-damage' content=eyeDamageOptions value=selectedEyeDamage}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Mouth Markings: {{view 'select' classNames='lg-lion-search-mouth-markings' content=mouthMarkingOptions value=selectedMouthMarking}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Nose Colour: {{view 'select' classNames='lg-lion-search-nose-colour' content=noseColourOptions value=selectedNoseColour}}</li>
+        <li class='list-group-item-small'>Name: {{input type='text' placeholder='Name' value=selectedName}}</li>
+        <li class='list-group-item-small'>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
+        <li class='list-group-item-small'>Age: {{lg-dob-search-selector selectedSearchDateStart=selectedSearchDateStart selectedSearchDateEnd=selectedSearchDateEnd}}</li>
+        <li class='list-group-item-small'>Gender: {{view 'select' classNames='lg-lion-search-gender' content=genders value=selectedGender}}</li>
+        <li class='list-group-item-small'>Scars: {{view 'select' classNames='lg-lion-search-nose-colour' content=scarOptions value=selectedScar}}</li>
       </ul>
     </div>
-    <div class='col-md-4'>
+    <div class='col-md-5'>
       <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Organization: {{view 'select' content=searchOrganizations value=selectedOrganization optionValuePath='content' optionLabelPath='content.name'}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Age: {{lg-dob-search-selector selectedSearchDateStart=selectedSearchDateStart selectedSearchDateEnd=selectedSearchDateEnd}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Tail Markings: {{view 'select' classNames='lg-lion-search-tail-marking' content=tailMarkingOptions value=selectedTailMarking}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Broken Teeth: {{view 'select' classNames='lg-lion-search-nose-colour' content=teethOptions value=selectedTeeth}}</li>
-      </ul>
-      <ul class='list-group search-param-input'>
-        <li class='list-group-item'>Scars: {{view 'select' classNames='lg-lion-search-nose-colour' content=scarOptions value=selectedScar}}</li>
+        <li class='list-group-item-small'>Ear Markings: {{view 'select' classNames='lg-lion-search-ear-markings' content=earMarkingOptions value=selectedEarMarking}}</li>
+        <li class='list-group-item-small'>Eye Damage: {{view 'select' classNames='lg-lion-search-eye-damage' content=eyeDamageOptions value=selectedEyeDamage}}</li>
+        <li class='list-group-item-small'>Mouth Markings: {{view 'select' classNames='lg-lion-search-mouth-markings' content=mouthMarkingOptions value=selectedMouthMarking}}</li>
+        <li class='list-group-item-small'>Nose Colour: {{view 'select' classNames='lg-lion-search-nose-colour' content=noseColourOptions value=selectedNoseColour}}</li>
+        <li class='list-group-item-small'>Tail Markings: {{view 'select' classNames='lg-lion-search-tail-marking' content=tailMarkingOptions value=selectedTailMarking}}</li>
+        <li class='list-group-item-small'>Broken Teeth: {{view 'select' classNames='lg-lion-search-nose-colour' content=teethOptions value=selectedTeeth}}</li>
       </ul>
     </div>
     <div class='col-md-2'>
@@ -45,6 +24,9 @@
         <button class='btn btn-lg btn-success lion-search' {{action 'search'}} >
           Search
         </button>
+        <div class='results-count'>
+          <span {{bind-attr class=':glyphicon searchIcon'}}></span> {{numberOfSearchResults}} Image Sets Found
+        </div>
       </div>
     </div>
   </div>

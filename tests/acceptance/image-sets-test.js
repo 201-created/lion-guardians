@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import { stubGetOrganizations, stubGetImageSets, stubCvResultJSON, stubGetImageSetsWithCvResults, stubGetSearchOptions } from '../helpers/fake-requests';
+import { stubGetOrganizations, stubGetImageSets, stubCvResultJSON, stubGetImageSetsWithCvResults, stubGetSearchOptions, stubLionJSON } from '../helpers/fake-requests';
 import { stubRequest } from '../helpers/fake-server';
 
 var application, oldConfirm;
@@ -151,5 +151,34 @@ test('test request CV', function() {
     expectNoElement('button.request-cv.disabled');
     expectElement('.row.active');
     click('button.request-cv');
+  });
+});
+
+test('verify lion from /image-sets', function() {
+  expect(2);
+
+  signInAndVisit('/image-sets');
+
+  andThen(function() {
+    equal(currentPath(), 'image-sets.index');
+    expect('.image-set-id:contains(24)', 1);
+    expectElement('button.verify-image-set.disabled');
+  });
+
+  andThen(function() {
+    click('.image-set-id');
+  });
+
+  // commented out bc this functionality is currently in flux with Justin
+  // ready for testing when behavior is decided upon - LE
+  andThen(function() {
+    // click('.create-lion');
+    // associate lion and then verify it's been associated
+  });
+
+  andThen(function() {
+    // equal(currentPath(), 'image-sets.index');
+    // expect('.image-set-id:contains(24)', 1);
+    // expectElement('selection-row .badge:contains(Verified)');
   });
 });
