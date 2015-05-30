@@ -105,15 +105,17 @@ export default Ember.Component.extend(TagSearchMixin, {
     },
 
     finishEditing: function() {
-      var organization = this.get('imageSet.organization'),
-          selectedOrganization = this.get('selectedOrganization');
+      var currentOrg = this.get('imageSet.organization'),
+          selectedOrg = this.get('selectedOrganization');
 
-      if (selectedOrganization !== organization) {
-        var message = 'You are about to change ownership of this organization from ' +
-              organization.get('name') + ' to ' + selectedOrganization.get('name') +
-              '. After changing, you will no longer have access to edit this image set. Are you sure?';
+      if (currentOrg && currentOrg !== selectedOrg) {
+        var curOrgName = Ember.get(currentOrg, 'name'),
+            selectedOrgName = Ember.get(selectedOrg, 'name');
 
-        if(confirm(message)) {
+        var message = `You are about to change ownership of this image set from ${curOrgName} to ${selectedOrgName}.`;
+        message += ' After changing, you will no longer have access to edit this image set. Are you sure?';
+
+        if (confirm(message)) {
           // automatically set is Verified to false when changing organization
           this.set('selectedIsVerified', false);
           this.finishEditing();
