@@ -8,9 +8,20 @@ export default Ember.Component.extend({
   marker: null,
   isVisible: Ember.computed.alias('showMaps'),
 
+  init: function(){
+    this._super.apply(this, arguments);
+
+    // set once -- we don't want a live binding to the lat/lng
+    // because it makes it difficult to drag a marker around the map
+    this._setLatLon();
+  },
+
   showMaps: function() {
     return config.showMaps;
   }.property(),
+
+  zoom: Ember.computed.reads('defaultLocation.zoom'),
+  mapType: Ember.computed.reads('defaultLocation.mapType'),
 
   markers: function() {
     var marker = this.get('marker');
@@ -20,5 +31,14 @@ export default Ember.Component.extend({
     } else {
       return [];
     }
-  }.property('marker')
+  }.property('marker'),
+
+  _setLatLon: function(){
+    var lng = this.get('marker.lng') || defaultLocation.longitude;
+    this.set('longitude', lng);
+
+    var lat = this.get('marker.lat') || defaultLocation.latitude;
+    this.set('latitude', lat);
+  },
+
 });

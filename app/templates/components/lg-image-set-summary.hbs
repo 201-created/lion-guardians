@@ -13,7 +13,9 @@
       <div class='col-sm-1'></div>
       <div class='col-sm-6 hero-image'>
         {{#if selectedImage}}
-          <img {{bind-attr src=selectedImage.url}}>
+          <a target="_blank" {{bind-attr href=selectedImage.url}}>
+            <img {{bind-attr src=selectedImage.mainUrl}}>
+          </a>
         {{else}}
           <div class='no-main-image'>
             (Main Image)

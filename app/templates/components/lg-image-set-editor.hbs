@@ -92,7 +92,9 @@
 <div class='col-sm-4'>
   <div class='main-image'>
     {{#if imageSet.mainImage}}
-      <img {{bind-attr src=imageSet.mainImage.url}}>
+      <a target="_blank" {{bind-attr href=imageSet.mainImage.url}}>
+        <img {{bind-attr src=imageSet.mainImage.mainUrl}}>
+      </a>
     {{else}}
       <div class='no-main-image'>
         (Main Image)
