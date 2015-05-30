@@ -23,6 +23,7 @@ $gallery-height: 300px;
     img {
       border: 1px solid black;
       height: 150px;
+      width: 150px;
     }
 
     .image-properties {
@@ -42,14 +43,4 @@ $gallery-height: 300px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-}
-
-.scroll-arrows {
-  background-color: rgba(122, 122, 122, 0.5);
-  position: absolute;
-  height: 100%;
-  line-height: 100%;
-  color: #000;
-  right: 0;
-  top: 0;
 }

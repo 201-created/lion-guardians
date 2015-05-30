@@ -41,9 +41,9 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline' *.googleapis.com",
       'font-src': "'self' *.gstatic.com",
-      'img-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com data: *.gstatic.com *.googleapis.com",
+      'img-src': "'self' localhost:5000 lion-guardians-production.s3.amazonaws.com lg-201-created-development.s3.amazonaws.com data: *.gstatic.com *.googleapis.com",
       'script-src': "'self' 'unsafe-eval' *.gstatic.com *.googleapis.com",
-      'connect-src': "'self' localhost:5000 lg-201-created-development.s3.amazonaws.com lion-guardians-api.herokuapp.com"
+      'connect-src': "'self' localhost:5000 lion-guardians-production.s3.amazonaws.com lg-201-created-development.s3.amazonaws.com lion-guardians-api.herokuapp.com"
     }
   };
 

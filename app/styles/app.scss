@@ -142,9 +142,11 @@ body > .ember-view {
     border: 1px solid black;
     border-radius: 5px;
     height: 300px;
+    width: 300px;
   }
 
   .no-main-image {
+    height: 300px;
     width: 300px;
     text-align: center;
     line-height: 300px;
