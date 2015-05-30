@@ -6,7 +6,7 @@
     <div class='scrollable-gallery col-sm-10'>
       {{#each filteredImages as |image|}}
         {{#lg-selectable model=image activeModel=selectedImage action='selectImage' classNames='mini-image-gallery-image'}}
-          <img {{bind-attr src=image.url}}>
+          <img {{bind-attr src=image.thumbnailUrl}}>
         {{/lg-selectable}}
       {{/each}}
     </div>
