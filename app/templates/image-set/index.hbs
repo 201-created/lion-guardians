@@ -1,12 +1,14 @@
 <div class='row'>
   {{#if model.id}}
-    {{#if model.cvRequest}}
+    {{#if model.cvRequestPending}}
       <div class='cv-request-pending'>CV Request Pending</div>
     {{else}}
-      <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
-              type='button'>
-        Request CV
-      </button>
+      {{#unless model.hasCvRequest}}
+        <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
+                type='button'>
+          Request CV
+        </button>
+      {{/unless}}
     {{/if}}
 
     {{#link-to 'image-set.lion-search' model}}
