@@ -15,6 +15,11 @@ export default Ember.Route.extend({
       });
     },
 
+    error: function(e){
+      if (window.Rollbar) { window.Rollbar.error(e); }
+      return true;
+    },
+
     viewImageSet: function(imageSet) {
       if (imageSet) {
         this.transitionTo('image-set', imageSet);
