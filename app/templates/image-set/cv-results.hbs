@@ -23,7 +23,7 @@
               <div class='col-sm-4'>{{cvResult.lion.name}}</div>
               <div class='col-sm-4'>{{cvResult.lion.organization.name}}</div>
               <div class='col-sm-3'>
-                <span class='badge'>{{cvResult.percent}}%</span>
+                <span class='badge'>{{round-number cvResult.percent precision="2"}}%</span>
               </div>
             </div>
           {{/lg-selectable}}
