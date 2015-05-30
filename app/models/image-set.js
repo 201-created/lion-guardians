@@ -64,7 +64,11 @@ export default DS.Model.extend({
     var image = this.store.createRecord('image', {
       url: url,
       isPublic: isPublic,
-      imageType: imageType
+      imageType: imageType,
+
+      // So that the yet-unsaved image can be displayed anywhere on the screen
+      mainUrl: url,
+      thumbnailUrl: url
     });
 
     this.get('images').pushObject(image);
