@@ -6,5 +6,5 @@ export default DS.Model.extend({
   gender: DS.attr('string'),
   imageSets: DS.hasMany('image-set'),
   primaryImageSet: DS.belongsTo('image-set'),
-  organization: DS.belongsTo('organization')
+  organization: DS.belongsTo('organization', {async:true})
 });
