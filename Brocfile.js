@@ -6,6 +6,10 @@ var app = new EmberApp({
   // see https://github.com/lifegadget/ember-cli-bootstrap-sassy
   'ember-cli-bootstrap-sassy': {
     js: false
+  },
+  sourcemaps: {
+    enabled: true,
+    extensions: ['js']
   }
 });
 
