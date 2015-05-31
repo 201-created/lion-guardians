@@ -1,12 +1,12 @@
 application: lion-guardians
-version: 3
+version: 4
 runtime: python27
 api_version: 1
 threadsafe: yes
 
 handlers:
 
-- url: /(.*-[0-9a-z]{32}\.(js|png|jpg|gif|css|woff|ttf|svg))
+- url: /(.*-[0-9a-z]{32}\.(js|png|jpg|gif|css|woff|ttf|svg|map))
   static_files: dist/\1
   upload: dist/.*
   expiration: "30d"
