@@ -9,6 +9,15 @@
     {{lg-status-error model=newCvRequest prefix='CV Request'}}
   </div>
 
+  {{#if createLion}}
+    <h2>Create Lion</h2>
+
+    <div class="row">
+        {{input class='form-control' type='text'
+                name='lion-name' placeholder='Lion Name' value=lionName}}
+    </div>
+  {{/if}}
+
   <div class='image-set-save-or-delete'>
     {{#if showSaveButton}}
       <button class='btn btn-primary btn-large' type='button' {{action 'saveImageSet'}}>
