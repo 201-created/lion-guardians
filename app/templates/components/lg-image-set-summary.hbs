@@ -1,16 +1,12 @@
 <div {{bind-attr class=':image-summary heroImage:hero-gallery'}}>
   <div class='metadata-and-selected row'>
-    <div class='col-sm-5'>
+    <div class='col-sm-4'>
       <div {{bind-attr class=':lg-image-set-summary-header imageSet.isPrimary:primary-image-set'}}>
-        {{#if setName}}
-          <h3>{{setName}}</h3>
-        {{else}}
-          <h4>Image Set {{imageSet.id}}</h4>
-        {{/if}}
+        <h3>{{setName}}</h3>
       </div>
     </div>
     {{#if heroImage}}
-      <div class='col-sm-1'></div>
+      <div class='col-sm-2'></div>
       <div class='col-sm-6 hero-image'>
         {{#if selectedImage}}
           <a target="_blank" {{bind-attr href=selectedImage.url}}>

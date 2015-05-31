@@ -32,11 +32,6 @@
         </button>
       {{/link-to}}
       <button type="button"
-              {{action 'makePrimaryImageSet' activeImageSet}}
-              {{bind-attr class=":btn :btn-sm :btn-primary canEdit::disabled :make-primary"}}>
-        Make Primary Image Set
-      </button>
-      <button type="button"
               {{action 'removeImageSet' activeImageSet}}
               {{bind-attr class=":btn :btn-sm :btn-primary canEdit::disabled :remove-image-set"}}>
         Unassociate from Lion
