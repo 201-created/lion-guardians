@@ -62,27 +62,6 @@ test('visiting /lion/2', function() {
   });
 });
 
-test('visiting /lion/2 and setting primary image set', function() {
-  expect(2);
-  signInAndVisit('/lion/2');
-
-
-  andThen(function() {
-    click('.lion-summary-item .image-set-id:contains(24)');
-  });
-
-  andThen(function() {
-    expectElement('.mini-image-gallery .row.selectable-row.active');
-
-    stubRequest('put', '/lions/2', function(request){
-      ok(true, 'put api called');
-      return this.success(stubLionJSON());
-    });
-
-    click('.make-primary');
-  });
-});
-
 test('visiting /lion/2 and removing image set', function() {
   expect(2);
   stubGetUser();

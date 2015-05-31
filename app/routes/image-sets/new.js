@@ -1,4 +1,5 @@
 import ImageSetRoute from '../image-set';
+import DS from 'ember-data';
 
 export default ImageSetRoute.extend({
   controllerName: 'image-set',
@@ -13,6 +14,27 @@ export default ImageSetRoute.extend({
   renderTemplate: function() {
     this.render('image-set');
     this.render('image-set/index', {into: 'image-set'});
+  },
+
+  actions: {
+    createLion: function(imageSet, lionName){
+      var lion = this.store.createRecord('lion', {
+        primaryImageSet: imageSet,
+        name: lionName
+      });
+
+      // Bind lion to controller so that we can show errors
+      var controller = this.get('controller');
+      controller.set('newLion', lion);
+
+      lion.save().then(function(){
+        return;
+      }, function(error){
+        if (!(error instanceof DS.InvalidError)) {
+          alert("There was an error saving");
+        }
+      });
+    }
   }
 
 });

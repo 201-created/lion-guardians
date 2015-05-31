@@ -38,13 +38,6 @@
             CV Result Control Panel
           </div>
           <div class='control-panel-body row'>
-            <div class='col-sm-7'>
-              {{lg-lion-associator activeLion=activeLion
-                activeImageSet=activeImageSet
-                imageSet=imageSet
-                createLion='createLion'
-                showHeader=true}}
-            </div>
             {{#if showAssociateButton}}
               <div class='control-panel-grouping col-sm-2'>
                 Existing Lion Actions
@@ -53,6 +46,10 @@
                   <button class='btn btn-small btn-lion-guardians associate-lion' {{action 'associate' imageSet activeLion}}>
                     Associate Lion
                   </button>
+              </div>
+            {{else}}
+              <div class='control-panel-buttons col-sm-offset-1 col-sm-6'>
+                No actions to take. Lion already associated.
               </div>
             {{/if}}
           </div>

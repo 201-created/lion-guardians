@@ -1,25 +1,27 @@
-{{#if showHeader}}
-  <div class='control-panel-grouping single-row col-sm-3'>
-    New Lion Actions
-  </div>
-{{/if}}
-<div {{bind-attr class='showHeader:col-sm-9 :create-fields'}}>
-  {{#if showLionNameField}}
-    <div class='name-input'>
-      {{input class='form-control' type='text' name='lionName' placeholder='Lion Name' value=lionName}}
+<div class='associate-fields'>
+  {{#if showInput}}
+    <div class='id-input'>
+      {{input class='form-control' type='text' name='lionId' placeholder='Lion ID' value=lionId}}
     </div>
-    <div class='create-buttons'>
-      <button class='btn btn-xs btn-lion-guardians create-lion' {{action 'createLion' imageSet lionName}}>
-        Create Lion
+    <div class='associate-buttons'>
+      <button class='btn btn-xs btn-lion-guardians associate-lion'
+        {{bind-attr disabled=isSaving}}
+        {{action 'associateLion' imageSet lionId}}>
+
+        {{#if isSaving}}
+          Saving...
+        {{else}}
+          Associate Lion
+        {{/if}}
       </button>
-      <button class='btn btn-xs btn-lion-guardians' {{action 'toggleShowLionName'}}>
+      <button class='btn btn-xs btn-lion-guardians' {{action 'hideInput'}}>
         Cancel
       </button>
     </div>
   {{else}}
-    <button {{bind-attr class=':btn :btn-sm :btn-lion-guardians :start-create-lion imageSet.lion:disabled imageSet::disabled'}} 
-      {{action 'toggleShowLionName'}}>
-        Create Lion
+    <button {{bind-attr class=':btn :btn-sm :btn-lion-guardians :start-associate-lion isButtonActive::disabled'}}
+      {{action 'showInput'}}>
+        Associate Lion
     </button>
   {{/if}}
 </div>

@@ -42,67 +42,7 @@ test('visiting /image-set/cv-results', function() {
   });
 
   andThen(function() {
-    expectComponent('lg-lion-associator');
-  });
-});
-
-test('visiting /image-set/cv-results and creating new lion', function() {
-  expect(7);
-
-  signInAndVisit('/image-set/25/cv-results');
-
-  andThen(function() {
-    click('.cv-id:first-child');
-  });
-
-  andThen(function() {
-    expectElement('button.start-create-lion');
-    click('button.start-create-lion');
-  });
-
-  andThen(function() {
-    stubRequest('post', '/lions', function(){
-      ok(true, 'lion create api called');
-      return this.error(422, {
-        errors: {name: 'must be unique'}
-      });
-    });
-
-    fillIn('input[name="lionName"]', 'isaac');
-    click('button.create-lion');
-  });
-
-  andThen(function() {
-    expectElement('div.error');
-    equal(find('div.error').last().text().trim(), "Lion name must be unique");
-    click('button.start-create-lion');
-  });
-
-  andThen(function() {
-    stubRequest('post', '/lions', function(){
-      ok(true, 'lion create api called');
-      return this.success({
-        id: 3,
-        name: 'isaac',
-        primary_image_set_id: 25,
-        _embedded: {
-          image_sets: [
-            imageSetJSON
-          ],
-          organization: {
-            id: 1,
-            name: "Lion Guardians"
-          }
-        }
-      });
-    });
-
-    fillIn('input[name="lionName"]', 'isaac');
-    click('button.create-lion');
-  });
-
-  andThen(function() {
-    equal(currentURL(), '/lion/3');
+    expectElement('button:contains(Associate Lion)');
   });
 });
 
@@ -161,6 +101,6 @@ test('visiting /image-set/cv-results, cvResult associated with lion doesnt give 
   andThen(function() {
     expectElement('.lion-associator-control-panel');
     expectNoElement('.button.associate-lion');
-    expectNoElement('.button.start-create-lion');
+    expectNoElement('.button.start-associate-lion');
   });
 });

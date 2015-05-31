@@ -392,24 +392,15 @@ body > .ember-view {
   vertical-align: top;
 }
 
-.create-fields {
-  display: inline-block;
 
-  .name-input {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: -2px;
-  }
-}
-
-.create-buttons {
+.associate-buttons {
   display: inline-block;
 
   button {
     display: block;
   }
 
-  .create-lion {
+  .associate-lion {
     margin-top: -10px;
     margin-bottom: 5px;
   }
