@@ -35,6 +35,8 @@
         <li class='list-group-item'>Lat: {{input value=selectedLatitude}}<br>
                                     Long: {{input value=selectedLongitude}}</li>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
+        <li class='list-group-item'>Date stamp: {{lg-date-stamp-selector value=selectedDateStamp}}</li>
+        <li class='list-group-item'>Notes {{textarea value=selectedNotes}}</li>
 
         {{#if imageSet.lion}}
           <li class='list-group-item'>Lion:
@@ -69,6 +71,8 @@
         <li class='list-group-item'>Age: {{lg-dob-selector selectedDob=selectedDob isEditing=isEditing}} <small>{{ago imageSet.dateOfBirth}}</small></li>
         <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
         <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
+        <li class='list-group-item'>Date stamp: {{format-date-stamp imageSet.dateStamp}}</li>
+        <li class='list-group-item'>Notes {{format-free-text imageSet.notes}}</li>
         {{#if imageSet.lion}}
           <li class='list-group-item'>Lion:
             {{#link-to 'lion' imageSet.lion classNames='lg-lion-summary-link'}}

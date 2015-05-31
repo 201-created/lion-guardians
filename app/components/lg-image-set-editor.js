@@ -2,6 +2,7 @@ import Ember from 'ember';
 import {genders} from 'lion-guardians/utils/units';
 import ImageSetMarker from 'lion-guardians/models/image-set-marker';
 import TagSearchMixin from 'lion-guardians/mixins/tag-search';
+const reads = Ember.computed.reads;
 
 export default Ember.Component.extend(TagSearchMixin, {
   genders: genders,
@@ -10,12 +11,14 @@ export default Ember.Component.extend(TagSearchMixin, {
   imageSet: null,
   organizations: null,
 
-  selectedDob: Ember.computed.reads('imageSet.dateOfBirth'),
-  selectedLatitude: Ember.computed.reads('imageSet.latitude'),
-  selectedLongitude: Ember.computed.reads('imageSet.longitude'),
-  selectedOrganization: Ember.computed.reads('imageSet.organization'),
-  selectedGender: Ember.computed.reads('imageSet.gender'),
-  selectedIsVerified: Ember.computed.reads('imageSet.isVerified'),
+  selectedDob: reads('imageSet.dateOfBirth'),
+  selectedLatitude: reads('imageSet.latitude'),
+  selectedLongitude: reads('imageSet.longitude'),
+  selectedOrganization: reads('imageSet.organization'),
+  selectedGender: reads('imageSet.gender'),
+  selectedIsVerified: reads('imageSet.isVerified'),
+  selectedDateStamp: reads('imageSet.dateStamp'),
+  selectedNotes: reads('imageSet.notes'),
 
   setDefaultTag: function(property, category) {
     var tags = this.get('imageSet.tags');
@@ -69,7 +72,9 @@ export default Ember.Component.extend(TagSearchMixin, {
       organization: this.get('selectedOrganization'),
       gender: this.get('selectedGender'),
       isVerified: this.get('selectedIsVerified'),
-      tags: this.get('selectedTags')
+      tags: this.get('selectedTags'),
+      dateStamp: this.get('selectedDateStamp'),
+      notes: this.get('selectedNotes')
     });
   },
 

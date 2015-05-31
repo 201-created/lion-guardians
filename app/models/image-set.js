@@ -1,6 +1,5 @@
 /* global moment */
 
-import Ember from 'ember';
 import DS from 'ember-data';
 import {defaultLocation} from 'lion-guardians/utils/units';
 
@@ -13,15 +12,17 @@ export default DS.Model.extend({
   isVerified: DS.attr('boolean'),
   hasCvResults: DS.attr('boolean'),
   hasCvRequest: DS.attr('boolean'),
+  tags: DS.attr('array'),
+  dateStamp: DS.attr('date-stamp'),
+  notes: DS.attr(),
+
   images: DS.hasMany('images'),
   user: DS.belongsTo('user', {async: true}),
   lion: DS.belongsTo('lion', {inverse: 'imageSets'}),
-  lionless: Ember.computed.not('lion'),
   uploadingOrganization: DS.belongsTo('organization'),
   organization: DS.belongsTo('organization'),
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
-  tags: DS.attr('array'),
 
   age: function() {
     if (this.get('dateOfBirth')) {
