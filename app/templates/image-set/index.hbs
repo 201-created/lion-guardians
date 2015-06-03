@@ -56,37 +56,39 @@
     </div>
   </div>
 
-  <div class='col-sm-3'>
-    <div class='cv-request-control-panel'>
-      <div class='control-panel-header'>
-        Manage CV Requests
-      </div>
-      <div class='contorl-panel-body row'>
+  {{#if notCreatingNewImageSet}}
+    <div class='col-sm-3'>
+      <div class='cv-request-control-panel'>
+        <div class='control-panel-header'>
+          Manage CV Requests
+        </div>
+        <div class='contorl-panel-body row'>
 
-        {{#if model.id}}
-          {{#if model.cvRequestPending}}
-            <div class='control-panel-grouping col-sm-8 col-sm-offset-2'>
-              <div class='cv-request-pending'>CV Request Pending. No action to take at this time.</div>
-            </div>
-          {{else}}
-            <div class='control-panel-buttons col-sm-3 col-sm-offset-3'>
-              {{#if model.hasCvRequest}}
-                <button class='btn btn-primary btn-large request-cv disabled' {{action 'requestCv' model}}
-                        type='button'>
-                  Request CV
-                </button>
-              {{else}}
-                <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
-                        type='button'>
-                  Request CV
-                </button>
-              {{/if}}
-            </div>
+          {{#if model.id}}
+            {{#if model.cvRequestPending}}
+              <div class='control-panel-grouping col-sm-8 col-sm-offset-2'>
+                <div class='cv-request-pending'>CV Request Pending. No action to take at this time.</div>
+              </div>
+            {{else}}
+              <div class='control-panel-buttons col-sm-3 col-sm-offset-3'>
+                {{#if model.hasCvRequest}}
+                  <button class='btn btn-primary btn-large request-cv disabled' {{action 'requestCv' model}}
+                          type='button'>
+                    Request CV
+                  </button>
+                {{else}}
+                  <button class='btn btn-primary btn-large request-cv' {{action 'requestCv' model}}
+                          type='button'>
+                    Request CV
+                  </button>
+                {{/if}}
+              </div>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 </div>
 
 

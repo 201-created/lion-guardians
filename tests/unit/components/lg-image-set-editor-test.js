@@ -10,7 +10,8 @@ import { initialize } from 'lion-guardians/initializers/ember-moment';
 var oldConfirm;
 
 moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
-  needs: ['component:lg-google-map', 'component:lg-dob-selector'],
+  needs: ['component:lg-google-map', 'component:lg-dob-selector',
+          'helper:format-date-stamp', 'helper:format-free-text'],
 
   setup: function(container) {
     oldConfirm = window.confirm;

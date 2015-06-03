@@ -19,8 +19,9 @@
   {{/if}}
 
   <div class='image-set-save-or-delete'>
-    {{#if showSaveButton}}
-      <button class='btn btn-primary btn-large' type='button' {{action 'saveImageSet'}}>
+    {{#if creatingNewImageSet}}
+      <button {{bind-attr class=':btn :btn-primary :btn-large enableShowButton::disabled'}}
+        type='button' {{action 'saveImageSet'}}>
         Save Image Set
       </button>
     {{/if}}

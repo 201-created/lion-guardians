@@ -41,21 +41,15 @@ body > .ember-view {
 
 .login {
   height: 400px;
-  width: 500px;
+  width: 250px;
   margin: 50px auto;
 
-  .lion-guardians-logo, .login-form {
+  .login-form {
     display: inline-block;
     width: 250px;
   }
 
-  .lion-guardians-logo .logo {
-    width: 175px;
-    margin: 0 40px;
-  }
-
   .login-form {
-    float: right;
 
     .alert-danger {
       margin-top: 20px;
@@ -167,6 +161,11 @@ body > .ember-view {
   &.is-editing {
     height: 775px;
   }
+}
+
+.notes-box, .metadata-panel {
+  position: relative;
+  min-height: 100px;
 
   .edit-save-button {
     position: absolute;
@@ -174,6 +173,25 @@ body > .ember-view {
     right: 0;
     line-height: 35px;
     padding-right: 10px;
+  }
+
+  &.note-text-area {
+    overflow-y: scroll;
+  }
+}
+
+.notes-box {
+  margin-top: 20px;
+
+  .note-text-area {
+    padding: 5px;
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
   }
 }
 
