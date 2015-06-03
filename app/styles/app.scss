@@ -200,7 +200,8 @@ body > .ember-view {
 
 .file-input {
   padding-bottom: 5px;
-  line-height: 20px;
+  line-height: 15px;
+  margin-top: 10px;
 }
 
 .selectable-row.active {
@@ -334,7 +335,7 @@ body > .ember-view {
   margin-bottom: 40px;
 }
 
-.lion-control-panel, .image-set-control-panel, .lion-associator-control-panel {
+.control-panel, .cv-request-control-panel, .lion-control-panel, .image-set-control-panel, .lion-associator-control-panel {
   border: 1px solid #DCDCDC;
   background-color: #EEE;
   border-radius: 5px;
@@ -342,7 +343,11 @@ body > .ember-view {
   margin-bottom: 20px;
 }
 
-.lion-associator-control-panel .control-panel-header {
+.cv-request-control-panel {
+  padding-bottom: 20px;
+}
+
+.cv-request-control-panel .control-panel-header, .lion-associator-control-panel .control-panel-header {
   margin-bottom: 10px;
 }
 
@@ -362,9 +367,21 @@ body > .ember-view {
 }
 
 .control-panel-grouping {
+  .file-input {
+    padding-left: 37%;
+    padding-bottom: 10px;
+  }
+}
+
+.control-panel-grouping {
   padding: 0;
   margin-top: -5px;
   text-align: center;
+
+  &.vertically-aligned-row {
+    line-height: 30px;
+    margin-top: 0;
+  }
 
   &.single-row {
     text-align:right;
