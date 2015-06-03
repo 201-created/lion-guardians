@@ -21,9 +21,15 @@ export default Ember.Controller.extend({
     return this.get('currentUser.organization') === this.get('model.organization');
   }.property('currentUser.organization', 'model.organization'),
 
-  showSaveButton: function() {
-    return !this.get('model.id') && this.get('model.images.length');
-  }.property('model.id', 'model.images.length'),
+  creatingNewImageSet: function() {
+    return !this.get('model.id');
+  }.property('model.id'),
+
+  notCreatingNewImageSet: Ember.computed.not('creatingNewImageSet'),
+
+  disableShowButton: function() {
+    return this.get('model.images.length');
+  }.property('model.images.length'),
 
   isCreatingNewLion: function(){
     return !!this.get('createLion');

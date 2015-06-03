@@ -15,15 +15,31 @@ export default Ember.Component.extend(TagSearchMixin, {
   selectedOrganization: null,
   selectedName: null,
   action: null,
-  searchModel: 'lion',
+  searchModelName: 'lion',
   numberOfSearchResults: 0,
+
+  searchModelNameFormatted: function() {
+    let formattedName;
+    if (this.get('searchModelName') === 'lion') {
+      formattedName = 'Lion';
+    } else {
+      formattedName = 'Image Set';
+    }
+
+    if (this.get('numberOfSearchResults') !== 1) {
+      formattedName = Ember.String.pluralize(formattedName);
+    }
+
+    return formattedName;
+  }.property('searchModelName', 'numberOfSearchResults'),
+
   searchIcon: function() {
-    if (this.get('searchModel') === 'lion') {
+    if (this.get('searchModelName') === 'lion') {
       return 'glyphicon-globe';
     } else {
       return 'glyphicon-picture';
     }
-  }.property('searchModel'),
+  }.property('searchModelName'),
 
   defaultOrganization: function(){
     return Ember.Object.create({
@@ -88,9 +104,9 @@ export default Ember.Component.extend(TagSearchMixin, {
       var params = this.get('params'),
           store = this.get('store'),
           component = this,
-          searchModel = this.get('searchModel');
+          searchModelName = this.get('searchModelName');
 
-      store.find(searchModel, params).then(function(results){
+      store.find(searchModelName, params).then(function(results){
         component.set('numberOfSearchResults', results.get('length'));
         component.sendAction('action', results);
       }, function() {

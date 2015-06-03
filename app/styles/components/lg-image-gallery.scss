@@ -10,7 +10,6 @@ $gallery-height: 300px;
   }
   .scrollable-gallery {
     padding-right: 40px;
-    height: $gallery-height;
     margin-top: 20px;
   }
 
@@ -36,11 +35,4 @@ $gallery-height: 300px;
     }
 
   }
-}
-
-.scrollable-gallery {
-  position: relative;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
 }

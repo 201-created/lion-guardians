@@ -36,7 +36,6 @@
                                     Long: {{input value=selectedLongitude}}</li>
         <li class='list-group-item'>Gender: {{view 'select' classNames='lg-image-set-editor-gender' content=genders value=selectedGender}}</li>
         <li class='list-group-item'>Date stamp: {{lg-date-stamp-selector value=selectedDateStamp}}</li>
-        <li class='list-group-item'>Notes {{textarea value=selectedNotes}}</li>
 
         {{#if imageSet.lion}}
           <li class='list-group-item'>Lion:
@@ -72,7 +71,6 @@
         <li class='list-group-item'>Lat/Long: {{imageSet.latitude}} x {{imageSet.longitude}}</li>
         <li class='list-group-item lg-image-set-editor-gender'>Gender: {{imageSet.gender}}</li>
         <li class='list-group-item'>Date stamp: {{format-date-stamp imageSet.dateStamp}}</li>
-        <li class='list-group-item'>Notes {{format-free-text imageSet.notes}}</li>
         {{#if imageSet.lion}}
           <li class='list-group-item'>Lion:
             {{#link-to 'lion' imageSet.lion classNames='lg-lion-summary-link'}}
@@ -93,19 +91,57 @@
   </div>
 </div>
 
-<div class='col-sm-4'>
-  <div class='main-image'>
-    {{#if imageSet.mainImage}}
-      <a target="_blank" {{bind-attr href=imageSet.mainImage.url}}>
-        <img {{bind-attr src=imageSet.mainImage.mainUrl}}>
-      </a>
-    {{else}}
-      <div class='no-main-image'>
-        (Main Image)
+<div class='col-sm-8'>
+  <div class='row'>
+    <div class='col-sm-6'>
+      <div class='main-image'>
+        {{#if imageSet.mainImage}}
+          <a target="_blank" {{bind-attr href=imageSet.mainImage.url}}>
+            <img {{bind-attr src=imageSet.mainImage.mainUrl}}>
+          </a>
+        {{else}}
+          <div class='no-main-image'>
+            (Main Image)
+          </div>
+        {{/if}}
       </div>
-    {{/if}}
+    </div>
+    <div class='col-sm-6'>
+      {{lg-google-map marker=mapMarker}}
+    </div>
   </div>
-</div>
-<div class='col-sm-4'>
-  {{lg-google-map marker=mapMarker}}
+  <div class='row'>
+    <div {{bind-attr class=':notes-box :panel :panel-default isEditing:is-editing'}}>
+      <div class='panel-heading'>
+        Notes
+        <div class='edit-save-button'>
+          {{#if editingEnabled}}
+            {{#if isEditing}}
+              {{#if isSavingImageSet}}
+                Saving In Progress..
+              {{else}}
+                <button class='btn btn-xs btn-success' {{action 'finishEditing'}} >
+                  Save
+                </button>
+                <button class='btn btn-xs btn-warning' {{action 'cancelEditing'}} >
+                  Cancel
+                </button>
+              {{/if}}
+            {{else}}
+              <button class='btn btn-xs btn-info' {{action 'startEditing'}} >
+                Edit
+              </button>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+      <div class='note-text-area'>
+        {{#if isEditing}}
+          {{textarea value=selectedNotes}}
+        {{else}}
+          {{format-free-text imageSet.notes}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>

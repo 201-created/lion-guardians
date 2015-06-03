@@ -41,21 +41,15 @@ body > .ember-view {
 
 .login {
   height: 400px;
-  width: 500px;
+  width: 250px;
   margin: 50px auto;
 
-  .lion-guardians-logo, .login-form {
+  .login-form {
     display: inline-block;
     width: 250px;
   }
 
-  .lion-guardians-logo .logo {
-    width: 175px;
-    margin: 0 40px;
-  }
-
   .login-form {
-    float: right;
 
     .alert-danger {
       margin-top: 20px;
@@ -167,6 +161,11 @@ body > .ember-view {
   &.is-editing {
     height: 775px;
   }
+}
+
+.notes-box, .metadata-panel {
+  position: relative;
+  min-height: 100px;
 
   .edit-save-button {
     position: absolute;
@@ -174,6 +173,25 @@ body > .ember-view {
     right: 0;
     line-height: 35px;
     padding-right: 10px;
+  }
+
+  &.note-text-area {
+    overflow-y: scroll;
+  }
+}
+
+.notes-box {
+  margin-top: 20px;
+
+  .note-text-area {
+    padding: 5px;
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
   }
 }
 
@@ -200,7 +218,8 @@ body > .ember-view {
 
 .file-input {
   padding-bottom: 5px;
-  line-height: 20px;
+  line-height: 15px;
+  margin-top: 10px;
 }
 
 .selectable-row.active {
@@ -334,7 +353,7 @@ body > .ember-view {
   margin-bottom: 40px;
 }
 
-.lion-control-panel, .image-set-control-panel, .lion-associator-control-panel {
+.control-panel, .cv-request-control-panel, .lion-control-panel, .image-set-control-panel, .lion-associator-control-panel {
   border: 1px solid #DCDCDC;
   background-color: #EEE;
   border-radius: 5px;
@@ -342,7 +361,11 @@ body > .ember-view {
   margin-bottom: 20px;
 }
 
-.lion-associator-control-panel .control-panel-header {
+.cv-request-control-panel {
+  padding-bottom: 20px;
+}
+
+.cv-request-control-panel .control-panel-header, .lion-associator-control-panel .control-panel-header {
   margin-bottom: 10px;
 }
 
@@ -362,9 +385,21 @@ body > .ember-view {
 }
 
 .control-panel-grouping {
+  .file-input {
+    padding-left: 37%;
+    padding-bottom: 10px;
+  }
+}
+
+.control-panel-grouping {
   padding: 0;
   margin-top: -5px;
   text-align: center;
+
+  &.vertically-aligned-row {
+    line-height: 30px;
+    margin-top: 0;
+  }
 
   &.single-row {
     text-align:right;
