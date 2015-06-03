@@ -10,7 +10,6 @@ $gallery-height: 300px;
   }
   .scrollable-gallery {
     padding-right: 40px;
-    height: $gallery-height;
     margin-top: 20px;
   }
 
@@ -23,7 +22,6 @@ $gallery-height: 300px;
     img {
       border: 1px solid black;
       height: 150px;
-      width: 150px;
     }
 
     .image-properties {
@@ -36,11 +34,4 @@ $gallery-height: 300px;
     }
 
   }
-}
-
-.scrollable-gallery {
-  position: relative;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
 }
