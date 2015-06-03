@@ -7,13 +7,9 @@ import Ember from 'ember';
 import { stubGetSearchOptions } from '../../helpers/fake-requests';
 import { initialize } from 'lion-guardians/initializers/ember-moment';
 
-moduleForComponent('lg-lion-editor', 'LgLionEditorComponent', {
-  needs: ['component:lg-google-map', 'component:lg-dob-selector']
-});
-
 var oldConfirm;
 
-moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
+moduleForComponent('lg-lion-editor', 'LgLionEditorComponent', {
   needs: ['component:lg-google-map', 'component:lg-dob-selector'],
 
   setup: function(container) {
@@ -41,6 +37,6 @@ test('it renders', function() {
   equal(component._state, 'preRender');
 
   // appends the component to the page
-  this.append();
+  this.render();
   equal(component._state, 'inDOM');
 });
