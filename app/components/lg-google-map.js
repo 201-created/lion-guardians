@@ -2,11 +2,13 @@ import Ember from 'ember';
 import config from '../config/environment';
 import {defaultLocation} from 'lion-guardians/utils/units';
 
+const { alias, reads } = Ember.computed;
+
 export default Ember.Component.extend({
   classNames: ['lg-google-map'],
   defaultLocation: defaultLocation,
   marker: null,
-  isVisible: Ember.computed.alias('showMaps'),
+  isVisible: alias('showMaps'),
 
   init: function(){
     this._super.apply(this, arguments);
@@ -16,12 +18,10 @@ export default Ember.Component.extend({
     this._setLatLon();
   },
 
-  showMaps: function() {
-    return config.showMaps;
-  }.property(),
+  showMaps: config.showMaps,
 
-  zoom: Ember.computed.reads('defaultLocation.zoom'),
-  mapType: Ember.computed.reads('defaultLocation.mapType'),
+  zoom: reads('defaultLocation.zoom'),
+  mapType: reads('defaultLocation.mapType'),
 
   markers: function() {
     var marker = this.get('marker');

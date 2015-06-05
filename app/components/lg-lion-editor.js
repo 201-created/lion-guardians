@@ -1,4 +1,5 @@
 import Ember from 'ember';
+const { reads } = Ember.computed;
 
 export default Ember.Component.extend({
   isEditing: false,
@@ -6,14 +7,10 @@ export default Ember.Component.extend({
   lion: null,
 
   isSaving: false,
-  selectedName: Ember.computed.reads('lion.name'),
-  selectedOrganization: Ember.computed.reads('lion.organization'),
+  selectedName: reads('lion.name'),
+  selectedOrganization: reads('lion.organization'),
 
-  imageSet: Ember.computed.reads('lion.primaryImageSet'),
-
-  // for map marker
-  selectedLatitude: Ember.computed.reads('imageSet.latitude'),
-  selectedLongitude: Ember.computed.reads('imageSet.longitude'),
+  imageSet: reads('lion.primaryImageSet'),
 
   mapMarker: function() {
     var imageSet = this.get('imageSet');

@@ -17,9 +17,8 @@ export default Ember.Controller.extend({
   newLion: null,
   newCvRequest: null,
 
-  isOwner: function() {
-    return this.get('currentUser.organization.id') === this.get('model.organization.id');
-  }.property('currentUser.organization.id', 'model.organization.id'),
+  isOwner: Ember.computed.equal('currentUser.organization.id',
+                                'model.organization.id'),
 
   creatingNewImageSet: function() {
     return !this.get('model.id');
@@ -71,6 +70,9 @@ export default Ember.Controller.extend({
     //   * save the lion
 
     const lionName = this.get('lionName');
+    if (Ember.isBlank(lionName)) {
+      return alert(`You must enter a lion name`);
+    }
     const lion = this.get('store').createRecord('lion', {name: lionName});
     let imageSet;
 
