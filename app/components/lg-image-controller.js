@@ -1,49 +1,51 @@
 import Ember from 'ember';
 
+const { reads, gt, or, not, and } = Ember.computed;
+
 export default Ember.Component.extend({
   tagName: 'span',
   image: null,
+  imageSet: null,
   editingEnabled: null,
   imageTypes: [],
 
-  selectedIsPublic: Ember.computed.reads('image.isPublic'),
-  selectedImageType: Ember.computed.reads('image.imageType'),
+  // properties from `image`
+  isPublic: reads('image.isPublic'),
+  isMainImage: reads('image.isMainImage'),
 
-  // Image set must have at least 1 image
-  canDelete: Ember.computed.gt('image.imageSet.images.length', 1),
+  // properties from `imageSet`
+  imageSetHasImages: gt('imageSet.images.length', 1),
 
-  canMakeMain: function() {
-    var isMainImage = this.get('image.isMainImage'),
-        isPublic = this.get('image.isPublic');
+  // UI-related computed properties
+  isDeleteButtonDisabled: or('cannotDelete', 'imageSet.isSaving'),
+  isPublicCheckboxDisabled: or('image.isMainImage', 'imageSet.isSaving'),
+  isImageTypeSelectDisabled: reads('imageSet.isSaving'),
+  isMainButtonDisabled: or('cannotMakeMain', 'imageSet.isSaving'),
 
-    return isPublic && !isMainImage;
-  }.property('image.isMainImage', 'image.isPublic'),
+  canMakeMain: and('isPublic', 'isNotMainImage'),
+  canDelete: and('imageSetHasImages', 'isNotMainImage'),
 
+  // negations of CPs (used for UI CPs above)
+  cannotMakeMain: not('canMakeMain'),
+  cannotDelete: not('canDelete'),
+  isNotMainImage: not('isMainImage'),
+
+  // when changing an image's isPublic or imageType value,
+  // save the image set
   updateImageSet: function() {
-    var selectedIsPublic = this.get('selectedIsPublic'),
-        selectedImageType =this.get('selectedImageType'),
-        isPublic = this.get('image.isPublic'),
-        imageType = this.get('image.imageType');
-
-    if (selectedIsPublic !== isPublic || selectedImageType !== imageType) {
-      var image = this.get('image');
-      image.setProperties({
-        isPublic: selectedIsPublic,
-        imageType: selectedImageType
-      });
-
+    if (this.get('image.isDirty')) {
       this.sendAction('saveImageSet');
     }
-  }.observes('selectedIsPublic', 'selectedImageType'),
+  }.observes('image.isPublic', 'image.imageType'),
 
   actions: {
     makeMainImage: function() {
-      var image = this.get('image');
+      const image = this.get('image');
       this.sendAction('makeMainImage', image);
     },
 
     deleteImage: function() {
-      var image = this.get('image');
+      const image = this.get('image');
       this.sendAction('deleteImage', image);
     }
   }

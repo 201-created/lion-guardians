@@ -1,11 +1,12 @@
 <div class='image-gallery col-sm-12'>
   <div class='gallery-header'>
-    <h3> Image Gallery</h3>
+    <h3>Image Gallery {{#if imageSet.isSaving}}(saving...){{/if}}</h3>
   </div>
 
   <div class='scrollable-gallery'>
     {{#each imageSet.images as |image|}}
       {{lg-image-controller image=image
+        imageSet=imageSet
         imageTypes=imageTypes
         editingEnabled=editingEnabled
         makeMainImage='makeMainImage'

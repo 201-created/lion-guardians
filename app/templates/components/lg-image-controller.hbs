@@ -3,13 +3,24 @@
 
   <div class='image-properties'>
     {{#if editingEnabled}}
-      {{view 'select' class='form-control' content=imageTypes value=selectedImageType}}
+      {{view 'select'
+             class='form-control'
+             content=imageTypes
+             value=image.imageType
+             disabled=isImageTypeSelectDisabled
+       }}
       <div class='public-private checkbox'>
-        {{input type='checkbox' checked=selectedIsPublic disabled=image.isMainImage}} Public
+        {{input type='checkbox'
+                checked=image.isPublic
+                disabled=isPublicCheckboxDisabled}}
+        Public
       </div>
       {{#if image.id}}
         <button
-          {{bind-attr class=":btn :btn-xs image.isMainImage:btn-success:btn-warning canMakeMain::disabled"}}
+          {{bind-attr
+            class=":btn :btn-xs image.isMainImage:btn-success:btn-warning isMainButtonDisabled:disabled"
+            disabled=isMainButtonDisabled
+          }}
           {{action 'makeMainImage'}}>
           {{#if image.isMainImage}}
             Main
@@ -19,7 +30,8 @@
         </button>
       {{/if}}
       <button
-        {{bind-attr class=":btn :btn-xs :btn-danger canDelete::disabled"}}
+        {{bind-attr class=":btn :btn-xs :btn-danger isDeleteButtonDisabled:disabled"}}
+        {{bind-attr disabled=isDeletButtonDisabled}}
         {{action 'deleteImage'}}>
         Delete
       </button>
@@ -29,7 +41,7 @@
       <li>
         {{#if image.isPublic}}
           Public
-          {{else}}
+        {{else}}
           Private
         {{/if}}
       </li>

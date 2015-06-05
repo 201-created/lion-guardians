@@ -1,6 +1,11 @@
 import Ember from 'ember';
 import {imageTypes} from 'lion-guardians/utils/units';
 
+function removeUnsavedImages(imageSet) {
+  const unsavedImages = imageSet.get('images').filter((img) => !img.get('id'));
+  imageSet.get('images').removeObjects(unsavedImages);
+}
+
 export default Ember.Component.extend({
   imageTypes: imageTypes,
   editingEnabled: false,
@@ -12,7 +17,9 @@ export default Ember.Component.extend({
     saveImageSet: function() {
       var imageSet = this.get('imageSet');
       if (imageSet.get('id')) {
-        imageSet.save();
+        imageSet.save().then((imageSet) => {
+          removeUnsavedImages(imageSet);
+        });
       }
     },
 
