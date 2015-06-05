@@ -46,9 +46,17 @@ export default Ember.Component.extend(TagSearchMixin, {
 
   mapMarker: function() {
     return ImageSetMarker.create({
-      component: this
+      lat: this.get('selectedLatitude'),
+      lng: this.get('selectedLongitude')
     });
   }.property(),
+
+  updateMarker: function(){
+    this.get('mapMarker').setProperties({
+      lat: this.get('selectedLatitude'),
+      lng: this.get('selectedLongitude')
+    });
+  }.observes('selectedLatitude', 'selectedLongitude'),
 
   resetValues: function() {
     var imageSet = this.get('imageSet');
