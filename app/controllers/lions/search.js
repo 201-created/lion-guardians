@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
         lion = this.get('activeLion');
 
     return user && lion &&
-      (user.get('organization') === lion.get('organization'));
+      (user.get('organization.name') === lion.get('organization.name'));
   }.property('user.organization', 'activeLion.organization'),
 
   actions: {
