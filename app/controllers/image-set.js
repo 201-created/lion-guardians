@@ -18,8 +18,8 @@ export default Ember.Controller.extend({
   newCvRequest: null,
 
   isOwner: function() {
-    return this.get('currentUser.organization') === this.get('model.organization');
-  }.property('currentUser.organization', 'model.organization'),
+    return this.get('currentUser.organization.id') === this.get('model.organization.id');
+  }.property('currentUser.organization.id', 'model.organization.id'),
 
   creatingNewImageSet: function() {
     return !this.get('model.id');

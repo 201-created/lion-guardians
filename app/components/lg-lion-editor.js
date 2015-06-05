@@ -81,6 +81,7 @@ export default Ember.Component.extend({
 
         if(confirm(message)) {
           // automatically set is Verified to false when changing organization
+          this.set('lion.primaryImageSet.organization', selectedOrganization);
           this.set('selectedIsVerified', false);
           this.finishEditing();
         }

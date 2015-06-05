@@ -31,8 +31,8 @@ export default DS.Model.extend({
   }.property('dateOfBirth'),
 
   isPrimary: function() {
-    return this === this.get('lion.primaryImageSet');
-  }.property('lion'),
+    return this.get('id') === this.get('lion.primaryImageSet.id');
+  }.property('lion.primaryImageSet.id'),
 
   cvRequestPending: function() {
     return this.get('hasCvRequest') && !this.get('hasCvResults');

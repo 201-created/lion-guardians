@@ -5,8 +5,8 @@ export default Ember.Controller.extend({
   activeImageSet: null,
 
   isOwner: function() {
-    return this.get('model.organization') === this.get('currentUser.organization');
-  }.property('model.organization', 'currentUser.organization'),
+    return this.get('model.organization.id') === this.get('currentUser.organization.id');
+  }.property('model.organization.id', 'currentUser.organization.id'),
 
   canEdit: function() {
     return this.get('activeImageSet') && this.get('isOwner');
