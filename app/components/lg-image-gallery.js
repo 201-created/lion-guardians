@@ -1,10 +1,6 @@
 import Ember from 'ember';
 import {imageTypes} from 'lion-guardians/utils/units';
-
-function removeUnsavedImages(imageSet) {
-  const unsavedImages = imageSet.get('images').filter((img) => !img.get('id'));
-  imageSet.get('images').removeObjects(unsavedImages);
-}
+import removeUnsavedImages from 'lion-guardians/utils/remove-unsaved-images';
 
 export default Ember.Component.extend({
   imageTypes: imageTypes,
