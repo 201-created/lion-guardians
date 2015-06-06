@@ -19,7 +19,7 @@ var searchGenders = ['all'].concat(genders);
 var defaultLocation = {
   latitude: -1.581981,
   longitude: 35.2451,
-  zoom: 13,
+  zoom: 9,
   mapType: 'road'
 };
 

@@ -23,6 +23,10 @@ export default Ember.Component.extend({
   zoom: reads('defaultLocation.zoom'),
   mapType: reads('defaultLocation.mapType'),
 
+  recenter: function(){
+    Ember.run.debounce(this, this._recenter, 500);
+  }.observes('marker.lng', 'marker.lat'),
+
   markers: function() {
     var marker = this.get('marker');
 
@@ -40,5 +44,12 @@ export default Ember.Component.extend({
     var lat = this.get('marker.lat') || defaultLocation.latitude;
     this.set('latitude', lat);
   },
+
+  _recenter() {
+    const longitude = this.get('marker.lng'),
+          latitude = this.get('marker.lat');
+
+    this.setProperties({longitude, latitude});
+  }
 
 });
