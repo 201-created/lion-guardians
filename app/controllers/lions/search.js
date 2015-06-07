@@ -29,10 +29,21 @@ export default Ember.Controller.extend({
           canDeleteLion = this.get('canDeleteLion');
 
       if (activeLion && canDeleteLion) {
-        if (confirm("Are you sure you want to delete lion " + activeLion.get('name') + "? This cannot be undone.")) {
+        if (confirm(`Are you sure you want to delete lion ${activeLion.get('name')}? This cannot be undone.`)) {
           this.set('activeLion', null);
+
+          // removes lion from list of displayed lion search results
           this.get('model').removeObject(activeLion);
-          activeLion.destroyRecord();
+
+          let primaryImageSet;
+          activeLion.get('primaryImageSet').then((_primaryImageSet) => {
+            primaryImageSet = _primaryImageSet;
+            return activeLion.destroyRecord();
+          }).then(() => {
+            // remove the (server-side deleted) primary image set
+            // from the store
+            primaryImageSet.unloadRecord();
+          });
         }
       }
     },

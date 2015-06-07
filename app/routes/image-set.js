@@ -4,7 +4,7 @@ import config from '../config/environment';
 import OrganizationRouteMixin from 'lion-guardians/mixins/organization-route';
 import RequireUserMixin from 'lion-guardians/mixins/require-user';
 
-export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
+export default Ember.Route.extend(OrganizationRouteMixin, RequireUserMixin, {
   beforeModel: function() {
     var route = this;
     return this._super().then(function() {
