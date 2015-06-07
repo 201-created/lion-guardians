@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   filteredImages: function() {
     const selectedImageType = this.get('selectedImageType'),
-          images = this.get('imageSet.images'),
+          images = this.get('imageSet.images') || [],
           maxImageCount = this.get('maxImageCount');
 
     let filteredImages;

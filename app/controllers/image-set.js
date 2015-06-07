@@ -27,11 +27,15 @@ export default Ember.Controller.extend({
 
   editingEnabled: or('isOwner', 'isCreatingNewLion', 'creatingNewImageSet'),
 
+  canUploadNewImages: reads('isOwner'),
+
   creatingNewImageSet: not('model.id'),
 
   notCreatingNewImageSet: Ember.computed.not('creatingNewImageSet'),
 
   isCreatingNewLion: reads('createLion'),
+
+  canMakeCvRequest: reads('isOwner'),
 
   actions: {
     addImage: function(upload){
