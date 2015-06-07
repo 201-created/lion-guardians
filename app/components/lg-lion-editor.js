@@ -67,7 +67,7 @@ export default Ember.Component.extend({
             selectedOrganization = this.get('selectedOrganization');
 
       if (selectedOrganization !== organization) {
-        let message = `You are about to change ownership of this organization from ` +
+        let message = `You are about to change ownership of this lion from ` +
               `${organization.get('name')} to ${selectedOrganization.get('name')}` +
               `. After changing, you will no longer have access to edit this lion. Are you sure?`;
 
