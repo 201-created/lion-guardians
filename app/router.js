@@ -27,6 +27,7 @@ Router.map(function() {
   this.resource("lion", { path: 'lion/:lion_id'}, function() {});
 
   this.route('throw-error');
+  this.route('not-found', {path: '/*catchall'});
 });
 
 export default Router;
