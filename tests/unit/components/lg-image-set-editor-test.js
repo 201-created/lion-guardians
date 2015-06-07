@@ -55,7 +55,9 @@ test('updating values', function() {
     longitude: longitude,
     organization: organization,
     gender: gender,
-    isVerified: isVerified
+    isVerified: isVerified,
+    save() { return Ember.RSVP.resolve(); },
+    images: []
   });
 
   var newDateOfBirth = new Date(),
@@ -106,7 +108,8 @@ test('resetting values', function() {
     longitude: longitude,
     organization: organization,
     gender: gender,
-    isVerified: isVerified
+    isVerified: isVerified,
+    save() { return Ember.RSVP.resolve(); }
   });
 
   var newDateOfBirth = new Date(),

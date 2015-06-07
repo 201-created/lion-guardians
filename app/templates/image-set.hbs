@@ -22,7 +22,11 @@
     {{#if creatingNewImageSet}}
       <button {{bind-attr class=':btn :btn-primary :btn-large'}}
         type='button' {{action 'saveImageSet'}}>
-        Save Image Set
+        {{#if isCreatingNewLion}}
+          Create Lion
+        {{else}}
+          Save Image Set
+        {{/if}}
       </button>
     {{/if}}
   </div>
@@ -31,8 +35,10 @@
 <div class='row'>
   {{lg-image-set-editor
     imageSet=model
-    editingEnabled=true
-    organizations=organizations}}
+    editingEnabled=editingEnabled
+    organizations=organizations
+    saveImageSetAction="saveImageSet"
+  }}
 </div>
 
 {{outlet}}

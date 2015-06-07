@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   tagName: 'span',
   image: null,
   imageSet: null,
-  editingEnabled: null,
+  editingEnabled: false,
   imageTypes: [],
 
   // properties from `image`

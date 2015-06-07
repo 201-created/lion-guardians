@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   organizations: null,
   lion: null,
 
-  isSaving: false,
+  isSaving: reads('lion.isSaving'),
   selectedName: reads('lion.name'),
   selectedOrganization: reads('lion.organization'),
 
@@ -44,16 +44,11 @@ export default Ember.Component.extend({
   },
 
   finishEditing: function() {
-    this.set('isSaving', true);
     this.updateValues();
-    var lion = this.get('lion'),
-        component = this;
+    const lion = this.get('lion');
 
-    lion.save().then(function() {
-      component.setProperties({
-        isEditing: false,
-        isSaving: false
-      });
+    lion.save().then(() => {
+      this.set('isEditing', false);
     });
   },
 
@@ -68,15 +63,15 @@ export default Ember.Component.extend({
     },
 
     finishEditing: function() {
-      var organization = this.get('lion.organization'),
-          selectedOrganization = this.get('selectedOrganization');
+      const organization = this.get('lion.organization'),
+            selectedOrganization = this.get('selectedOrganization');
 
       if (selectedOrganization !== organization) {
-        var message = 'You are about to change ownership of this organization from ' +
-              organization.get('name') + ' to ' + selectedOrganization.get('name') +
-              '. After changing, you will no longer have access to edit this lion. Are you sure?';
+        let message = `You are about to change ownership of this organization from ` +
+              `${organization.get('name')} to ${selectedOrganization.get('name')}` +
+              `. After changing, you will no longer have access to edit this lion. Are you sure?`;
 
-        if(confirm(message)) {
+        if (confirm(message)) {
           // automatically set is Verified to false when changing organization
           this.set('lion.primaryImageSet.organization', selectedOrganization);
           this.set('selectedIsVerified', false);

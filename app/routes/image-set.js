@@ -42,27 +42,6 @@ export default Ember.Route.extend( OrganizationRouteMixin, RequireUserMixin, {
       });
     },
 
-    createLion: function(imageSet, lionName){
-      var route = this;
-
-      var lion = this.store.createRecord('lion', {
-        primaryImageSet: imageSet,
-        name: lionName
-      });
-
-      // Bind lion to controller so that we can show errors
-      var controller = this.get('controller');
-      controller.set('newLion', lion);
-
-      lion.save().then(function(lion){
-        route.transitionTo('lion', lion);
-      }, function(error){
-        if (!(error instanceof DS.InvalidError)) {
-          alert("There was an error saving");
-        }
-      });
-    },
-
     requestCv: function(imageSet) {
       var cvRequest = this.store.createRecord('cvRequest', {
         imageSet: imageSet

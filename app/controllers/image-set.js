@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import {imageTypes} from 'lion-guardians/utils/units';
+import removeUnsavedImages from 'lion-guardians/utils/remove-unsaved-images';
+
+const { reads, not, or } = Ember.computed;
 
 export default Ember.Controller.extend({
   queryParams: ['createLion'],
@@ -17,22 +20,18 @@ export default Ember.Controller.extend({
   newLion: null,
   newCvRequest: null,
 
-  isOwner: Ember.computed.equal('currentUser.organization.id',
-                                'model.organization.id'),
+  isOwner: function(){
+    return this.get('currentUser.organization.id') ===
+           this.get('model.organization.id');
+  }.property('currentUser.organization.id', 'model.organization.id'),
 
-  creatingNewImageSet: function() {
-    return !this.get('model.id');
-  }.property('model.id'),
+  editingEnabled: or('isOwner', 'isCreatingNewLion', 'creatingNewImageSet'),
+
+  creatingNewImageSet: not('model.id'),
 
   notCreatingNewImageSet: Ember.computed.not('creatingNewImageSet'),
 
-  disableShowButton: function() {
-    return this.get('model.images.length');
-  }.property('model.images.length'),
-
-  isCreatingNewLion: function(){
-    return !!this.get('createLion');
-  }.property('createLion'),
+  isCreatingNewLion: reads('createLion'),
 
   actions: {
     addImage: function(upload){
@@ -48,15 +47,13 @@ export default Ember.Controller.extend({
     },
 
     saveImageSet: function() {
-      const controller = this;
-
       if (this.get('isCreatingNewLion')) {
-        this._createNewLionWithImageSet().then(function(lion){
-          return controller.transitionToRoute('lion', lion);
+        this._createNewLionWithImageSet().then((lion) => {
+          return this.transitionToRoute('lion', lion);
         });
       } else {
-        this._saveOrCreateImageSet().then(function(imageSet){
-          controller.transitionToRoute('image-set', imageSet);
+        this._saveOrCreateImageSet().then((imageSet) => {
+          this.transitionToRoute('image-set', imageSet);
         });
       }
     }
@@ -85,21 +82,10 @@ export default Ember.Controller.extend({
   },
 
   _saveOrCreateImageSet: function(){
-    var imageSet = this.get('model'),
-        controller = this;
+    const imageSet = this.get('model');
 
-    return imageSet.save().then(function(imageSet) {
-      imageSet = controller._removeEmptyImages(imageSet);
-      return imageSet;
+    return imageSet.save().then((imageSet) => {
+      return removeUnsavedImages(imageSet);
     });
-  },
-
-  // Remove original images that don't have IDs.
-  // The server will come back with new objects
-  _removeEmptyImages: function(imageSet){
-    var images = imageSet.get('images');
-    var nullImages = images.rejectBy('id');
-    images.removeObjects(nullImages);
-    return imageSet;
   }
 });

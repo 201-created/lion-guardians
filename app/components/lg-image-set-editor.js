@@ -2,8 +2,7 @@ import Ember from 'ember';
 import {genders} from 'lion-guardians/utils/units';
 import ImageSetMarker from 'lion-guardians/models/image-set-marker';
 import TagSearchMixin from 'lion-guardians/mixins/tag-search';
-const reads = Ember.computed.reads;
-import removeUnsavedImages from 'lion-guardians/utils/remove-unsaved-images';
+const { reads } = Ember.computed;
 
 export default Ember.Component.extend(TagSearchMixin, {
   genders: genders,
@@ -11,6 +10,8 @@ export default Ember.Component.extend(TagSearchMixin, {
   editingEnabled: false,
   imageSet: null,
   organizations: null,
+
+  isSavingImageSet: reads('imageSet.isSaving'),
 
   selectedDob: reads('imageSet.dateOfBirth'),
   selectedLatitude: reads('imageSet.latitude'),
@@ -88,25 +89,9 @@ export default Ember.Component.extend(TagSearchMixin, {
   },
 
   finishEditing: function() {
-    this.set('isSavingImageSet', true);
     this.updateValues();
-
-    var imageSet = this.get('imageSet'),
-        component = this;
-    if (imageSet.get('id')) {
-      imageSet.save().then(function() {
-        removeUnsavedImages(imageSet);
-        component.setProperties({
-          isEditing: false,
-          isSavingImageSet: false
-        });
-      });
-    } else {
-      this.setProperties({
-        isEditing: false,
-        isSavingImageSet: false
-      });
-    }
+    this.set('isEditing', false);
+    this.sendAction('saveImageSetAction');
   },
 
   actions: {

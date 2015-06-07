@@ -5,24 +5,25 @@
       <div class='edit-save-button'>
         {{#if editingEnabled}}
           {{#if isEditing}}
-            {{#if isSavingImageSet}}
-              Saving In Progress..
-            {{else}}
-              <button class='btn btn-xs btn-success' {{action 'finishEditing'}} >
-                Save
-              </button>
-              <button class='btn btn-xs btn-warning' {{action 'cancelEditing'}} >
-                Cancel
-              </button>
-            {{/if}}
+            <button class='btn btn-xs btn-success'
+              {{bind-attr disabled=isSaving}}
+              {{action 'finishEditing'}}>
+              Save
+            </button>
+            <button class='btn btn-xs btn-warning'
+              {{bind-attr disabled=isSaving}}
+              {{action 'cancelEditing'}}>
+              Cancel
+            </button>
           {{else}}
-            <button class='btn btn-xs btn-info' {{action 'startEditing'}} >
+            <button class='btn btn-xs btn-info' {{action 'startEditing'}}>
               Edit
             </button>
           {{/if}}
         {{/if}}
       </div>
     </div>
+
     {{#if isEditing}}
       <ul class='list-group'>
         <li class='list-group-item'>Lion ID: {{lion.id}}</li>

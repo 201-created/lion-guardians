@@ -19,8 +19,8 @@ export default DS.Model.extend({
   images: DS.hasMany('images'),
   user: DS.belongsTo('user', {async: true}),
   lion: DS.belongsTo('lion', {inverse: 'imageSets'}),
-  uploadingOrganization: DS.belongsTo('organization'),
-  organization: DS.belongsTo('organization'),
+  uploadingOrganization: DS.belongsTo('organization', {async:true}),
+  organization: DS.belongsTo('organization', {async: true}),
   cvResults: DS.hasMany('cv-results', {async: true}),
   cvRequest: DS.belongsTo('cv-request', {async: true}),
 
