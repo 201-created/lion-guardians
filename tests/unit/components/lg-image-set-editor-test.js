@@ -11,7 +11,8 @@ var oldConfirm;
 
 moduleForComponent('lg-image-set-editor', 'LgImageSetEditorComponent', {
   needs: ['component:lg-google-map', 'component:lg-dob-selector',
-          'helper:format-date-stamp', 'helper:format-free-text'],
+          'helper:format-date-stamp', 'helper:format-free-text',
+          'helper:format-gender'],
 
   setup: function(container) {
     oldConfirm = window.confirm;

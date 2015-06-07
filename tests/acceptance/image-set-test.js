@@ -66,6 +66,6 @@ test('visiting /image-set', function() {
   });
 
   andThen(function() {
-    equal(find('li.lg-image-set-editor-gender').text(), 'Gender: female');
+    equal(find('li.lg-image-set-editor-gender').text().trim(), 'Gender: female');
   });
 });
