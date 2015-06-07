@@ -50,10 +50,14 @@ export default Ember.Controller.extend({
       if (this.get('isCreatingNewLion')) {
         this._createNewLionWithImageSet().then((lion) => {
           return this.transitionToRoute('lion', lion);
+        }).catch((e) => {
+          alert('Error saving new lion with image set: ' + e.message);
         });
       } else {
         this._saveOrCreateImageSet().then((imageSet) => {
           this.transitionToRoute('image-set', imageSet);
+        }).catch((e) => {
+          alert('Error saving image set: ' + e.message);
         });
       }
     }
