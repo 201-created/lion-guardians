@@ -8,7 +8,8 @@ export default Ember.Controller.extend({
   queryParams: ['createLion'],
   createLion: false,
 
-  currentUser: null,
+  currentUser: reads('toriiSession.currentUser'),
+
   imageTypes: imageTypes,
   uploadImageType: imageTypes[0],
   uploadIsPublic: false,
